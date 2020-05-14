@@ -15,7 +15,7 @@ export TERM=xterm
 
 # User specific environment and startup programs
 
-EDITOR=vi
+EDITOR=vim
 export EDITOR
 
 unset SSH_ASKPASS
