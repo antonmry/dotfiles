@@ -96,7 +96,6 @@ call plug#begin('~/.vim/autoload')
 Plug 'rhysd/vim-grammarous'
 Plug 'godlygeek/tabular'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-java'
 
 call plug#end()
 
