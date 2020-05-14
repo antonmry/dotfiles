@@ -1,0 +1,60 @@
+#.bash_profile
+
+# Get the aliases and function
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+# Why this is not by default?
+#export TERM=xterm-256color
+export TERM=xterm
+
+# User specific environment and startup programs
+
+EDITOR=vi
+export EDITOR
+
+unset SSH_ASKPASS
+
+GATLING_HOME=/home/antonmry/Software/gatling
+export GATLING_HOME
+
+GRADLE_HOME=/home/antonmry/Software/gradle
+export GRADLE_HOME
+
+ANDROID_SDK=/home/antonmry/Software/android-sdk-linux/platform-tools/
+export ANDROID_SDK
+
+VAGRANT_DEFAULT_PROVIDER=virtualbox
+export VAGRANT_DEFAULT_PROVIDER
+
+# avoid duplicates..
+export HISTCONTROL=ignoredups:erasedups
+
+# append history entries..
+shopt -s histappend
+
+# After each command, save and reload history
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+GOPATH=~/go
+GOROOT=~/Software/go
+GOBIN=~/Software/go-bin
+
+export GOPATH
+export GOROOT
+export GOBIN
+
+SPARK_HOME=~/Software/spark-2.4.5-bin-hadoop2.7
+export SPARK_HOME
+
+PATH=$GOBIN:$GOROOT/bin:$PATH:$HOME/.local/bin:$HOME/bin:$ANDROID_SDK:$GRADLE_HOME/bin:$APPENGINE_JAVA/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin
+export PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/antonmry/.sdkman"
+[[ -s "/home/antonmry/.sdkman/bin/sdkman-init.sh" ]] && source "/home/antonmry/.sdkman/bin/sdkman-init.sh"
