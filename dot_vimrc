@@ -27,7 +27,6 @@ set modelines=0
 
 " Show line numbers
 set number relativenumber
-highlight LineNr ctermfg=grey ctermbg=white
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
@@ -92,7 +91,11 @@ colorscheme default
 
 " Show limit lines
 let &colorcolumn="81,".join(range(101,999),",")
+
+" Colors
+
 highlight ColorColumn ctermbg=lightgray guibg=white
+highlight LineNr ctermfg=grey ctermbg=white
 
 " Install plug if missing: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
