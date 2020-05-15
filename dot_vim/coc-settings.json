@@ -1,0 +1,9 @@
+{
+  "java.format.settings.profile": "GoogleStyle",
+  "markdownlint.config": {
+    "default": true,
+     "front_matter_title": false,
+     "no_space_in_code": false
+  }
+  
+}
