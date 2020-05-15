@@ -90,8 +90,8 @@ set t_Co=256
 colorscheme default
 
 " Show limit lines
-let &colorcolumn="80,".join(range(100,999),",")
-highlight ColorColumn ctermbg=lightgray guibg=blue
+let &colorcolumn="81,".join(range(101,999),",")
+highlight ColorColumn ctermbg=gray guibg=blue
 
 " Install plug if missing: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
