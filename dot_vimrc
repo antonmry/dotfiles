@@ -91,7 +91,7 @@ colorscheme default
 
 " Show limit lines
 let &colorcolumn="81,".join(range(101,999),",")
-highlight ColorColumn ctermbg=gray guibg=blue
+highlight ColorColumn ctermbg=lightgray guibg=blue
 
 " Install plug if missing: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
