@@ -1,3 +1,12 @@
+" Plugins
+call plug#begin('~/.vim/autoload')
+Plug 'tpope/vim-unimpaired'
+Plug 'rhysd/vim-grammarous'
+Plug 'godlygeek/tabular'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -90,14 +99,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
-" Plugins
-call plug#begin('~/.vim/autoload')
-Plug 'rhysd/vim-grammarous'
-Plug 'godlygeek/tabular'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-call plug#end()
 
 " Grammarous
 let g:grammarous#show_first_error=1
