@@ -85,7 +85,7 @@ colorscheme default
 
 " Colors
 
-highlight ColorColumn ctermbg=lightgray guibg=white
+highlight ColorColumn ctermbg=lightgray 
 highlight LineNr ctermfg=grey ctermbg=white
 highlight SignColumn ctermbg=white guibg=white
 
@@ -96,6 +96,9 @@ highlight DiffText ctermfg=darkyellow ctermbg=lightyellow
 highlight Folded ctermbg=white
 highlight FoldColumn ctermbg=white ctermfg=black
 
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow 
+highlight GitGutterDelete ctermfg=red 
 
 " Install plug if missing: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -269,3 +272,10 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" Gitgutter
+
+let g:gitgutter_sign_added = '☁'
+let g:gitgutter_sign_modified = '☀'
+let g:gitgutter_sign_removed = '☼'
+let g:gitgutter_sign_removed_first_line = '❆'
+let g:gitgutter_sign_modified_removed = '❅'
