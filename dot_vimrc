@@ -89,6 +89,12 @@ highlight ColorColumn ctermbg=lightgray guibg=white
 highlight LineNr ctermfg=grey ctermbg=white
 highlight SignColumn ctermbg=lightgray guibg=white
 
+highlight DiffAdd ctermbg=lightgreen gui=none guifg=bg guibg=white
+highlight DiffDelete ctermbg=lightred gui=none guifg=bg guibg=white
+highlight DiffChange ctermbg=lightyellow gui=none guifg=bg guibg=white
+highlight DiffText  ctermfg=darkyellow ctermbg=lightyellow gui=none guifg=bg guibg=white
+highlight Foldedi ctermbg=lightgray
+
 
 " Install plug if missing: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
