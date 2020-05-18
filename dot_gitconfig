@@ -23,6 +23,8 @@
 [alias]
   files = !git diff --name-only $(git merge-base HEAD \"master\")
   stat = !git diff --stat $(git merge-base HEAD \"master\")
+  review = !vim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+  reviewone = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 [github]
 	user = antonmry
 [credential]
