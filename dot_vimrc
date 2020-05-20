@@ -281,6 +281,11 @@ let g:gitgutter_sign_removed = '☼'
 let g:gitgutter_sign_removed_first_line = '❆'
 let g:gitgutter_sign_modified_removed = '❅'
 
+" vim-slime 
+
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+
 " todo.txm
 
 function! Todo()
@@ -290,9 +295,19 @@ endfunction
 
 command! Todo :call Todo()
 
+" todo.txm
+
 autocmd BufWritePost todo.txt !rclone sync ~/Documents/todo/ GoogleDrive:todo
 
-" vim-slime 
+function! Vimrc()
+ edit ~/.local/share/chezmoi/dot_vimrc
+endfunction
 
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+function! VimrcDone()
+  call system('chezmoi apply')
+  call system('chezmoi git commit -m "From git" -a')
+endfunction
+
+command! Vimrc :call Vimrc()
+
+autocmd BufWritePost dot_vimrc :call VimrcDone()
