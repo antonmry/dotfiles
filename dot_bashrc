@@ -30,8 +30,6 @@ export PS1="[\h \w]\$ "
 
 [[ $- != *i* ]] && return
 
-source ~/bin/todo_completion
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/antonmry/.sdkman"
 [[ -s "/home/antonmry/.sdkman/bin/sdkman-init.sh" ]] && source "/home/antonmry/.sdkman/bin/sdkman-init.sh"
