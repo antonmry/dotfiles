@@ -279,3 +279,14 @@ let g:gitgutter_sign_modified = '☀'
 let g:gitgutter_sign_removed = '☼'
 let g:gitgutter_sign_removed_first_line = '❆'
 let g:gitgutter_sign_modified_removed = '❅'
+
+" todo.txm
+
+unction! Todo()
+ call system('rclone sync GoogleDrive:todo ~/Documents/todo/')
+ edit ~/Documents/todo/todo.txt
+endfunction
+
+command! Todo :call Todo()
+
+autocmd BufWritePost todo.txt !rclone sync ~/Documents/todo/ GoogleDrive:todo
