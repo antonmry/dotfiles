@@ -303,11 +303,6 @@ function! Vimrc()
  edit ~/.local/share/chezmoi/dot_vimrc
 endfunction
 
-function! VimrcDone()
-  call system('chezmoi apply')
-  call system('chezmoi git commit -m "From git" -a')
-endfunction
-
 command! Vimrc :call Vimrc()
 
-autocmd BufWritePost dot_vimrc :call VimrcDone()
+autocmd BufWritePost dot_vimrc !chezmoi apply
