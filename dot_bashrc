@@ -25,7 +25,8 @@ export PROMPT_DIRTRIM=2
 export PS1="[\h \w]\$ "
 
 [[ $- != *i* ]] && return
-#[[ -z "$TMUX" ]] && exec tmux
+
+source ~/bin/todo_completion
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/antonmry/.sdkman"
