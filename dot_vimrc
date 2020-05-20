@@ -291,3 +291,8 @@ endfunction
 command! Todo :call Todo()
 
 autocmd BufWritePost todo.txt !rclone sync ~/Documents/todo/ GoogleDrive:todo
+
+" vim-slime 
+
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
