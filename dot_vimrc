@@ -282,7 +282,7 @@ let g:gitgutter_sign_modified_removed = '❅'
 
 " todo.txm
 
-unction! Todo()
+function! Todo()
  call system('rclone sync GoogleDrive:todo ~/Documents/todo/')
  edit ~/Documents/todo/todo.txt
 endfunction
