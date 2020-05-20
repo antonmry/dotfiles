@@ -1,56 +1,3 @@
-# Intellij Idea
-
-Alt + Insert           : generate constructor, setters, etc.
-Ctrl + Shift + A       : find action by name
-Alt + Enter            : show the list of available actions
-** Alt + F1            : switch between views
-** Crtl+Tab            : switch between tool windows and files opened
-** Alt+Home            : who the Navigation bar
-Ctrl + j               : insert a live template
-Ctrl + Shift + j       : surround with a live template
-Ctrl + e               : recent files
-Ctrl + Shift + e       : recent edited files
-** Ctrl + /            : comment linecode
-** Ctrl + shift + /    : comment block code
-Ctrl + n               : open class by name
-Ctrl + shift + n       : open file by name
-Ctrl + w               : increment expression selection
-Ctrl + shift + w       : decrement expression selection
-Shift + shift          : search anywhere
-Ctrl + shift + F7      : quick view the usages of the selected symbol
-Ctrl + Space           : invoke code completion
-Ctrl + shift + Space   : smart statement completion
-Ctrl + shift + alt + t : refactor this
-F2                     : jump to the next error (or warning if no errors)
-Ctrl + Enter           : fix typo
-Ctrl + Shift + j       : join Lines to concatenate String values, combine if statements, merge variable declaration and its assignment, etc.
-Ctrl + Shift + Enter   : Complete Statement to add a semi-colon to the line, create the outline of for loops or if statements, move the cursor to the next place, etc.
-
-Ctrl + Alt + left      : back to the previous location
-Ctrl + Alt + b         : Jump to implementation
-
-Ctrl + F8              : breakpoint on
-Ctrl + Shift + F8      : breakpoint options
-Shift + F9             : debug
-F8                     : continue to the next breakpoint
-Shift + F8             : return to the previous breakpoint
-
-Live templates         : soat, if, etc.
-Ctrl shift +  w        : increase selection (custom to avoid problems with Ctrl + ww)
-Ctrl + alt + t         : surround with (also with your own templates)
-
-vsplit                 : split the windows
-Ctrl + w + w           : to cycle between windows
-Ctrl + w + o           : to back to ONLY one window
-
-## Custom
-Ctrl + 0               : reset font
-Ctrl + Shift + plus    : increase font
-Ctrl + Shift + minus   : decrease font
-F11                    : full screen
-Shift + F11            : presentation mode
-Ctrl + Shift + G       : Refresh all external projects (gradle)
-
 # VIM
 
 leader key             : ,
@@ -242,3 +189,57 @@ $mod + #               : move to the workspace #
 $mod + shift + e       : logout
 $mod + shift + r       : reload i3
 $mod + w               : tabbed mode
+
+# Intellij Idea
+
+Alt + Insert           : generate constructor, setters, etc.
+Ctrl + Shift + A       : find action by name
+Alt + Enter            : show the list of available actions
+** Alt + F1            : switch between views
+** Crtl+Tab            : switch between tool windows and files opened
+** Alt+Home            : who the Navigation bar
+Ctrl + j               : insert a live template
+Ctrl + Shift + j       : surround with a live template
+Ctrl + e               : recent files
+Ctrl + Shift + e       : recent edited files
+** Ctrl + /            : comment linecode
+** Ctrl + shift + /    : comment block code
+Ctrl + n               : open class by name
+Ctrl + shift + n       : open file by name
+Ctrl + w               : increment expression selection
+Ctrl + shift + w       : decrement expression selection
+Shift + shift          : search anywhere
+Ctrl + shift + F7      : quick view the usages of the selected symbol
+Ctrl + Space           : invoke code completion
+Ctrl + shift + Space   : smart statement completion
+Ctrl + shift + alt + t : refactor this
+F2                     : jump to the next error (or warning if no errors)
+Ctrl + Enter           : fix typo
+Ctrl + Shift + j       : join Lines to concatenate String values, combine if statements, merge variable declaration and its assignment, etc.
+Ctrl + Shift + Enter   : Complete Statement to add a semi-colon to the line, create the outline of for loops or if statements, move the cursor to the next place, etc.
+
+Ctrl + Alt + left      : back to the previous location
+Ctrl + Alt + b         : Jump to implementation
+
+Ctrl + F8              : breakpoint on
+Ctrl + Shift + F8      : breakpoint options
+Shift + F9             : debug
+F8                     : continue to the next breakpoint
+Shift + F8             : return to the previous breakpoint
+
+Live templates         : soat, if, etc.
+Ctrl shift +  w        : increase selection (custom to avoid problems with Ctrl + ww)
+Ctrl + alt + t         : surround with (also with your own templates)
+
+vsplit                 : split the windows
+Ctrl + w + w           : to cycle between windows
+Ctrl + w + o           : to back to ONLY one window
+
+## Custom
+Ctrl + 0               : reset font
+Ctrl + Shift + plus    : increase font
+Ctrl + Shift + minus   : decrease font
+F11                    : full screen
+Shift + F11            : presentation mode
+Ctrl + Shift + G       : Refresh all external projects (gradle)
+
