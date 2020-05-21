@@ -10,12 +10,12 @@ dw                     : until the start of the next word
 de                     : to the end of the current word
 ce                     : change to the end of the word
 O                      : Open above the line
-dtc                    : delete to the next c
-ci}                    : change inside the curly braces
-cf,                    : change forward to and include the comma
-di”                    : delete inside the quotes
-ya’                    : yank around single quotes
-gi                     : insert mode in the last place
+dtc                    : Delete To the next C
+ci}                    : Change Inside the curly braces
+cf,                    : Change Forward to and include the comma
+di”                    : Delete Inside the quotes
+ya’                    : Yank Around single quotes
+gi                     : Go to the last place with Insert mode
 g;                     : go to the last place
 
 # Transform

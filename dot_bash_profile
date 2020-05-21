@@ -10,8 +10,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Why this is not by default?
-#export TERM=xterm-256color
-export TERM=xterm
+export TERM=xterm-256color
+#export TERM=xterm
 
 # User specific environment and startup programs
 
@@ -19,18 +19,6 @@ EDITOR=vimx
 export EDITOR
 
 unset SSH_ASKPASS
-
-GATLING_HOME=/home/antonmry/Software/gatling
-export GATLING_HOME
-
-GRADLE_HOME=/home/antonmry/Software/gradle
-export GRADLE_HOME
-
-ANDROID_SDK=/home/antonmry/Software/android-sdk-linux/platform-tools/
-export ANDROID_SDK
-
-VAGRANT_DEFAULT_PROVIDER=virtualbox
-export VAGRANT_DEFAULT_PROVIDER
 
 # avoid duplicates..
 export HISTCONTROL=ignoredups:erasedups
@@ -49,10 +37,16 @@ export GOPATH
 export GOROOT
 export GOBIN
 
-SPARK_HOME=~/Software/spark-2.4.5-bin-hadoop2.7
+SPARK_HOME=~/Software/spark
 export SPARK_HOME
 
-PATH=$GOBIN:$GOROOT/bin:$PATH:$HOME/.local/bin:$HOME/bin:$ANDROID_SDK:$GRADLE_HOME/bin:$APPENGINE_JAVA/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin
+CONFLUENT_HOME=~/Software/confluent
+export CONFLUENT_HOME
+
+GATLING_HOME=~/Software/gatling
+export GATLING_HOME
+
+PATH=$GOBIN:$GOROOT/bin:$PATH:$HOME/.local/bin:$HOME/bin:$GRADLE_HOME/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin
 export PATH
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
