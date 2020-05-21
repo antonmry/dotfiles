@@ -59,6 +59,10 @@ runtime! macros/matchit.vim
 nnoremap j gj
 nnoremap k gk
 
+" Split window
+nnoremap <C-w>- :split <cr>
+nnoremap <C-w>\| :vsplit <cr>
+
 " Allow hidden buffers
 set hidden
 
