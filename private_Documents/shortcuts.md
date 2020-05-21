@@ -13,6 +13,12 @@ de                     : to the end of the current word
 ce                     : change to the end of the word
 O                      : Open above the line
 
+# Transform
+U                      : uppercase in visual
+<C-a>                  : increment a number
+<C-x>                  : decrement a number
+
+
 ## Copy and paste
 
 "+y                    : copy to X clipboard
@@ -118,8 +124,6 @@ t{char}                : move to the previous char, also with motions
 *                      : look for the work in the curso, n for next
 cw                     : delete the word + i
 daw                    : delete a word
-<C-a>                  : increment a number
-<C-x>                  : decrement a number
 yyp                    : duplicate line
 <C-u>                  : delete to the start of the line, also for bash.
 <C-w>                  : delete last word, also for bash.

@@ -10,8 +10,20 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
+" Exit insert mode with jk
+inoremap jk <esc>
+inoremap <esc>   <NOP>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
+nnoremap <Left>  <NOP>
+nnoremap <Right> <NOP>
+nnoremap <Up>    <NOP>
+nnoremap <Down>  <NOP>
+
 " Leader key
-let mapleader = ","
+let mapleader = " "
 
 " Security
 set modelines=0
@@ -295,9 +307,9 @@ endfunction
 
 command! Todo :call Todo()
 
-" todo.txm
+autocmd! BufWritePost todo.txt !rclone sync ~/Documents/todo/ GoogleDrive:todo
 
-autocmd BufWritePost todo.txt !rclone sync ~/Documents/todo/ GoogleDrive:todo
+" vimrc
 
 function! Vimrc()
  edit ~/.local/share/chezmoi/dot_vimrc
@@ -305,4 +317,14 @@ endfunction
 
 command! Vimrc :call Vimrc()
 
-autocmd BufWritePost dot_vimrc !chezmoi apply
+autocmd! BufWritePost dot_vimrc !chezmoi apply
+
+" shortcuts
+
+function! Shortcuts()
+ edit ~/.local/share/chezmoi/private_Documents/shortcuts.md
+endfunction
+
+command! Shortcuts :call Shortcuts()
+
+autocmd! BufWritePost shortcuts.md !chezmoi apply
