@@ -2,22 +2,26 @@
 
 leader key             : ,
 <C-c>                  : exit insert mode
-?                      : backwards search
-gi                     : insert mode in the last place
-g;                     : go to the last place
 Ctrl + v               : column selection (I to insert, ESC to apply)
 set nowrap             : disable line wrapping
 
+## Actions and motions
 dw                     : until the start of the next word
 de                     : to the end of the current word
 ce                     : change to the end of the word
 O                      : Open above the line
+dtc                    : delete to the next c
+ci}                    : change inside the curly braces
+cf,                    : change forward to and include the comma
+di”                    : delete inside the quotes
+ya’                    : yank around single quotes
+gi                     : insert mode in the last place
+g;                     : go to the last place
 
 # Transform
 U                      : uppercase in visual
 <C-a>                  : increment a number
 <C-x>                  : decrement a number
-
 
 ## Copy and paste
 
@@ -38,11 +42,14 @@ later 12s              : command to move forward 12s
 ## Search and replace
 
 %                      : to find a matching ),], or } . **
+?                      : backwards search
 %s/old/new/g           : command to change every occurrence in the whole file.
 %norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
 %s/old/new/gc          : command with a prompt whether to substitute or not.
 noh                    : command to disable search highlighting
-* or #                 : in visual mode searches for the current selection
+;                      : repeat the last search
+*                      : look for the work before the cursor, n for next
+#                      : look for the work after the cursor, n for next
 
 ## Windows
 
@@ -53,6 +60,8 @@ Crtl+wk                : takes you up a window
 Crtl+wl                : takes you right a window
 Crtl+wq                : close the window
 Crtl+wo                : close other windows
+Crtl+|                 : split
+Crtl+-                 : split vertically
 
 ## navigate errors
 
@@ -118,10 +127,8 @@ Tab /=\zs              : same as before but = isn't centered
 
 s                      : x + i
 .                      : repeat last command
-f{char}                : move to char, also with motions
+f{char}                : forward to char, also with motions
 t{char}                : move to the previous char, also with motions
-;                      : repeat the last search
-*                      : look for the work in the curso, n for next
 cw                     : delete the word + i
 daw                    : delete a word
 yyp                    : duplicate line
@@ -132,7 +139,6 @@ zz                     : position cursor at middle screen
 zt                     : position cursor at top of screen
 zb                     : position cursor at bottom of screen
 <C-r>0                 : paste register 0 in insert mode
-<C-v>                  : select block in visual mode
 C                      : delete selection and insert mode
 I                      : insert in the beginning of the line
 @                      : repeat last Ex command
