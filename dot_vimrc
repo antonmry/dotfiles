@@ -10,9 +10,7 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
-" Exit insert mode with jk
-inoremap jk <esc>
-inoremap <esc>   <NOP>
+" Don't use cursor arrows
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
