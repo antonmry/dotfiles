@@ -38,6 +38,9 @@ set encoding=utf-8
 " Whitespace
 set wrap
 
+" Spell
+autocmd BufRead,BufNewFile *.md setlocal spell
+
 " Turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
 set formatoptions=tcqrn1
@@ -121,6 +124,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Backup, Swap and Undo
+let &directory = expand('~/.vim/swap//')
+
+set backup
+let &backupdir = expand('~/.vim/backup//')
+
+set undofile
+let &undodir = expand('~/.vim/undo//')
+
+if !isdirectory(&undodir) | call mkdir(&undodir, "p") | endif
+if !isdirectory(&backupdir) | call mkdir(&backupdir, "p") | endif
+if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
+
 " Plugins
 call plug#begin('~/.vim/autoload')
 Plug 'tpope/vim-unimpaired'
@@ -145,10 +161,6 @@ let g:grammarous#disabled_rules = {
 
 " TextEdit might fail if hidden is not set.
 set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -289,6 +301,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Gitgutter
 
+let g:gitgutter_enabled = 0 
 let g:gitgutter_sign_added = '☁'
 let g:gitgutter_sign_modified = '☀'
 let g:gitgutter_sign_removed = '☼'
