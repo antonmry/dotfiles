@@ -1,9 +1,8 @@
 # VIM
 
 leader key             : ,
-<C-c>                  : exit insert mode
-Ctrl + v               : column selection (I to insert, ESC to apply)
 set nowrap             : disable line wrapping
+Ctrl + v               : column selection (I to insert, ESC to apply)
 
 ## Actions and motions
 dw                     : until the start of the next word
@@ -17,6 +16,7 @@ di”                    : Delete Inside the quotes
 ya’                    : Yank Around single quotes
 gi                     : Go to the last place with Insert mode
 g;                     : go to the last place
+d/palabro<cr>          : delete until "palabro"
 
 # Transform
 U                      : uppercase in visual
@@ -41,15 +41,14 @@ later 12s              : command to move forward 12s
 
 ## Search and replace
 
-%                      : to find a matching ),], or } . **
 ?                      : backwards search
 %s/old/new/g           : command to change every occurrence in the whole file.
 %norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
 %s/old/new/gc          : command with a prompt whether to substitute or not.
 noh                    : command to disable search highlighting
-;                      : repeat the last search
 *                      : look for the work before the cursor, n for next
 #                      : look for the work after the cursor, n for next
+.\{-}                  : instead of `.*` to match only the first occurrence
 
 ## Windows
 
@@ -154,9 +153,13 @@ window lcd path        : command to change the path of a window
 <C-r><C-w>             : paste a word in mode Ex
 <C-r>=1+1              : paste 2
 
-## To check
+## To check / doesn't work
 %% shortcut            : pag 120
 path                   : command pag 122 automatic detection
+%                      : to find a matching ),], or } . f% -> forward to
+;                      : repeat the last search
+cin(                   : change inside next ( asdfadff )
+cil(                   : change inside last ()
 
 # TMUX
 
