@@ -17,6 +17,7 @@ ya’                    : Yank Around single quotes
 gi                     : Go to the last place with Insert mode
 g;                     : go to the last place
 d/palabro<cr>          : delete until "palabro"
+%norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
 
 # Transform
 U                      : uppercase in visual
@@ -43,12 +44,12 @@ later 12s              : command to move forward 12s
 
 ?                      : backwards search
 %s/old/new/g           : command to change every occurrence in the whole file.
-%norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
 %s/old/new/gc          : command with a prompt whether to substitute or not.
 noh                    : command to disable search highlighting
 *                      : look for the work before the cursor, n for next
 #                      : look for the work after the cursor, n for next
 .\{-}                  : instead of `.*` to match only the first occurrence
+<C-f>                  : after / to open a search history window
 
 ## Windows
 
