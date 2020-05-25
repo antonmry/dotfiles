@@ -35,6 +35,9 @@ set visualbell
 " Encoding
 set encoding=utf-8
 
+" Tabs limit for git review, 10 by default
+set tabpagemax=100
+
 " Whitespace
 set wrap
 
