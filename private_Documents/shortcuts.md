@@ -63,6 +63,13 @@ Crtl+wo                : close other windows
 Crtl+|                 : split
 Crtl+-                 : split vertically
 
+## Tabs
+
+gt                     : go to next tab
+gT                     : go to previous tab
+{i}gt                  : go to tab in position i
+tabclose               : command to close tab
+
 ## navigate errors
 
 [l                     : previous error as :lprev

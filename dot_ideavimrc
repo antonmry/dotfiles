@@ -5,17 +5,8 @@ set showmode
 set history=1000
 
 " antonmry
-let mapleader = ","
-let g:mapleader = ","
-
-" Fast saving
-map <Leader>w :w<CR>
-imap <Leader>w <ESC>:w<CR>
-vmap <Leader>w <ESC><ESC>:w<CR>
-
-" This is totally awesome - remapnoremap  "
-inoremap jj <esc>
-nnoremap JJJJ <nop>
+let mapleader = " "
+let g:mapleader = " "
 
 " Show line, column number, and relative position within a file in the status line
 set ruler
@@ -38,19 +29,6 @@ noremap <space>y "*y
 noremap <space>Y "*Y
 noremap <space>p "*p
 noremap <space>P "*P
-
-" easy window navigation
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-h> <c-w>h
-nnoremap <c-k> <c-w>k
-nnoremap <a-h> gT
-nnoremap <a-l> gt
-nnoremap <c-s-tab> gT
-nnoremap <c-tab> gt
-
-" clear the search buffer when hitting return
-nnoremap <space><cr> :nohlsearch<cr>
 
 " options
 nnoremap cow :action EditorToggleUseSoftWraps<cr>
@@ -97,9 +75,3 @@ nnoremap <c-i> :action Forward<cr>
 nnoremap g<c-o> <c-o>
 nnoremap g<c-i> <c-i>
 
-" built in search looks better
-" nnoremap / :action Find<cr>
-" but preserve ideavim search
-" nnoremap g/ /
-
-set relativenumber
