@@ -211,6 +211,14 @@ $mod + shift + e       : logout
 $mod + shift + r       : reload i3
 $mod + w               : tabbed mode
 
+# fzf
+
+'string                : exact match
+^string                : start match
+string$                : end match
+string!                : negate match
+
+
 # Intellij Idea
 
 Alt + Insert           : generate constructor, setters, etc.
