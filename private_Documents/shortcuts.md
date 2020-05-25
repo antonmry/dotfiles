@@ -217,6 +217,14 @@ $mod + w               : tabbed mode
 ^string                : start match
 string$                : end match
 string!                : negate match
+vi **                  : open in vim
+ls -lah **             : give details
+cd **                  : change directory
+ssh **                 : connect by ssh
+<CTRL+T>               : list files+folders in current directory
+<CTRL+R>               : search history of shell commands
+<ALT+C>                : fuzzy change directory
+
 
 
 # Intellij Idea
