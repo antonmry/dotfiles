@@ -49,6 +49,8 @@ export GATLING_HOME
 PATH=$GOBIN:$GOROOT/bin:$PATH:$HOME/.local/bin:$HOME/bin:$GRADLE_HOME/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin
 export PATH
 
+source "/usr/share/fzf/shell/key-bindings.bash"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/antonmry/.sdkman"
 [[ -s "/home/antonmry/.sdkman/bin/sdkman-init.sh" ]] && source "/home/antonmry/.sdkman/bin/sdkman-init.sh"
