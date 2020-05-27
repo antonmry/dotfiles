@@ -41,6 +41,9 @@ set tabpagemax=100
 " Whitespace
 set wrap
 
+" Auto save files when we write
+autocmd TextChanged,TextChangedI <buffer> silent write
+
 " Spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 
