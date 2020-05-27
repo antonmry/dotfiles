@@ -46,7 +46,10 @@ export CONFLUENT_HOME
 GATLING_HOME=~/Software/gatling
 export GATLING_HOME
 
-PATH=$GOBIN:$GOROOT/bin:$PATH:$HOME/.local/bin:$HOME/bin:$GRADLE_HOME/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin
+FLINK_HOME=~/Software/flink-1.9.3
+export FLINK_HOME
+
+PATH=$GOBIN:$GOROOT/bin:$PATH:$HOME/.local/bin:$HOME/bin:$GRADLE_HOME/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin:$FLINK_HOME/bin
 export PATH
 
 source "/usr/share/fzf/shell/key-bindings.bash"
