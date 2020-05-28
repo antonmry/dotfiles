@@ -218,6 +218,7 @@ $mod + w               : tabbed mode
 string$                : end match
 string!                : negate match
 vi **                  : open in vim
+kill<tab>              : kill process
 ls -lah **             : give details
 cd **                  : change directory
 ssh **                 : connect by ssh
