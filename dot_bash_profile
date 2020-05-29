@@ -22,6 +22,8 @@ unset SSH_ASKPASS
 
 # avoid duplicates..
 export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=50000
+export HISTFILESIZE=50000
 
 # append history entries..
 shopt -s histappend
