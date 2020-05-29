@@ -3,7 +3,7 @@
 	name = antonmry
 [core]
 	autocrlf = input
-	editor = vim
+	editor = nvim
 	trustctime = false
 [push]
   default = simple
@@ -23,8 +23,8 @@
 [alias]
   files = !git diff --name-only $(git merge-base HEAD \"master\")
   stat = !git diff --stat $(git merge-base HEAD \"master\")
-  review = !vim -p $(git files) +\"tabdo Gdiff master\" +\"let g:gitgutter_diff_base = 'master'\"
-  reviewone = !vim -p +\"tabdo Gdiff master\" +\"let g:gitgutter_diff_base = 'master'\"
+  review = !nvim -p $(git files) +\"tabdo Gdiff master\" +\"let g:gitgutter_diff_base = 'master'\"
+  reviewone = !nvim -p +\"tabdo Gdiff master\" +\"let g:gitgutter_diff_base = 'master'\"
 [github]
 	user = antonmry
 [credential]
