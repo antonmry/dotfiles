@@ -11,8 +11,9 @@ let g:mapleader = " "
 " Show line, column number, and relative position within a file in the status line
 set ruler
 "
-" Show line numbers - could be toggled on/off on-fly by pressing F6
+" Show line numbers 
 set number
+set relativenumber
 
 " Show (partial) commands (or size of selection in Visual mode) in the status line
 set showcmd
