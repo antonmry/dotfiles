@@ -121,7 +121,7 @@ set signcolumn=yes
 
 " Color scheme (terminal)
 set t_Co=256
-colorscheme default
+colorscheme delek
 
 " Colors
 highlight ColorColumn ctermbg=lightgray 
