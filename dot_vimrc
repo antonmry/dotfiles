@@ -27,7 +27,7 @@ let mapleader = " "
 set modelines=0
 
 " Show line numbers
-set number relative
+set number relativenumber
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
