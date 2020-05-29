@@ -14,8 +14,9 @@ ci}                    : Change Inside the curly braces
 cf,                    : Change Forward to and include the comma
 di”                    : Delete Inside the quotes
 ya’                    : Yank Around single quotes
-gi                     : Go to the last place with Insert mode
+gi                     : Go toethe last place with Insert mode
 g;                     : go to the last place
+gU{motion}             : example: gUaw -> word under cursor uppercase
 d/palabro<cr>          : delete until "palabro"
 %norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
 
