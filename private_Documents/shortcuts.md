@@ -1,8 +1,8 @@
 # VIM
 
-leader key             : ,
 set nowrap             : disable line wrapping
-Ctrl + v               : column selection (I to insert, ESC to apply)
+<C-v>                  : column selection (I to insert, ESC to apply)
+<C-f>                  : in the command line, to search in the history
 
 ## Actions and motions
 dw                     : until the start of the next word
@@ -31,12 +31,12 @@ U                      : uppercase in visual
 "ay                    : copy to the record a
 "Ay                    : append to the record a
 "ap                    : paste from the record a
-CTR+r+a                : in insert mode, paste record a
+<C-r>a                : in insert mode, paste record a
 reg                    : command to see the values of the registers
 
 ## Undo and redo
 
-CTR+R                  : undos undo
+<C-r>                  : undos undo
 U                      : undo all the line
 earlier 24s            : command to undo the last 24s
 later 12s              : command to move forward 12s
@@ -91,7 +91,7 @@ lcl                    : command to close the location list
 ls                     : command to list buffers
 ls!                    : command to list buffers included unlisted
 buffer (b)             : command to change to buffer by name or number
-Ctrl + 6               : move to the previous buffer
+<C-6>                  : move to the previous buffer
 
 ## Spell checking
 
@@ -146,7 +146,6 @@ yyp                    : duplicate line
 zz                     : position cursor at middle screen
 zt                     : position cursor at top of screen
 zb                     : position cursor at bottom of screen
-<C-r>0                 : paste register 0 in insert mode
 C                      : delete selection and insert mode
 I                      : insert in the beginning of the line
 @                      : repeat last Ex command
