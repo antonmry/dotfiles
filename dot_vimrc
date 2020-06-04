@@ -301,6 +301,11 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" Fzf
+let g:fzf_preview_window = 'right:60%'
+nnoremap <silent> <C-S-n> :Files<CR>
+nnoremap <silent> <C-n> :call fzf#run(fzf#wrap({'source': 'ls *.java *.scala'}))<CR>
+
 " Gitgutter
 
 let g:gitgutter_enabled = 0 
@@ -315,7 +320,7 @@ let g:gitgutter_sign_modified_removed = '❅'
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 
-" todo.txm
+" todo.txt
 
 function! Todo()
  call system('rclone sync GoogleDrive:todo ~/Documents/todo/')
@@ -339,8 +344,6 @@ augroup vimrc
   autocmd BufWritePost dot_vimrc !chezmoi apply
   autocmd BufWritePost dot_vimrc source ~/.vimrc
 augroup end
-
-"autocmd! BufWritePost dot_vimrc !chezmoi apply | source ~/.vimrc
 
 " shortcuts
 
