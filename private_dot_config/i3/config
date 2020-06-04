@@ -196,6 +196,7 @@ assign [class="Google-chrome"] 1:Web
 assign [class="jetbrains-idea"] 3:IDE
 #for_window [class="jetbrains-idea"] focus
 assign [title="Thunderbird"] 4:Email
+assign [title="MineTime"] 4:Email
 #for_window [class="Thunderbird"] focus
 assign [class="Slack"] 5:Chat
 #for_window [class="Slack"] focus
