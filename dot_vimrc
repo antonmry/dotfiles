@@ -10,6 +10,9 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
+" For Alacritty keycodes
+set t_ut=
+
 " Don't use cursor arrows
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
