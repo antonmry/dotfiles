@@ -10,7 +10,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Why this is not by default?
-export TERM=xterm-256color
+export TERM=screen-256color
+#export TERM=xterm-256color
 #export TERM=xterm
 
 # User specific environment and startup programs
