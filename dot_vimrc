@@ -305,10 +305,10 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Fzf
-let g:fzf_preview_window = 'right:60%'
-nnoremap <silent> <C-S-n> :Files<CR>
-" Shift doesn't work :-(
-"nnoremap <silent> <C-n> :call fzf#run(fzf#wrap({'source': 'ls *.java *.scala'}))<CR>
+" let g:fzf_preview_window = 'right:60%'
+" Ugly trick to make <C-S-n> work with autokey
+nnoremap <F13>n :Files<cr>
+noremap <silent> <C-n> :call fzf#run(fzf#wrap({'source': 'find . -name *.java -o -name *.scala'}))<CR>
 
 " Gitgutter
 
