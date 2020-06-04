@@ -307,7 +307,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Fzf
 let g:fzf_preview_window = 'right:60%'
 nnoremap <silent> <C-S-n> :Files<CR>
-nnoremap <silent> <C-n> :call fzf#run(fzf#wrap({'source': 'ls *.java *.scala'}))<CR>
+" Shift doesn't work :-(
+"nnoremap <silent> <C-n> :call fzf#run(fzf#wrap({'source': 'ls *.java *.scala'}))<CR>
 
 " Gitgutter
 
