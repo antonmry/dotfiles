@@ -334,7 +334,13 @@ endfunction
 
 command! Vimrc :call Vimrc()
 
-autocmd! BufWritePost dot_vimrc !chezmoi apply
+augroup vimrc
+  autocmd!
+  autocmd BufWritePost dot_vimrc !chezmoi apply
+  autocmd BufWritePost dot_vimrc source ~/.vimrc
+augroup end
+
+"autocmd! BufWritePost dot_vimrc !chezmoi apply | source ~/.vimrc
 
 " shortcuts
 
