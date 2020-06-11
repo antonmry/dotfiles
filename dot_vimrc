@@ -307,7 +307,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Fzf
 " let g:fzf_preview_window = 'right:60%'
 " Ugly trick to make <C-S-n> work with autokey
-nnoremap <F13>n :Files<cr>
+nnoremap <S-F1>n :Files<cr>
 noremap <silent> <C-n> :call fzf#run(fzf#wrap({'source': 'find . -name *.java -o -name *.scala'}))<CR>
 
 " Gitgutter

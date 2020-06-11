@@ -8,17 +8,22 @@ set nowrap             : disable line wrapping
 dw                     : until the start of the next word
 de                     : to the end of the current word
 ce                     : change to the end of the word
-O                      : Open above the line
 dtc                    : Delete To the next C
 ci}                    : Change Inside the curly braces
 cf,                    : Change Forward to and include the comma
 di”                    : Delete Inside the quotes
 ya’                    : Yank Around single quotes
-gi                     : Go toethe last place with Insert mode
+
+O                      : Open above the line
+gi                     : Go to the last place with Insert mode
 g;                     : go to the last place
 gU{motion}             : example: gUaw -> word under cursor uppercase
 d/palabro<cr>          : delete until "palabro"
 %norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
+
+<C-o>                  : go to the previous jump
+<C-i>                  : go to the next jump
+%                      : go or back inside matching ),], or } . 
 
 # Transform
 U                      : uppercase in visual
@@ -35,7 +40,6 @@ U                      : uppercase in visual
 reg                    : command to see the values of the registers
 
 ## Undo and redo
-
 <C-r>                  : undos undo
 U                      : undo all the line
 earlier 24s            : command to undo the last 24s
@@ -164,7 +168,6 @@ window lcd path        : command to change the path of a window
 ## To check / doesn't work
 %% shortcut            : pag 120
 path                   : command pag 122 automatic detection
-%                      : to find a matching ),], or } . f% -> forward to
 ;                      : repeat the last search
 cin(                   : change inside next ( asdfadff )
 cil(                   : change inside last ()
