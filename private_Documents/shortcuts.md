@@ -29,6 +29,12 @@ d/palabro<cr>          : delete until "palabro"
 U                      : uppercase in visual
 <C-a>                  : increment a number
 <C-x>                  : decrement a number
+read !ls               : command to update buffer with ls output
+3read !ls              : command to update buffer with ls output in line 3
+[range]write !cowsay   : command to send the range to the command
+[range]! cowsay        : command to send the range and update the buffer
+!{motion}              : the same but in normal mode
+%! sort -n | column -t : command to send all, sort it and tab it
 
 ## Copy and paste
 
