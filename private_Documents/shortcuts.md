@@ -73,6 +73,12 @@ Crtl+wq                : close the window
 Crtl+wo                : close other windows
 Crtl+|                 : split
 Crtl+-                 : split vertically
+Ctrl+wJ                : moves the active to the top
+Ctrl+wH                : moves the active split to the left
+Ctrl+wK                : moves the active split to the bottom
+Ctrl+wL                : moves the active split to right
+Ctrl+wr                : rotates splits to the right/down
+Ctrl+wR                : rotates splits to the left/up
 
 ## Tabs
 
