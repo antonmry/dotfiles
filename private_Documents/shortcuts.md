@@ -5,6 +5,7 @@ set nowrap             : disable line wrapping
 <C-f>                  : in the command line, to search in the history
 
 ## Actions and motions
+
 dw                     : Delete until the start of the next Word
 de                     : Delete to the End of the current word
 dtc                    : Delete To the next C
@@ -14,9 +15,16 @@ ci}                    : Change Inside the curly braces
 cf,                    : Change Forward to and include the comma
 ya’                    : Yank Around single quotes
 
+f<char>                : moves to the first occurrence of <char> to the right
+F<char>                : moves to the first occurrence of <char> to the left
+t<char>                : moves right before the first occurrence of <char>
+T<char>                : moves left before the first occurrence of <char>
+;                      : repeats the last character motion in the original direction
+,                      : repeats the last character motion in the opposite direction
+
 O                      : Open above the line
 gi                     : Go to the last place with Insert mode
-g;                     : go to the last place
+g;                     : Go to the last place
 gU{motion}             : example: gUaw -> word under cursor uppercase
 d/palabro<cr>          : delete until "palabro"
 %norm A*               : command to per each line (%) execute (norm) A* (add * in the end)

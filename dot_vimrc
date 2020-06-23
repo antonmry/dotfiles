@@ -325,6 +325,10 @@ let g:gitgutter_sign_modified_removed = '❅'
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 
+" quick-scope
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 " todo.txt
 
 function! Todo()
@@ -359,3 +363,4 @@ endfunction
 command! Shortcuts :call Shortcuts()
 
 autocmd! BufWritePost shortcuts.md !chezmoi apply
+
