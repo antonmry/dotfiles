@@ -5,13 +5,13 @@ set nowrap             : disable line wrapping
 <C-f>                  : in the command line, to search in the history
 
 ## Actions and motions
-dw                     : until the start of the next word
-de                     : to the end of the current word
-ce                     : change to the end of the word
+dw                     : Delete until the start of the next Word
+de                     : Delete to the End of the current word
 dtc                    : Delete To the next C
+di”                    : Delete Inside the quotes
+ce                     : Change to the End of the word
 ci}                    : Change Inside the curly braces
 cf,                    : Change Forward to and include the comma
-di”                    : Delete Inside the quotes
 ya’                    : Yank Around single quotes
 
 O                      : Open above the line
@@ -42,7 +42,7 @@ read !ls               : command to update buffer with ls output
 "ay                    : copy to the record a
 "Ay                    : append to the record a
 "ap                    : paste from the record a
-<C-r>a                : in insert mode, paste record a
+<C-r>a                 : in insert mode, paste record a
 reg                    : command to see the values of the registers
 
 ## Undo and redo
@@ -51,16 +51,21 @@ U                      : undo all the line
 earlier 24s            : command to undo the last 24s
 later 12s              : command to move forward 12s
 
-## Search and replace
+## Search
 
 ?                      : backwards search
-%s/old/new/g           : command to change every occurrence in the whole file.
-%s/old/new/gc          : command with a prompt whether to substitute or not.
 noh                    : command to disable search highlighting
 *                      : look for the work before the cursor, n for next
 #                      : look for the work after the cursor, n for next
-.\{-}                  : instead of `.*` to match only the first occurrence
 <C-f>                  : after / to open a search history window
+
+## Replace
+
+.\{-}                  : instead of `.*` to match only the first occurrence
+%s/old/new/g           : command to change every occurrence in the whole file.
+%s/old/new/gc          : command with a prompt whether to substitute or not.
+&                      : repeat your last substitution on the current line.
+g&                     : repeat the last substitution on all lines.
 
 ## Windows
 
