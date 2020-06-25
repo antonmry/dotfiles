@@ -107,7 +107,6 @@ tabclose               : command to close tab
 mm                     : set mark `m`
 'm                     : go to mark `m`
 
-
 ## Location list
 
 lne                    : command to go to the next error
@@ -189,6 +188,7 @@ W,B,E,GE               : the same but more
 window lcd path        : command to change the path of a window
 <C-r><C-w>             : paste a word in mode Ex
 <C-r>=1+1              : paste 2
+w !sudo tee %          : command to write as root
 
 ## To check / doesn't work
 %% shortcut            : pag 120
