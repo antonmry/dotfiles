@@ -28,6 +28,6 @@
 [github]
 	user = antonmry
 [credential]
-	helper = cache --timeout=86400
+	helper = !gopass git-credential $@
 [http]
 	sslVerify = false
