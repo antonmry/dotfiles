@@ -52,7 +52,7 @@ export GATLING_HOME
 FLINK_HOME=~/Software/flink-1.9.3
 export FLINK_HOME
 
-PATH=$PATH:$GOBIN:$GOROOT/bin:$HOME/.local/bin:$HOME/bin:$GRADLE_HOME/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin:$FLINK_HOME/bin
+PATH=$PATH:$GOBIN:$GOROOT/bin:$HOME/.local/bin:$HOME/bin:$GRADLE_HOME/bin:$GATLING_HOME/bin:$HOME/Software/confluent/bin:$SPARK_HOME/bin:$FLINK_HOME/bin:/opt/zoe/bin
 export PATH
 
 source "/usr/share/fzf/shell/key-bindings.bash"
