@@ -175,8 +175,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jpalardy/vim-slime'
 Plug 'unblevable/quick-scope'
+Plug 'aklt/plantuml-syntax'
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
 
 call plug#end()
+
+" plantuml-syntax
+let g:plantuml_executable_script = "plantuml"
 
 " Grammarous
 let g:grammarous#show_first_error=1
