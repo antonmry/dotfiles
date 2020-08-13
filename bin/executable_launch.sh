@@ -9,7 +9,7 @@ case $HOSTNAME in
         killall pidgin
         killall minetime
         google-chrome &
-        minetime &
+        /opt/MineTime/minetime &
         ~/bin/thunderbird.sh &
         i3-msg 'workspace 2:Terminal; exec tmux.sh' &
         idea &
