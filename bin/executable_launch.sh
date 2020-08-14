@@ -26,6 +26,19 @@ case $HOSTNAME in
         slack &
         xinput --set-button-map 13 1 1 3
       ;;
+  (gali9)
+        killall chrome
+        killall thunderbird
+        killall alacritty
+        killall slack
+        killall minetime
+        google-chrome &
+        /opt/MineTime/minetime &
+        ~/bin/thunderbird.sh &
+        i3-msg 'workspace 2:Terminal; exec tmux.sh' &
+        idea &
+        slack &
+      ;;
   (*)   echo "How did I get in the middle of nowhere?";;
 esac
 
