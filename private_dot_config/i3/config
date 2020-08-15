@@ -7,7 +7,7 @@
 
 ## Startup
 
-exec xrandr --dpi 100
+# exec xrandr --dpi 100
 #exec killall compton
 #exec compton -CGb
 exec --no-startup-id nm-applet
