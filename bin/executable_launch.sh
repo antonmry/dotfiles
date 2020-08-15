@@ -39,6 +39,6 @@ case $HOSTNAME in
         idea &
         slack &
       ;;
-  (*)   echo "How did I get in the middle of nowhere?";;
+  (*)   echo "How did I get in the middle of ${HOSTNAME}?";;
 esac
 
