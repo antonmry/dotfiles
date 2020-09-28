@@ -110,19 +110,19 @@ bindsym $mod+Ctrl+f focus mode_toggle
 #bindsym $mod+d focus child
 
 # switch to workspace
+bindsym $mod+0 workspace 0:Media
 bindsym $mod+1 workspace 1:Web; layout tabbed
 bindsym $mod+2 workspace 2:Terminal
-#bindsym $mod+3 workspace 3:IDE; layout tabbed
-bindsym $mod+3 workspace 3:IDE
-bindsym $mod+4 workspace 4:Email
+bindsym $mod+3 workspace 3:IDE; layout tabbed
+bindsym $mod+4 workspace 4:Email; layout tabbed
 bindsym $mod+5 workspace 5:Chat; layout tabbed
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
 
 # move focused container to workspace
+bindsym $mod+Shift+0 move container to workspace 0:Media
 bindsym $mod+Shift+1 move container to workspace 1:Web
 bindsym $mod+Shift+2 move container to workspace 2:Terminal
 bindsym $mod+Shift+3 move container to workspace 3:IDE
@@ -132,7 +132,6 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -189,19 +188,14 @@ bindsym $mod+F11 exec /home/antonmry/bin/hdmiandlvds.sh
 bindsym $mod+F12 exec /home/antonmry/bin/mirror.sh -i
 
 ## Asign workspaces
+assign [class="Pulseeffects"] 0:Media
+assign [class="Pavucontrol"] 0:Media
 assign [class="Google-chrome"] 1:Web
-#for_window [class="Google-chrome"] focus
-#assign [class="Gnome-terminal"] 2:Terminal
-#for_window [class="Gnome-terminal"] focus
 assign [class="jetbrains-idea"] 3:IDE
-#for_window [class="jetbrains-idea"] focus
 assign [title="Thunderbird"] 4:Email
 assign [title="MineTime"] 4:Email
-#for_window [class="Thunderbird"] focus
 assign [class="Slack"] 5:Chat
-#for_window [class="Slack"] focus
 assign [class="Pidgin"] 5:Chat
-#for_window [class="Pidgin"] focus
 assign [class="Teams"] 5:Chat
 
 ## Window Switcher
