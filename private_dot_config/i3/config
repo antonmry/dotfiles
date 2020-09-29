@@ -208,7 +208,7 @@ bindsym $mod+Ctrl+r exec /home/antonmry/bin/launch.sh
 bindsym $mod+Ctrl+l exec /home/antonmry/bin/lock.sh /home/antonmry/bin/key.png
 
 ## Volume up and down
-set $sink `pactl list short sinks | grep RUNNING | cut -f1`
+set $sink `pactl list short sinks | grep RUNNING | cut -f1 | tail -1`
 bindsym $mod+plus exec --no-startup-id pactl set-sink-volume $sink +10%
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume $sink -10%
 bindsym $mod+m exec --no-startup-id pactl set-sink-mute $sink toggle
