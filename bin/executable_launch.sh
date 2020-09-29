@@ -32,6 +32,8 @@ case $HOSTNAME in
         killall alacritty
         killall slack
         killall minetime
+        pulseeffects &
+        pavucontrol &
         google-chrome &
         /opt/MineTime/minetime &
         ~/bin/thunderbird.sh &
