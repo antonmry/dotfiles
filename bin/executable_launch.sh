@@ -33,7 +33,7 @@ case $HOSTNAME in
         killall slack
         killall minetime
         pulseeffects &
-        pavucontrol &
+        /usr/bin/pavucontrol &
         google-chrome &
         /opt/MineTime/minetime &
         ~/bin/thunderbird.sh &
