@@ -32,7 +32,8 @@ case $HOSTNAME in
         killall alacritty
         killall slack
         killall minetime
-        pulseeffects &
+        killall teams
+        /usr/bin/teams &
         /usr/bin/pavucontrol &
         google-chrome &
         /opt/MineTime/minetime &
