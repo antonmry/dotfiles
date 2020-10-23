@@ -32,15 +32,17 @@ case $HOSTNAME in
         killall alacritty
         killall slack
         killall minetime
+        killall autokey-gtk
         killall teams
+        /usr/bin/autokey-gtk &
         /usr/bin/teams &
-        /usr/bin/pavucontrol &
         google-chrome &
         /opt/MineTime/minetime &
         ~/bin/thunderbird.sh &
         i3-msg 'workspace 2:Terminal; exec tmux.sh' &
         idea &
         slack &
+        /usr/bin/pavucontrol &
       ;;
   (*)   echo "How did I get in the middle of ${HOSTNAME}?";;
 esac
