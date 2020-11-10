@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=rmview
+Icon=
+Exec=rmview /home/antonmry/Workspace/Galiglobal/remarkable/rmview/rmview.json
+Comment=Your Remarkable live!
+Categories=Development;
+Terminal=false
