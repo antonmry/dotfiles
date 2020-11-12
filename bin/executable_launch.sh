@@ -10,7 +10,7 @@ case $HOSTNAME in
         killall minetime
         google-chrome &
         /opt/MineTime/minetime &
-        ~/bin/thunderbird.sh &
+        thunderbird &
         i3-msg 'workspace 2:Terminal; exec tmux.sh' &
         idea &
         slack &
@@ -38,7 +38,7 @@ case $HOSTNAME in
         /usr/bin/teams &
         google-chrome &
         /opt/MineTime/minetime &
-        ~/bin/thunderbird.sh &
+        thunderbird &
         i3-msg 'workspace 2:Terminal; exec tmux.sh' &
         idea &
         slack &
