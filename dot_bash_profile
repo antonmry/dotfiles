@@ -60,7 +60,10 @@ source "/usr/share/fzf/shell/key-bindings.bash"
 # Functions
 
 function markdown-preview() {
-    pandoc $@ | lynx -stdin
+    echo "Loading..." > "/tmp/$@.html"
+    qutebrowser "/tmp/$@.html"
+    fswatch -0 $@ | while read -d "" event; do pandoc $@ -o "/tmp/$@.html"; done
+    #pandoc $@ | lynx -stdin -vikeys
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
