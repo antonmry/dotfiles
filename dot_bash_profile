@@ -58,7 +58,7 @@ export PATH
 source "/usr/share/fzf/shell/key-bindings.bash"
 
 # Functions
-
+#
 function markdown-preview() {
     echo "Loading..." > "/tmp/$@.html"
     qutebrowser "/tmp/$@.html"
