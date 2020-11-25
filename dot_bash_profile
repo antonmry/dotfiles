@@ -57,6 +57,12 @@ export PATH
 
 source "/usr/share/fzf/shell/key-bindings.bash"
 
+# Functions
+
+function markdown-preview() {
+    pandoc $@ | lynx -stdin
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/antonmry/.sdkman"
 [[ -s "/home/antonmry/.sdkman/bin/sdkman-init.sh" ]] && source "/home/antonmry/.sdkman/bin/sdkman-init.sh"
