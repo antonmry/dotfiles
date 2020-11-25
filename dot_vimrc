@@ -178,6 +178,8 @@ Plug 'unblevable/quick-scope'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -334,6 +336,11 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 " quick-scope
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" goyo & limelight
+
+let g:goyo_width = 82
+let g:limelight_conceal_ctermfg = 'lightgray'
 
 " todo.txt
 
