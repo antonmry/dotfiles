@@ -28,6 +28,6 @@
 [github]
 	user = antonmry
 [credential]
-	helper = !gopass git-credential $@
+	helper = "!gopass-git-credentials $@ "
 [http]
 	sslVerify = false
