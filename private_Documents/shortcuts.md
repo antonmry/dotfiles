@@ -3,6 +3,7 @@
 set nowrap             : disable line wrapping
 <C-v>                  : column selection (I to insert, ESC to apply)
 <C-f>                  : in the command line, to search in the history
+gq                     : format and break lines
 
 ## Actions and motions
 
