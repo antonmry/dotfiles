@@ -1,7 +1,7 @@
 [user]
 	email = antonmry@inditex.com
 	name = antonmry
-  user.signingkey = "F86C3CA25BBA272C"
+  signingkey = "F86C3CA25BBA272C"
 [core]
 	autocrlf = input
 	editor = nvim
