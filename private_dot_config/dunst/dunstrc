@@ -215,7 +215,7 @@
     background = "#900000"
     urgency = critical
     timeout = 0
-    icon = "appointment-soon"
+    new_icon = "appointment-soon"
 
 #[espeak]
 #    summary = "*"
