@@ -212,7 +212,8 @@ bindsym $mod+Ctrl+d exec --no-startup-id /home/antonmry/bin/xbacklight -dec 5
 bindsym $mod+p exec --no-startup-id gpaste-client ui
 
 ## Time and alarm
-bindsym $mod+t exec --no-startup-id notify-send "$(date)"
+bindsym $mod+t exec --no-startup-id notify-send "$(date '+%d/%m/%y%n%T')"
+
 bindsym $mod+Shift+a exec --no-startup-id /home/antonmry/bin/dmenu-alarm
 
 ## Kill an application
