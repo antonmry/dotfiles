@@ -1,7 +1,6 @@
 ## Startup
 
-exec killall picom
-exec --no-startup-id picom
+exec --no-startup-id picom --config $HOME/.config/picom/picom.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/anxo.png
 exec --no-startup-id gpaste-client dr
