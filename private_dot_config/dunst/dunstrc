@@ -1,5 +1,4 @@
 [global]
-    #font = Monospace 8
     font = Monospace 8 
     
     # Allow a small subset of html markup:
@@ -74,7 +73,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 20
     
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -95,7 +94,7 @@
     # 
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = mouse
+    follow = keyboard
     
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
@@ -129,7 +128,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = foreground
     
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -149,7 +148,7 @@
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
 [frame]
-    width = 3
+    width = 1
     color = "#aaaaaa"
 
 [shortcuts]
@@ -176,12 +175,12 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#888888"
+    foreground = "#ffffff"
     timeout = 10
 
 [urgency_normal]
-    background = "#285577"
+    background = "#000000"
     foreground = "#ffffff"
     timeout = 10
 
@@ -189,7 +188,6 @@
     background = "#900000"
     foreground = "#ffffff"
     timeout = 0
-
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
