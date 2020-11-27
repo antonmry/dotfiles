@@ -1,2 +1,2 @@
-xrandr --dpi 220
+picom -b
 exec i3
