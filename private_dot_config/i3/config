@@ -205,8 +205,8 @@ bindsym $mod+minus exec --no-startup-id pactl set-sink-volume $sink -10%
 bindsym $mod+m exec --no-startup-id pactl set-sink-mute $sink toggle
 
 ## Backligth up and down
-bindsym $mod+Ctrl+plus exec --no-startup-id sudo /home/antonmry/bin/xbacklight -inc 5 && sudo /home/antonmry/bin/xbacklight -ctrl dell::kbd_backlight -dec 100
-bindsym $mod+Ctrl+minus exec --no-startup-id sudo /home/antonmry/bin/xbacklight -dec 5 && sudo /home/antonmry/bin/xbacklight -ctrl dell::kbd_backlight -inc 100
+bindsym $mod+Ctrl+1 exec --no-startup-id /home/antonmry/bin/xbacklight -inc 5 
+bindsym $mod+Ctrl+2 exec --no-startup-id /home/antonmry/bin/xbacklight -dec 5 
 
 ## Gpaste
 bindsym $mod+p exec --no-startup-id gpaste-client ui
