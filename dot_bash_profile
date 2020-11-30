@@ -62,9 +62,12 @@ source "/usr/share/fzf/shell/key-bindings.bash"
 function markdown-preview() {
     pandoc $@ -o "/tmp/$@.html"
     qutebrowser "/tmp/$@.html" &
-    fswatch -0 $@ | while read -d "" event; do 
+    fswatch -0 -x -r $@ | while read -d "" event; do 
+     case $event in *Created|*Updated|*Removed|*Renamed|*OwnerModified|*AttributeModified|*MovedFrom|*MovedTo )
       echo "$(date) change detected"
       pandoc $@ -o /tmp/$@.html
+      ;;
+     esac
     done
     #pandoc $@ | lynx -stdin -vikeys
 }
