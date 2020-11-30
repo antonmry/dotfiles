@@ -44,6 +44,7 @@ read !ls               : command to update buffer with ls output
 [range]! cowsay        : command to send the range and update the buffer
 !{motion}              : the same but in normal mode
 %! sort -n | column -t : command to send all, sort it and tab it
+%sort                  : command to sort (ideal for TODO)
 
 ## Copy and paste
 
