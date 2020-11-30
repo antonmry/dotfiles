@@ -5,6 +5,7 @@ alias g='gradle'
 alias d='docker'
 alias n='notify-send -u critical'
 alias ch='chezmoi edit -a '
+alias neo='neofetch'
 
 alias record-now="ffmpeg -video_size $(xrandr -q|sed -n 's/.*current[ ]\([0-9]*\) x \([0-9]*\),.*/\1x\2/p' ) -f x11grab -i :0.0+000,000 -f alsa -ac 2 -i default screencast-$(date +'%Y%m%d%H%M%S').mkv" 
 alias record-webcam="ffmpeg -f v4l2 -standard PAL -thread_queue_size 512 -i /dev/video2 -f alsa -thread_queue_size 512 -i hw:0,0 -vcodec mpeg4 -b:v 1800k -s 1280x720 -r 25 -aspect 16:9 -acodec libmp3lame -b:a 128k -channels 2 -ar 48000 webcam-$(date +'%Y%m%d%H%M%S').mkv"
@@ -16,7 +17,6 @@ alias list-rpms-by-size="rpm -qa --queryformat '%{name} %{size}\n' | sort -n -k 
 alias whatsmyip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias mem="smem -ktP "
 alias vimgolf="docker run --rm -it -e 'key=`gopass websites/vimgolf/key`' kramos/vimgolf "
-alias neo="neofetch --w3m ~/Pictures/SocialMedia/duke_windsurf.jpg --loop --size 400px"
 alias idea-update="echo suppress.focus.stealing=false >> ~/Software/idea/bin/idea.properties"
 
 alias tmuxc='tmux new-window -c "#{pane_current_path}"'
