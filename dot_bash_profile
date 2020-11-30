@@ -65,7 +65,7 @@ function markdown-preview() {
     fswatch -0 -x -r $@ | while read -d "" event; do 
      case $event in *Created|*Updated|*Removed|*Renamed|*OwnerModified|*AttributeModified|*MovedFrom|*MovedTo )
       echo "$(date) change detected"
-      pandoc $@ -o /tmp/$@.html
+      pandoc $0 --css=$HOME/Documents/github.css --to=html5 --self-contained -o /tmp/$@.html --metadata pagetitle="Document"
       ;;
      esac
     done
