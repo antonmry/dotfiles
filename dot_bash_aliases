@@ -7,25 +7,29 @@ alias n='notify-send -u critical'
 alias ch='chezmoi edit -a '
 alias neo='neofetch'
 
+alias shortcuts='chezmoi edit ~/Documents/shortcuts.md -a'
+alias idea-update="echo suppress.focus.stealing=false >> ~/Software/idea/bin/idea.properties"
+alias gradle-init='gradle init --type java-application --test-framework spock'
+alias mem="smem -ktP "
+alias list-rpms-by-size="rpm -qa --queryformat '%{name} %{size}\n' | sort -n -k 2 | numfmt --field 2 --to=iec"
+alias gcalcli="gcalcli --calendar 'Anton Rodríguez Yuste'"
+alias vimgolf="docker run --rm -it -e 'key=`gopass websites/vimgolf/key`' kramos/vimgolf "
+alias tempo='curl wttr.in/ponteceso'
+
 alias record-now="ffmpeg -video_size $(xrandr -q|sed -n 's/.*current[ ]\([0-9]*\) x \([0-9]*\),.*/\1x\2/p' ) -f x11grab -i :0.0+000,000 -f alsa -ac 2 -i default screencast-$(date +'%Y%m%d%H%M%S').mkv" 
 alias record-webcam="ffmpeg -f v4l2 -standard PAL -thread_queue_size 512 -i /dev/video2 -f alsa -thread_queue_size 512 -i hw:0,0 -vcodec mpeg4 -b:v 1800k -s 1280x720 -r 25 -aspect 16:9 -acodec libmp3lame -b:a 128k -channels 2 -ar 48000 webcam-$(date +'%Y%m%d%H%M%S').mkv"
-alias gradle-init='gradle init --type java-application --test-framework spock'
-alias gcalcli="gcalcli --calendar 'Anton Rodríguez Yuste'"
-alias shortcuts='chezmoi edit ~/Documents/shortcuts.md -a'
-alias tempo='curl wttr.in/ponteceso'
-alias list-rpms-by-size="rpm -qa --queryformat '%{name} %{size}\n' | sort -n -k 2 | numfmt --field 2 --to=iec"
-alias whatsmyip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com"
-alias mem="smem -ktP "
-alias vimgolf="docker run --rm -it -e 'key=`gopass websites/vimgolf/key`' kramos/vimgolf "
-alias idea-update="echo suppress.focus.stealing=false >> ~/Software/idea/bin/idea.properties"
 
 alias tmuxc='tmux new-window -c "#{pane_current_path}"'
 alias tmuxh='tmux split-window -c "#{pane_current_path}"'
 alias tmuxv='tmux split-window -h -c "#{pane_current_path}"'
 alias tmux-attach='tmux attach-session -d'
 
+alias whatsmyip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias netdebug='tmuxv ping -i 2 8.8.8.8 && tmuxh ping -i 2 $(/sbin/ip route | awk "/default/ { print \$3 }" | tail -1f) && bwm-ng'
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias webcam0='mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0 -fps 15 -vf screenshot' # Press s for screenshot
+alias webcam1='mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video1 -fps 15 -vf screenshot' # Press s for screenshot
+alias webcam-focus='v4l2-ctl -c focus_auto=0'
 
 # Ugly Python hacks
 alias python='/usr/bin/python3'
