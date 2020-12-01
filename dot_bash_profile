@@ -72,6 +72,12 @@ function markdown-preview() {
     #pandoc $@ | lynx -stdin -vikeys
 }
 
+function todo() {
+  rclone sync GoogleDrive:todo ~/Documents/todo/
+  /home/antonmry/bin/todo.sh "$@"
+  rclone sync ~/Documents/todo/ GoogleDrive:todo 
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/antonmry/.sdkman"
 [[ -s "/home/antonmry/.sdkman/bin/sdkman-init.sh" ]] && source "/home/antonmry/.sdkman/bin/sdkman-init.sh"

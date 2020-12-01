@@ -4,6 +4,7 @@ alias cat='bat --theme OneHalfLight'
 alias g='gradle'
 alias d='docker'
 alias n='notify-send -u critical'
+alias t='/home/antonmry/bin/todo'
 alias ch='chezmoi edit -a '
 alias neo='neofetch'
 
