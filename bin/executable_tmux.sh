@@ -8,7 +8,7 @@ split-window "curl wttr.in/ponteceso; read" \; \
 resize-pane -y 40 \; \
 select-pane -t:.2 -P 'fg=white,bg=black' \; \
 select-pane -t:.1 \; \
-split-window -h "todo ls | tac; read" \; \
+split-window -h "todo.sh ls | tac; read" \; \
 select-pane -t:.1 \; \
 split-window "cowsay 'Bos días!!'; read" \; \
 new-window \; next-window \; \
