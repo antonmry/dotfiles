@@ -10,5 +10,6 @@
   "pen_color": "red",
   "pen_trail": 1000,
   "background_color": "black",
-  "hide_pen_on_press": false
+  "hide_pen_on_press": false,
+  "insecure_auto_add_host": true
 }
