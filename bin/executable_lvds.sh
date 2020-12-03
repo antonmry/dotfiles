@@ -15,8 +15,7 @@ case $HOSTNAME in
       ;;
   (gali9)
     xrandr --output eDP-1 --auto --primary --output HDMI-1 --off
+    notify-send "Changed to LVDS"
       ;;
   (*)   echo "How did I get in the middle of ${HOSTNAME}?";;
 esac
-
-
