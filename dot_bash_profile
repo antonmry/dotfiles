@@ -60,7 +60,7 @@ source "/usr/share/fzf/shell/key-bindings.bash"
 # Functions
 
 function markdown-to-pdf() {
-    pandoc $@ --css=$HOME/Documents/github.css --to=pdf --self-contained -o /tmp/$@.html 
+    pandoc $@ --css=https://raw.githubusercontent.com/otsaloma/markdown-css/master/github.css --to=html5 --self-contained -o $@.pdf --metadata pagetitle="Document"
 }
  
 function markdown-preview() {
