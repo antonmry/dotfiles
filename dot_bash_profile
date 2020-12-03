@@ -58,6 +58,10 @@ export PATH
 source "/usr/share/fzf/shell/key-bindings.bash"
 
 # Functions
+
+function markdown-to-pdf() {
+    pandoc $@ --css=$HOME/Documents/github.css --to=pdf --self-contained -o /tmp/$@.html 
+}
  
 function markdown-preview() {
     pandoc $@ --css=$HOME/Documents/github.css --to=html5 --self-contained -o /tmp/$@.html --metadata pagetitle="Document"
