@@ -1,21 +1,6 @@
 #! /bin/bash
 
 case $HOSTNAME in
-  (gali7)
-        killall chrome
-        killall thunderbird
-        killall alacritty
-        killall slack
-        killall pidgin
-        killall minetime
-        google-chrome &
-        /opt/MineTime/minetime &
-        thunderbird &
-        i3-msg 'workspace 2:Terminal; exec tmux.sh' &
-        idea &
-        slack &
-        pidgin &
-      ;;
   (gali8)
         killall chrome
         killall alacritty
