@@ -138,6 +138,12 @@ reboot
 sudo docker run hello-world
 ```
 
+Make user able to launch docker:
+
+```sh
+sudo usermod -aG docker antonmry
+```
+
 ## sudoers
 
 ```sh
