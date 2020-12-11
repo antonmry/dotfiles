@@ -145,7 +145,7 @@ if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
 
 " Plugins
 call plug#begin('~/.vim/autoload')
-Plug 'chiendo97/intellij.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/vim-grammarous'
 Plug 'godlygeek/tabular'
@@ -165,7 +165,7 @@ call plug#end()
 " Color scheme (terminal)
 set t_Co=256
 set background=light
-colorscheme intellij
+colorscheme onehalflight
 " colorscheme peachpuff
 
 " Colors
