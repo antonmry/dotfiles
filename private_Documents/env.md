@@ -221,3 +221,10 @@ ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="/bin/chm
 reboot
 ```
 
+# Mopidy
+
+```sh
+sudo systemctl enable mopidy
+sudo systemctl start mopidy
+```
+
