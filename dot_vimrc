@@ -123,26 +123,6 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-" Color scheme (terminal)
-set t_Co=256
-colorscheme peachpuff
-
-" Colors
-highlight ColorColumn ctermbg=lightgray 
-highlight LineNr ctermfg=grey ctermbg=white
-highlight SignColumn ctermbg=white guibg=white
-
-highlight DiffAdd ctermbg=156
-highlight DiffDelete ctermbg=lightred 
-highlight DiffChange ctermbg=lightyellow 
-highlight DiffText ctermfg=darkyellow ctermbg=lightyellow 
-highlight Folded ctermbg=white
-highlight FoldColumn ctermbg=white ctermfg=black
-
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow 
-highlight GitGutterDelete ctermfg=red 
-
 " Install plug if missing: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -165,6 +145,7 @@ if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
 
 " Plugins
 call plug#begin('~/.vim/autoload')
+Plug 'chiendo97/intellij.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/vim-grammarous'
 Plug 'godlygeek/tabular'
@@ -180,6 +161,29 @@ Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
 
 call plug#end()
+
+" Color scheme (terminal)
+set t_Co=256
+set background=light
+colorscheme intellij
+" colorscheme peachpuff
+
+" Colors
+highlight ColorColumn ctermbg=lightgray 
+highlight LineNr ctermfg=grey ctermbg=white
+highlight SignColumn ctermbg=white guibg=white
+
+highlight DiffAdd ctermbg=156
+highlight DiffDelete ctermbg=lightred 
+highlight DiffChange ctermbg=lightyellow 
+highlight DiffText ctermfg=darkyellow ctermbg=lightyellow 
+highlight Folded ctermbg=white
+highlight FoldColumn ctermbg=white ctermfg=black
+
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow 
+highlight GitGutterDelete ctermfg=red 
+
 
 " plantuml-syntax
 let g:plantuml_executable_script = "plantuml"
