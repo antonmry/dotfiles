@@ -18,7 +18,7 @@ bat NetworkManager-tui gnome-tweaks gimp rclone nodejs yarnpkg pulseeffects \
 audacity powertop autokey-gtk calibre ncdu pandoc lynx qutebrowser \ 
 inotify-tools fswatch picom gpaste neofetch v4l-utils wkhtmltopdf httpie ranger \
 zathura-bash-completion zathura-plugins-all highlight cava mopidy mopidy-mpd \
-mopidy-spotify ncmpcpp jq
+mopidy-spotify ncmpcpp jq python-ansi2html
 
 sudo yum localinstall https://github.com/twpayne/chezmoi/releases/download/v1.8.4/chezmoi-1.8.4-x86_64.rpm
 ```
