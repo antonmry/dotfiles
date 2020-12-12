@@ -30,11 +30,19 @@ gU{motion}             : example: gUaw -> word under cursor uppercase
 d/palabro<cr>          : delete until "palabro"
 %norm A*               : command to per each line (%) execute (norm) A* (add * in the end)
 
+## Jump list
+
 <C-o>                  : go to the previous jump
 <C-i>                  : go to the next jump
-%                      : go or back inside matching ),], or } . 
+%                      : go or back inside matching ),], or } .
+]m                     : go to [count] next start of a method
+]M                     : go to [count] next end of a method
+[m                     : go to [count] previous start of a method
+[M                     : go to [count] previous end of a method
+changes                : command to list last changes in the document
 
-# Transform
+## Transform
+
 U                      : uppercase in visual
 <C-a>                  : increment a number
 <C-x>                  : decrement a number
