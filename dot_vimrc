@@ -159,7 +159,7 @@ Plug 'unblevable/quick-scope'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
-
+Plug 'yazgoo/unicodemoji'
 call plug#end()
 
 " Color scheme (terminal)
