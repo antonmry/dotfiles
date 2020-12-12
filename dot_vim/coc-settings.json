@@ -1,4 +1,5 @@
 {
+  "diagnostic.virtualText": true,
   "java.format.settings.profile": "GoogleStyle",
   "markdownlint.config": {
     "default": true,
