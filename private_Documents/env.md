@@ -15,10 +15,10 @@ sudo dnf copr enable mguessan/davmail
 sudo dnf install -y i3 xclip neovim dunst feh numlockx jetbrains-mono-nl-fonts \
 gopass fzf thunderbird htop cowsay figlet davmail pavucontrol mplayer mencoder \
 bat NetworkManager-tui gnome-tweaks gimp rclone nodejs yarnpkg pulseeffects \
-audacity powertop autokey-gtk calibre ncdu pandoc lynx qutebrowser \ 
+audacity powertop autokey-gtk calibre ncdu pandoc lynx qutebrowser \
 inotify-tools fswatch picom gpaste neofetch v4l-utils wkhtmltopdf httpie ranger \
 zathura-bash-completion zathura-plugins-all highlight cava mopidy mopidy-mpd \
-mopidy-spotify ncmpcpp jq python-ansi2html
+mopidy-spotify ncmpcpp jq python-ansi2html zeal
 
 sudo yum localinstall https://github.com/twpayne/chezmoi/releases/download/v1.8.4/chezmoi-1.8.4-x86_64.rpm
 ```
