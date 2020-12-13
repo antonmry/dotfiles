@@ -1,0 +1,15 @@
+{
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "➡ ",
+  "diagnostic.errorSign": "🚨",
+  "diagnostic.warningSign": "⚠ ",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "🔔",
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "java.format.settings.profile": "GoogleStyle",
+  "markdownlint.config": {
+    "default": true,
+     "first-line-h1": false,
+     "no-space-in-code": false
+  }
+}
