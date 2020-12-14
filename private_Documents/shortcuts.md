@@ -40,6 +40,8 @@ d/palabro<cr>          : delete until "palabro"
 [m                     : go to [count] previous start of a method
 [M                     : go to [count] previous end of a method
 changes                : command to list last changes in the document
+mm                     : set mark `m`
+'m                     : go to mark `m`
 
 ## Transform
 
@@ -60,10 +62,20 @@ read !ls               : command to update buffer with ls output
 "ay                    : copy to the record a
 "Ay                    : append to the record a
 "ap                    : paste from the record a
-<C-r>a                 : in insert mode, paste record a
 reg                    : command to see the values of the registers
 
+## Insert mode
+
+<C-r>a                 : paste record a
+<C-u>                  : delete all changes in the line
+<C-w>                  : delete previous word
+<C-y>                  : copy character from the above line
+<C-e>                  : copy character from the below line
+<C-n>                  : auto-completion
+<C-p>                  : auto-completion
+
 ## Undo and redo
+
 <C-r>                  : undos undo
 U                      : undo all the line
 earlier 24s            : command to undo the last 24s
@@ -112,17 +124,12 @@ tabclose               : command to close tab
 
 ## navigate errors
 
-[l                     : previous error as :lprev
-]l                     : next error as :lnext
-mm                     : set mark `m`
-'m                     : go to mark `m`
-
-## Location list
-
 lne                    : command to go to the next error
 lnp                    : command to go to the previous error
 lop                    : command to open the location list
 lcl                    : command to close the location list
+[l                     : previous error as :lprev
+]l                     : next error as :lnext
 
 ## Buffers
 
