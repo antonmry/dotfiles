@@ -146,6 +146,12 @@ Make user able to launch docker:
 sudo usermod -aG docker antonmry
 ```
 
+Install Docker Azure Credentials: https://github.com/Azure/acr-docker-credential-helper
+
+```sh
+curl -L https://aka.ms/acr/installaad/bash | /bin/bash
+```
+
 ## sudoers
 
 ```sh
@@ -219,12 +225,5 @@ ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="/bin/chg
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
 
 reboot
-```
-
-# Mopidy
-
-```sh
-sudo systemctl enable mopidy
-sudo systemctl start mopidy
 ```
 
