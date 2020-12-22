@@ -227,3 +227,11 @@ ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="/bin/chm
 reboot
 ```
 
+## Zoom
+
+Download from https://zoom.us/download
+
+```sh
+sudo rpm --import package-signing-key.pub
+sudo yum localinstall zoom_x86_64.rpm
+```
