@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Music
+Icon=
+Exec=/home/antonmry/bin/music.sh
+Comment=Your music in the shell
+Categories=Media;
+Terminal=false
