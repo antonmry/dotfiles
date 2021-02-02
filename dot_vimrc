@@ -172,8 +172,11 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme onehalflight
+" colorscheme onehalflight
 " colorscheme peachpuff
+let g:monotone_color = [0, 0, 0]
+let g:monotone_contrast_factor = -1.3
+colorscheme monotone
 
 " Colors
 highlight ColorColumn ctermbg=lightgray 
