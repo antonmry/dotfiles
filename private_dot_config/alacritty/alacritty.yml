@@ -559,6 +559,6 @@ key_bindings:
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
   - { key: NumpadEnter,             chars: "\n"                              }
   - { key: Key0,     mods: Control, action: ResetFontSize                    }
-  - { key: Add,   mods: Control, action: IncreaseFontSize                    }
+  - { key: Equals,   mods: Control, action: IncreaseFontSize                 }
   - { key: Subtract, mods: Control, action: DecreaseFontSize                 }
 
