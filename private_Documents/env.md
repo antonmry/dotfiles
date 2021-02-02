@@ -68,6 +68,7 @@ sudo dnf localinstall teams-1.3.00.25560-1.x86_64.rpm
 ```bash
 sudo pip3 install rsstail
 sudo pip3 install gcalcli
+sudo pip3 install s-tui
 ```
 
 ## PulseUi
