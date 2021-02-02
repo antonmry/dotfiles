@@ -271,8 +271,6 @@ ssh **                 : connect by ssh
 <CTRL+R>               : search history of shell commands
 <ALT+C>                : fuzzy change directory
 
-
-
 # Intellij Idea
 
 Alt + Insert           : generate constructor, setters, etc.
@@ -301,28 +299,43 @@ Ctrl + Enter           : fix typo
 Ctrl + Shift + j       : join Lines to concatenate String values, combine if statements, merge variable declaration and its assignment, etc.
 Ctrl + Shift + Enter   : Complete Statement to add a semi-colon to the line, create the outline of for loops or if statements, move the cursor to the next place, etc.
 
+Live templates         : soat, if, etc.
+Ctrl + alt + t         : surround with (also with your own templates)
+
 Ctrl + Alt + left      : back to the previous location
 Ctrl + Alt + b         : Jump to implementation
 
+## Run and debub
+
+Shift + F10            : run last configuration
+Ctrl + Shift + F10     : run new configuration by default
+Alt + Shift + F10      : run windows
+Alt + 4                : go to Run window (or hide)
+Shift + F9             : debug
 Ctrl + F8              : breakpoint on
 Ctrl + Shift + F8      : breakpoint options
-Shift + F9             : debug
 F8                     : continue to the next breakpoint
 Shift + F8             : return to the previous breakpoint
 
-Live templates         : soat, if, etc.
-Ctrl shift +  w        : increase selection (custom to avoid problems with Ctrl + ww)
-Ctrl + alt + t         : surround with (also with your own templates)
+## ideavim
 
 vsplit                 : split the windows
 Ctrl + w + w           : to cycle between windows
 Ctrl + w + o           : to back to ONLY one window
 
+## Terminal
+
+Alt+F12                : open/hide the terminal
+Alt+Left/Right         : move between tabs
+Ctrl + Enter           : execute the command in the IDE (git, mvn, etc.)
+
 ## Custom
+
 Ctrl + 0               : reset font
 Ctrl + Shift + plus    : increase font
 Ctrl + Shift + minus   : decrease font
 F11                    : full screen
 Shift + F11            : presentation mode
 Ctrl + Shift + G       : Refresh all external projects (gradle)
+Ctrl shift +  w        : increase selection (custom to avoid problems with Ctrl + ww)
 
