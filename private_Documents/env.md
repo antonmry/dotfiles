@@ -238,3 +238,13 @@ Download from https://zoom.us/download
 sudo rpm --import package-signing-key.pub
 sudo yum localinstall zoom_x86_64.rpm
 ```
+
+## Fonts
+
+Download from https://dtinth.github.io/comic-mono-font/
+
+```sh
+sudo mkdir /usr/share/fonts/comic-mono
+sudo cp ~/Downloads/ComicMono* /usr/share/fonts/comic-mono/
+sudo fc-cache -v
+```
