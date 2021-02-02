@@ -27,7 +27,7 @@ alias tmuxv='tmux split-window -h -c "#{pane_current_path}"'
 alias tmux-attach='tmux attach-session -d'
 
 alias whatsmyip="dig TXT +short o-o.myaddr.l.google.com @ns1.google.com"
-alias netdebug='tmuxv ping -i 2 8.8.8.8 && tmuxh ping -i 2 $(/sbin/ip route | awk "/default/ { print \$3 }" | tail -1f) && bwm-ng'
+alias netdebug='tmuxv gping -i 2 8.8.8.8 && tmuxh gping -i 2 $(/sbin/ip route | awk "/default/ { print \$3 }" | tail -1f) && bwm-ng'
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias webcam0='mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0 -fps 15 -vf screenshot' # Press s for screenshot
 alias webcam1='mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video4 -fps 15 -vf screenshot' # Press s for screenshot

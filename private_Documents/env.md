@@ -11,6 +11,7 @@ sudo dnf install \
 
 sudo dnf copr enable daftaupe/gopass
 sudo dnf copr enable mguessan/davmail
+sudo dnf copr enable atim/gping
 
 sudo dnf install -y i3 xclip neovim dunst feh numlockx jetbrains-mono-nl-fonts \
 gopass fzf thunderbird htop cowsay figlet davmail pavucontrol mplayer mencoder \
@@ -19,7 +20,7 @@ audacity powertop autokey-gtk calibre ncdu pandoc lynx qutebrowser \
 inotify-tools fswatch picom gpaste neofetch v4l-utils wkhtmltopdf httpie ranger \
 zathura-bash-completion zathura-plugins-all highlight cava mopidy mopidy-mpd \
 mopidy-spotify ncmpcpp jq python-ansi2html zeal inkscape \
-golang-github-sqshq-sampler
+golang-github-sqshq-sampler gping bwm-ng
 
 sudo yum localinstall https://github.com/twpayne/chezmoi/releases/download/v1.8.4/chezmoi-1.8.4-x86_64.rpm
 ```
