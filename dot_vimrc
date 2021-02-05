@@ -64,7 +64,6 @@ set noshiftround
 set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
-" runtime! macros/matchit.vim
 
 " Move up/down editor lines
 nnoremap j gj
@@ -96,7 +95,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set showmatch
 map <leader><space> :let @/=''<cr> " clear search
 
 " Visualize tabs and newlines
