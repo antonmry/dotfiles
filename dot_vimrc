@@ -64,7 +64,7 @@ set noshiftround
 set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
-runtime! macros/matchit.vim
+" runtime! macros/matchit.vim
 
 " Move up/down editor lines
 nnoremap j gj
@@ -146,7 +146,6 @@ if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
 " Plugins
 call plug#begin('~/.vim/autoload')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
-Plug 'tpope/vim-unimpaired'
 Plug 'rhysd/vim-grammarous'
 Plug 'godlygeek/tabular'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -156,10 +155,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jpalardy/vim-slime'
 Plug 'unblevable/quick-scope'
+Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
-Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'yazgoo/unicodemoji'
+Plug 'nathanalderson/yanktohtml'
 call plug#end()
 
 " Color scheme (terminal)
