@@ -62,6 +62,7 @@ read !ls               : command to update buffer with ls output
 "ay                    : copy to the record a
 "Ay                    : append to the record a
 "ap                    : paste from the record a
+"0p                    : paste last yanked test
 reg                    : command to see the values of the registers
 
 ## Insert mode
