@@ -162,11 +162,15 @@ E.                     : command to open explorer at HOME
 write <file>           : command to write buffer to filename
 cd %:p:h               : change path to current directory
 
-
 ## splitjoin
 
 gS                     : to split a one-liner into multiple lines
 gJ                     : (with the cursor on the first line of a block) to join a block into a single-line statement.
+
+## state
+mks state.vim          : save your current session state to state.vim
+vim -S state.vim       : load session in state.vim
+source state.vim       : load session in state.vim
 
 ## Tabularize
 
