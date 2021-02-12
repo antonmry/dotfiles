@@ -230,3 +230,6 @@ bindsym $mod+t exec --no-startup-id notify-send "$(date '+%d/%m/%y%n%T')"
 
 ## Kill an application
 bindsym $mod+Shift+i exec --no-startup-id /home/antonmry/bin/dmenu-killall
+
+## Flameshot
+bindsym $mod+i exec --no-startup-id flameshot gui
