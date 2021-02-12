@@ -200,6 +200,9 @@ assign [class="Slack"] 5:Chat
 assign [class="Pidgin"] 5:Chat
 assign [class="Teams"] 5:Chat
 
+# Moving workspaces between screens 
+bindsym $mod+Shift+p move workspace to output right
+
 ## Window Switcher
 bindsym $mod+Shift+d exec --no-startup-id /home/antonmry/bin/dmenu-i3-window-jumper
 
