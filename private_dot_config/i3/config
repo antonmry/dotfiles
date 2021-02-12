@@ -223,7 +223,7 @@ bindsym $mod+Ctrl+i exec --no-startup-id /home/antonmry/bin/xbacklight -inc 5
 bindsym $mod+Ctrl+d exec --no-startup-id /home/antonmry/bin/xbacklight -dec 5 
 
 ## copyq
-for_window [instance="^copyq$" class="^Copyq$"] border pixel 0, floating enable
+for_window [class="copyq"] floating enable, resize set 640px 480px, focus
 bindsym $mod+p exec --no-startup-id copyq toggle
 
 ## Time
