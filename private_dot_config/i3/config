@@ -3,7 +3,7 @@
 #exec --no-startup-id picom --config $HOME/.config/picom/picom.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/anxo.png
-exec --no-startup-id gpaste-client dr
+exec --no-startup-id copyq
 exec_always --no-startup-id numlockx on
 exec --no-startup-id dunst
 exec --no-startup-id /home/antonmry/bin/i3-battery-popup -n
@@ -222,8 +222,9 @@ bindsym $mod+m exec --no-startup-id pactl set-sink-mute $sink toggle
 bindsym $mod+Ctrl+i exec --no-startup-id /home/antonmry/bin/xbacklight -inc 5 
 bindsym $mod+Ctrl+d exec --no-startup-id /home/antonmry/bin/xbacklight -dec 5 
 
-## Gpaste
-bindsym $mod+p exec --no-startup-id gpaste-client ui
+## copyq
+for_window [instance="^copyq$" class="^Copyq$"] border pixel 0, floating enable
+bindsym $mod+p exec --no-startup-id copyq toggle
 
 ## Time
 bindsym $mod+t exec --no-startup-id notify-send "$(date '+%d/%m/%y%n%T')"
