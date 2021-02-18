@@ -3,6 +3,7 @@ set scrolloff=3
 set ignorecase smartcase
 set showmode
 set history=1000
+set NERDTree
 
 " antonmry
 let mapleader = " "
