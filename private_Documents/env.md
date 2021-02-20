@@ -248,3 +248,8 @@ sudo mkdir /usr/share/fonts/comic-mono
 sudo cp ~/Downloads/ComicMono* /usr/share/fonts/comic-mono/
 sudo fc-cache -v
 ```
+
+## Flatpak and zotero
+
+sudo flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.zotero.Zotero
