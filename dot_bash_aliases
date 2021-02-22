@@ -15,7 +15,7 @@ alias gradle-init='gradle init --type java-application --test-framework spock'
 alias mem="smem -ktP "
 alias list-rpms-by-size="rpm -qa --queryformat '%{name} %{size}\n' | sort -n -k 2 | numfmt --field 2 --to=iec"
 alias gcalcli="gcalcli --calendar 'Anton Rodríguez Yuste'"
-alias vimgolf="docker run --rm -it -e 'key=`gopass websites/vimgolf/key`' kramos/vimgolf "
+alias vimgolf="docker run --rm -it -e 'key=`gopass show websites/vimgolf/key`' kramos/vimgolf "
 alias tempo='curl wttr.in/ponteceso'
 
 alias record-now="ffmpeg -video_size $(xrandr -q|sed -n 's/.*current[ ]\([0-9]*\) x \([0-9]*\),.*/\1x\2/p' ) -f x11grab -i :0.0+000,000 -f alsa -ac 2 -i default screencast-$(date +'%Y%m%d%H%M%S').mkv" 
