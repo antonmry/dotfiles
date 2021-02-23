@@ -349,7 +349,7 @@ cyclic_scrolling = no
 
 lines_scrolled = 2
 
-lyrics_fetchers = 
+lyrics_fetchers = azlyrics, genius, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
 
 follow_now_playing_lyrics = no
 
