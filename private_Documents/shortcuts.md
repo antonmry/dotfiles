@@ -4,6 +4,7 @@ set nowrap             : disable line wrapping
 <C-v>                  : column selection (I to insert, ESC to apply)
 <C-f>                  : in the command line, to search in the history
 gq                     : format and break lines
+gx                     : open link under the cursor
 
 ## Actions and motions
 
@@ -89,6 +90,7 @@ noh                    : command to disable search highlighting
 *                      : look for the work before the cursor, n for next
 #                      : look for the work after the cursor, n for next
 <C-f>                  : after / to open a search history window
+gn                     : gn will jump forward to the next match of the last used search pattern and visually select it (you can prepend actions like c for change, cgn and repeat it with .)
 
 ## Replace
 

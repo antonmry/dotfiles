@@ -99,7 +99,9 @@ set smartcase
 map <leader><space> :let @/=''<cr> " clear search
 
 " Visualize tabs and newlines
-set listchars=tab:▸\ ,eol:¬
+set showbreak=↪ 
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set list
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 " Show limit lines
