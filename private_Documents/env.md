@@ -241,14 +241,16 @@ sudo yum localinstall zoom_x86_64.rpm
 
 ## Fonts
 
-Download from http://comicneue.com/
+Download from https://github.com/belluzj/fantasque-sans/releases/tag/v1.8.0 
+
+the version FantasqueSansMono-LargeLineHeight-NoLoopK.tar.gz
+
 
 ```sh
-unzip comic-neue-2.51.zip
-sudo mv comic-neue-2.51/TTF/ComicNeue* /usr/share/fonts/
+unzip FantasqueSansMono-LargeLineHeight-NoLoopK.tar.gz
+sudo mv TTF /usr/share/fonts/FantasqueSansMono
 sudo fc-cache -v
 ```
-
 
 Deprecated:
 
