@@ -241,6 +241,17 @@ sudo yum localinstall zoom_x86_64.rpm
 
 ## Fonts
 
+Download from http://comicneue.com/
+
+```sh
+unzip comic-neue-2.51.zip
+sudo mv comic-neue-2.51/TTF/ComicNeue* /usr/share/fonts/
+sudo fc-cache -v
+```
+
+
+Deprecated:
+
 Download from https://dtinth.github.io/comic-mono-font/
 
 ```sh
