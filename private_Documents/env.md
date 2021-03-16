@@ -266,3 +266,11 @@ sudo fc-cache -v
 
 sudo flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub org.zotero.Zotero
+
+## Install pulumi
+
+See https://www.pulumi.com/docs/get-started/aws/begin/
+
+```sh
+curl -fsSL https://get.pulumi.com | sh
+```
