@@ -9,7 +9,18 @@
   "java.format.settings.profile": "GoogleStyle",
   "markdownlint.config": {
     "default": true,
-     "first-line-h1": false,
-     "no-space-in-code": false
+    "first-line-h1": false,
+    "no-space-in-code": false
+  },
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
   }
 }

@@ -267,10 +267,8 @@ sudo fc-cache -v
 sudo flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub org.zotero.Zotero
 
-## Install pulumi
+## Terraform
 
-See https://www.pulumi.com/docs/get-started/aws/begin/
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 
-```sh
-curl -fsSL https://get.pulumi.com | sh
-```
+sudo dnf -y install terraform terraform-ls
