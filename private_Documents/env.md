@@ -272,3 +272,22 @@ flatpak install flathub org.zotero.Zotero
 sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 
 sudo dnf -y install terraform terraform-ls
+
+## Printer ET-2726
+
+Download from http://download.ebz.epson.net/dsc/search/01/search/searchModule
+
+```bash
+sudo yum localinstall epson-inkjet-printer-escpr-1.7.9-1lsb3.2.x86_64.rpm
+```
+
+Download from http://support.epson.net/linux/en/epsonscan2.php
+
+```bash
+tar -zxvf epsonscan2-bundle-6.6.2.3.x86_64.rpm.tar.gz
+cd epsonscan2-bundle-6.6.2.3.x86_64.rpm
+./install.sh
+```
+
+Configure in http://localhost:631/admin
+
