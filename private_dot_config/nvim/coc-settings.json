@@ -10,7 +10,8 @@
   "markdownlint.config": {
     "default": true,
     "first-line-h1": false,
-    "no-space-in-code": false
+    "no-space-in-code": false,
+    "heading-style/header-style": false
   },
   "languageserver": {
     "terraform": {
