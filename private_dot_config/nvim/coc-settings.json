@@ -11,7 +11,7 @@
     "default": true,
     "first-line-h1": false,
     "no-space-in-code": false,
-    "heading-style/header-style": false
+    "header-style": false
   },
   "languageserver": {
     "terraform": {
