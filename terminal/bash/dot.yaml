@@ -1,0 +1,4 @@
+global:
+  links:
+    bashrc: ~/.bashrc
+  installs: false
