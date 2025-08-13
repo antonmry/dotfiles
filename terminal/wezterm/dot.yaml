@@ -3,4 +3,4 @@ global:
     wezterm.lua: ~/.config/wezterm/wezterm.lua
 
 linux:
-  installs: sudo dnf -y copr enable wezfurlong/wezterm-nightly && sudo dnf -y install wezterm
+  installs: sudo dnf -y copr enable wezfurlong/wezterm-nightly && sudo dnf -y install wezterm wl-clipboard

@@ -36,6 +36,7 @@ function title()
 
 export PROMPT_DIRTRIM=2
 export PS1="[\w]\$ "
+export EDITOR="hx"
 
 [[ $- != *i* ]] && return
 . "$HOME/.cargo/env"

@@ -3,4 +3,4 @@ global:
     config.kdl: ~/.config/niri/config.kdl
 
 linux:
-  installs: sudo dnf -y copr enable yalter/niri && sudo dnf -y install niri nmtui brightnessctl
+  installs: sudo dnf -y copr enable yalter/niri && sudo dnf -y install niri && sudo dnf -y install nmtui brightnessctl

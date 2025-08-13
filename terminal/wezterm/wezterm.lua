@@ -18,6 +18,8 @@ return {
   font_size = 12.0, -- Ideal for the office
   --font_size = 18.0, -- Ideal for the laptop
   leader = { key="b", mods="CTRL" },
+  automatically_reload_config = true,
+  use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   keys = {
     { key = "a", mods = "LEADER|CTRL",  action=wezterm.action{SendString="\x01"}},
@@ -25,8 +27,6 @@ return {
     { key = "|",mods = "LEADER",       action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
     { key = "s", mods = "LEADER",       action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
     { key = "v", mods = "LEADER",       action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
-    { key = "o", mods = "LEADER",       action="TogglePaneZoomState" },
-    { key = "z", mods = "LEADER",       action="TogglePaneZoomState" },
     { key = "c", mods = "LEADER",       action=wezterm.action{SpawnTab="CurrentPaneDomain"}},
     { key = "h", mods = "LEADER",       action=wezterm.action{ActivatePaneDirection="Left"}},
     { key = "j", mods = "LEADER",       action=wezterm.action{ActivatePaneDirection="Down"}},
@@ -48,5 +48,24 @@ return {
     { key = "&", mods = "LEADER|SHIFT", action=wezterm.action{CloseCurrentTab={confirm=true}}},
     { key = "d", mods = "LEADER",       action=wezterm.action{CloseCurrentPane={confirm=true}}},
     { key = "x", mods = "LEADER",       action=wezterm.action{CloseCurrentPane={confirm=true}}},
+    { key = "z", mods = 'LEADER',       action=wezterm.action.TogglePaneZoomState},
+    { key = "[", mods = 'LEADER',       action=wezterm.action.ActivateCopyMode},
+    { key = "n", mods = 'LEADER',       action=wezterm.action.ActivateTabRelative(1)},
+    { key = "p", mods = 'LEADER',       action=wezterm.action.ActivateTabRelative(-1)},
+    { key = "w", mods = 'LEADER',       action=wezterm.action.ShowTabNavigator},
+    {
+        key = ",",
+        mods = 'LEADER',
+        action = act.PromptInputLine {
+            description = 'Enter new name for tab',
+            action = wezterm.action_callback(
+                function(window, pane, line)
+                    if line then
+                        window:active_tab():set_title(line)
+                    end
+                end
+            ),
+        },
+    },
   },
 }
