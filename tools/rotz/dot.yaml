@@ -1,0 +1,4 @@
+global:
+  links:
+    config.yaml: ~/.config/rotz/config.yaml
+  installs: cargo install rotz
