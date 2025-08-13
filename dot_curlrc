@@ -1,3 +1,0 @@
- -w "\n"
- silent
- -D /dev/stderr

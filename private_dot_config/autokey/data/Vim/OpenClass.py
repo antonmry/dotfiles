@@ -1,1 +1,0 @@
-keyboard.send_keys("<shift>+<f1>n")
