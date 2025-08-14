@@ -53,6 +53,8 @@ return {
     { key = "n", mods = 'LEADER',       action=wezterm.action.ActivateTabRelative(1)},
     { key = "p", mods = 'LEADER',       action=wezterm.action.ActivateTabRelative(-1)},
     { key = "w", mods = 'LEADER',       action=wezterm.action.ShowTabNavigator},
+    { key = "a", mods = 'LEADER',       action=wezterm.action.ActivatePaneDirection('Next')},
+    -- { key = "a", mods = 'LEADER',       action=wezterm.action.PaneSelect},
     {
         key = ",",
         mods = 'LEADER',
