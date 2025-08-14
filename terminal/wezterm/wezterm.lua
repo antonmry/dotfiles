@@ -17,7 +17,7 @@ return {
   color_scheme = 'Alabaster',
   font_size = 12.0, -- Ideal for the office
   --font_size = 18.0, -- Ideal for the laptop
-  leader = { key="b", mods="CTRL" },
+  leader = { key="a", mods="CTRL" },
   automatically_reload_config = true,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
