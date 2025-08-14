@@ -2,3 +2,6 @@ global:
   links:
     bashrc: ~/.bashrc
   installs: false
+
+linux:
+  installs: sudo dnf -y copr enable atim/zoxide && sudo dnf -y install zoxide && sudo dnf -y install fzf

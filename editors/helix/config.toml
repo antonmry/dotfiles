@@ -1,1 +1,6 @@
 theme = "yo_light"
+
+[editor]
+end-of-line-diagnostics = "hint"
+[editor.inline-diagnostics]
+cursor-line = "warning" 
