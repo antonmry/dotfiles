@@ -2,5 +2,7 @@ theme = "yo_light"
 
 [editor]
 end-of-line-diagnostics = "hint"
+[editor.soft-wrap]
+enable = true
 [editor.inline-diagnostics]
 cursor-line = "warning" 
