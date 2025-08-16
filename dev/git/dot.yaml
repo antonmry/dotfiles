@@ -1,0 +1,6 @@
+global:
+  links:
+    gitconfig: ~/.gitconfig
+
+linux:
+  installs: sudo dnf -y install  git-delta
