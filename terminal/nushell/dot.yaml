@@ -1,0 +1,9 @@
+global:
+  links:
+    config.nu: ~/.config/nushell/config.nu
+    env.nu: ~/.config/nushell/env.nu
+    zoxide.nu: ~/.config/nushell/zoxide.nu
+  installs: false
+
+linux:
+  installs: sudo dnf -y install nu && which nu | sudo tee -a /etc/shells && chsh -s $(which nu)
