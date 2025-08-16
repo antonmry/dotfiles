@@ -10,7 +10,20 @@
 
 [delta]
     navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
+    light = true
 
 [merge]
     conflictStyle = zdiff3
+
+[alias]
+    a = add
+    ap = add -p
+    aA = add -A
+    ss = status -s
+    s = status
+    c = commit
+    co = checkout
+    br = branch
+    r = reset
+    cp = cherry-pick
+    gr = grep -Ii
