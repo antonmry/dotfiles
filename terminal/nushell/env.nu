@@ -91,6 +91,7 @@ $env.NU_PLUGIN_DIRS = [
 # An alternate way to add entries to $env.PATH is to use the custom command `path add`
 # which is built into the nushell stdlib:
 use std "path add"
+
 # $env.PATH = ($env.PATH | split row (char esep))
 # path add /some/path
 path add $"($nu.home-path)/.cargo/bin"

@@ -7,101 +7,128 @@
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
 
+let zenbones_palette = {
+    p1: "#FDFCFB", # bg
+    p2: "#F4F2F1", # bgalt
+    p3: "#E9E7E5", # sel
+    p4: "#E2E0DE", # float
+    p5: "#D4D1CF", # sub
+    p6: "#BDBAB8", # dep
+    p7: "#A19E9C", # comment
+    p8: "#6A6866",  # sub-fg
+    p9: "#5E5C5A",  # sub-fg2
+    p10: "#52504E", # sub-fg3
+    p11: "#393736", # fg
+    p12: "#2D2B2A", # fgalt
+
+    error: "#D75F5F",   # red
+    warning: "#D7875F", # orange
+    info: "#5F87AF",    # blue
+    hint: "#D75F5F",    # red
+    string: "#5F875F",  # green
+    constant: "#6A6866", # sub-fg
+    keyword: "#2D2B2A", # fgalt
+    function_color: "#393736", # fg
+    variable_color: "#52504E", # sub-fg3
+    type_color: "#5E5C5A", # sub-fg2
+    number: "#6A6866", # sub-fg
+    special: "#52504E" # sub-fg3
+}
+
 let light_theme = {
+    binary: $zenbones_palette.constant
+    block: $zenbones_palette.p8
+    cell-path: $zenbones_palette.p11
+    closure: $zenbones_palette.function_color
+    custom: $zenbones_palette.p11
+    duration: $zenbones_palette.p11
+    float: $zenbones_palette.number
+    glob: $zenbones_palette.string
+    int: $zenbones_palette.number
+    list: $zenbones_palette.p8
+    nothing: $zenbones_palette.error
+    range: $zenbones_palette.p8
+    record: $zenbones_palette.p8
+    string: $zenbones_palette.string
 
-        binary: '#b02874'
-        block: '#1763aa'
-        cell-path: '#ece6de'
-        closure: '#096a83'
-        custom: '#f3f2f4'
-        duration: 'black'
-        float: '#bd3636'
-        glob: '#f3f2f4'
-        int: '#b02874'
-        list: '#096a83'
-        nothing: '#c00c50'
-        range: '#a6403a'
-        record: '#096a83'
-        string: '#0a7040'
+    bool: {|| if $in { $zenbones_palette.info } else { $zenbones_palette.error } }
 
-        bool: {|| if $in { '#07737a' } else { '#a6403a' } }
+    datetime: {|| (date now) - $in |
+        if $in < 1hr {
+            { fg: $zenbones_palette.p8 attr: 'b' }
+        } else if $in < 6hr {
+            $zenbones_palette.p9
+        } else if $in < 1day {
+            $zenbones_palette.p10
+        } else if $in < 3day {
+            $zenbones_palette.p11
+        } else if $in < 1wk {
+            { fg: $zenbones_palette.p11 attr: 'b' }
+        } else if $in < 6wk {
+            $zenbones_palette.p12
+        } else if $in < 52wk {
+            $zenbones_palette.p12
+        } else { $zenbones_palette.p12 }
+    }
 
-        datetime: {|| (date now) - $in |
-            if $in < 1hr {
-                { fg: 'dark_grey' attr: 'b' }
-            } else if $in < 6hr {
-                'black'
-            } else if $in < 1day {
-                'black'
-            } else if $in < 3day {
-                'black'
-            } else if $in < 1wk {
-                { fg: 'black' attr: 'b' }
-            } else if $in < 6wk {
-                'black'
-            } else if $in < 52wk {
-                'black'
-            } else { 'black' }
-        }
+    filesize: {|e|
+        if $e == 0b {
+            $zenbones_palette.p7
+        } else if $e < 1mb {
+            $zenbones_palette.p8
+        } else {{ fg: $zenbones_palette.p9 }}
+    }
 
-        filesize: {|e|
-            if $e == 0b {
-                'grey'
-            } else if $e < 1mb {
-                'black'
-            } else {{ fg: 'black' }}
-        }
+    shape_and: { fg: $zenbones_palette.keyword attr: 'b' }
+    shape_binary: { fg: $zenbones_palette.constant attr: 'b' }
+    shape_block: { fg: $zenbones_palette.p11 attr: 'b' }
+    shape_bool: $zenbones_palette.info
+    shape_closure: { fg: $zenbones_palette.function_color attr: 'b' }
+    shape_custom: $zenbones_palette.string
+    shape_datetime: { fg: $zenbones_palette.p11 attr: 'b' }
+    shape_directory: $zenbones_palette.info
+    shape_external: $zenbones_palette.info
+    shape_external_resolved: $zenbones_palette.info
+    shape_externalarg: { fg: $zenbones_palette.string attr: 'b' }
+    shape_filepath: $zenbones_palette.info
+    shape_flag: { fg: $zenbones_palette.p11 attr: 'b' }
+    shape_float: { fg: $zenbones_palette.number attr: 'b' }
+    shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: 'b' }
+    shape_glob_interpolation: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_globpattern: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_int: { fg: $zenbones_palette.number attr: 'b' }
+    shape_internalcall: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_keyword: { fg: $zenbones_palette.keyword attr: 'b' }
+    shape_list: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_literal: $zenbones_palette.p11
+    shape_match_pattern: $zenbones_palette.string
+    shape_matching_brackets: { attr: 'u' }
+    shape_nothing: $zenbones_palette.error
+    shape_operator: $zenbones_palette.p9
+    shape_or: { fg: $zenbones_palette.keyword attr: 'b' }
+    shape_pipe: { fg: $zenbones_palette.keyword attr: 'b' }
+    shape_range: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_raw_string: { fg: $zenbones_palette.p11 attr: 'b' }
+    shape_record: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_redirection: { fg: $zenbones_palette.keyword attr: 'b' }
+    shape_signature: { fg: $zenbones_palette.string attr: 'b' }
+    shape_string: $zenbones_palette.string
+    shape_string_interpolation: { fg: $zenbones_palette.p8 attr: 'b' }
+    shape_table: { fg: $zenbones_palette.p11 attr: 'b' }
+    shape_vardecl: { fg: $zenbones_palette.variable_color attr: 'u' }
+    shape_variable: $zenbones_palette.variable_color
 
-        shape_and: { fg: '#b02874' attr: 'b' }
-        shape_binary: { fg: '#b02874' attr: 'b' }
-        shape_block: { fg: 'black' attr: 'b' }
-        shape_bool: '#07737a'
-        shape_closure: { fg: '#096a83' attr: 'b' }
-        shape_custom: '#0a7040'
-        shape_datetime: { fg: 'black' attr: 'b' }
-        shape_directory: '#096a83'
-        shape_external: '#096a83'
-        shape_external_resolved: '#07737a'
-        shape_externalarg: { fg: '#0a7040' attr: 'b' }
-        shape_filepath: '#096a83'
-        shape_flag: { fg: 'black' attr: 'b' }
-        shape_float: { fg: '#bd3636' attr: 'b' }
-        shape_garbage: { fg: '#FFFFFF' bg: '#FF0000' attr: 'b' }
-        shape_glob_interpolation: { fg: '#096a83' attr: 'b' }
-        shape_globpattern: { fg: '#096a83' attr: 'b' }
-        shape_int: { fg: '#b02874' attr: 'b' }
-        shape_internalcall: { fg: '#096a83' attr: 'b' }
-        shape_keyword: { fg: '#b02874' attr: 'b' }
-        shape_list: { fg: '#096a83' attr: 'b' }
-        shape_literal: 'black'
-        shape_match_pattern: '#0a7040'
-        shape_matching_brackets: { attr: 'u' }
-        shape_nothing: '#c00c50'
-        shape_operator: '#a6403a'
-        shape_or: { fg: '#b02874' attr: 'b' }
-        shape_pipe: { fg: '#b02874' attr: 'b' }
-        shape_range: { fg: '#a6403a' attr: 'b' }
-        shape_raw_string: { fg: '#f3f2f4' attr: 'b' }
-        shape_record: { fg: '#096a83' attr: 'b' }
-        shape_redirection: { fg: '#b02874' attr: 'b' }
-        shape_signature: { fg: '#0a7040' attr: 'b' }
-        shape_string: '#0a7040'
-        shape_string_interpolation: { fg: '#096a83' attr: 'b' }
-        shape_table: { fg: 'black' attr: 'b' }
-        shape_vardecl: { fg: 'black' attr: 'u' }
-        shape_variable: '#b02874'
+    foreground: $zenbones_palette.p11
+    background: $zenbones_palette.p1
+    cursor: $zenbones_palette.p12
 
-        foreground: 'black'
-        background: 'white'
-        cursor: '#53545b'
-
-        empty: '#1763aa'
-        header: { fg: 'black' attr: 'b' }
-        hints: 'light_red'
-        leading_trailing_space_bg: { attr: 'n' }
-        row_index: { fg: 'grey' attr: 'b' }
-        search_result: { fg: '#c00c50' bg: '#ece6de' }
-        separator: 'black_dimmed'
+    empty: $zenbones_palette.info
+    header: { fg: $zenbones_palette.p11 attr: 'b' }
+    hints: $zenbones_palette.warning
+    leading_trailing_space_bg: { attr: 'n' }
+    row_index: { fg: $zenbones_palette.p7 attr: 'b' }
+    search_result: { fg: $zenbones_palette.error bg: $zenbones_palette.p3 }
+    separator: $zenbones_palette.p7
 }
 
 # External completer example
@@ -155,15 +182,15 @@ $env.config = {
     }
 
     explore: {
-        status_bar_background: { fg: "#1D1F21", bg: "#C4C9C6" },
-        command_bar_text: { fg: "#C4C9C6" },
-        highlight: { fg: "black", bg: "yellow" },
+        status_bar_background: { fg: $zenbones_palette.p11, bg: $zenbones_palette.p3 },
+        command_bar_text: { fg: $zenbones_palette.p11 },
+        highlight: { fg: $zenbones_palette.p1, bg: $zenbones_palette.info },
         status: {
-            error: { fg: "white", bg: "red" },
+            error: { fg: $zenbones_palette.p1, bg: $zenbones_palette.error },
             warn: {}
             info: {}
         },
-        selected_cell: { bg: light_blue },
+        selected_cell: { bg: $zenbones_palette.p3 },
     }
 
     history: {
@@ -279,9 +306,9 @@ $env.config = {
                 col_padding: 2
             }
             style: {
-                text: green
-                selected_text: { attr: r }
-                description_text: yellow
+                text: $zenbones_palette.p11
+                selected_text: { fg: $zenbones_palette.p11 bg: $zenbones_palette.p3 attr: r }
+                description_text: $zenbones_palette.p9
                 match_text: { attr: u }
                 selected_match_text: { attr: ur }
             }
@@ -312,9 +339,9 @@ $env.config = {
                 correct_cursor_pos: false
             }
             style: {
-                text: green
-                selected_text: { attr: r }
-                description_text: yellow
+                text: $zenbones_palette.p11
+                selected_text: { fg: $zenbones_palette.p11 bg: $zenbones_palette.p3 attr: r }
+                description_text: $zenbones_palette.p9
                 match_text: { attr: u }
                 selected_match_text: { attr: ur }
             }
@@ -328,9 +355,9 @@ $env.config = {
                 page_size: 10
             }
             style: {
-                text: green
-                selected_text: green_reverse
-                description_text: yellow
+                text: $zenbones_palette.p11
+                selected_text: { fg: $zenbones_palette.p11 bg: $zenbones_palette.p3 }
+                description_text: $zenbones_palette.p9
             }
         }
         {
@@ -346,9 +373,9 @@ $env.config = {
                 description_rows: 10
             }
             style: {
-                text: green
-                selected_text: green_reverse
-                description_text: yellow
+                text: $zenbones_palette.p11
+                selected_text: { fg: $zenbones_palette.p11 bg: $zenbones_palette.p3 }
+                description_text: $zenbones_palette.p9
             }
         }
     ]
