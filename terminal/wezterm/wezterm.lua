@@ -60,25 +60,7 @@ local keymaps = {
     },
 }
 
-local config = {
-  font = wezterm.font_with_fallback({
-    "ComicShannsMono Nerd Font",
-  }),
-
-  -- color_scheme = 'Builtin Light',
-  -- color_scheme = 'zenbones',
-  -- color_scheme = 'Alabaster',
-  font_size = 12.0, -- Ideal for the office
-  --font_size = 18.0, -- Ideal for the laptop
-  leader = { key="a", mods="CTRL" },
-  automatically_reload_config = true,
-  use_fancy_tab_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
-  keys = keymaps,
-}
-
-
-config.colors = {
+local colors = {
   foreground = '#393736',
   background = '#FDFCFB',
   cursor_bg = '#2D2B2A',
@@ -109,6 +91,21 @@ config.colors = {
     '#5E5C5A', -- bright cyan
     '#393736', -- bright white
   },
+}
+
+local config = {
+  font = wezterm.font_with_fallback({
+    "ComicShannsMono Nerd Font",
+  }),
+
+  font_size = 12.0, -- Ideal for the office
+  --font_size = 18.0, -- Ideal for the laptop
+  leader = { key="a", mods="CTRL" },
+  automatically_reload_config = true,
+  use_fancy_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = true,
+  keys = keymaps,
+  colors = colors,
 }
 
 return config
