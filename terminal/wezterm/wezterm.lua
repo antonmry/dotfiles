@@ -10,20 +10,7 @@ end)
 
 -- and finally, return the configuration to wezterm
 
-return {
-  font = wezterm.font_with_fallback({
-    "ComicShannsMono Nerd Font",
-  }),
-
-  -- color_scheme = 'zenbones',
-  color_scheme = 'Alabaster',
-  font_size = 12.0, -- Ideal for the office
-  --font_size = 18.0, -- Ideal for the laptop
-  leader = { key="a", mods="CTRL" },
-  automatically_reload_config = true,
-  use_fancy_tab_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
-  keys = {
+local keymaps = {
     { key = "a", mods = "LEADER|CTRL",  action=wezterm.action{SendString="\x01"}},
     { key = "-", mods = "LEADER",       action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
     { key = "|",mods = "LEADER",       action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
@@ -71,5 +58,57 @@ return {
             ),
         },
     },
+}
+
+local config = {
+  font = wezterm.font_with_fallback({
+    "ComicShannsMono Nerd Font",
+  }),
+
+  -- color_scheme = 'Builtin Light',
+  -- color_scheme = 'zenbones',
+  -- color_scheme = 'Alabaster',
+  font_size = 12.0, -- Ideal for the office
+  --font_size = 18.0, -- Ideal for the laptop
+  leader = { key="a", mods="CTRL" },
+  automatically_reload_config = true,
+  use_fancy_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = true,
+  keys = keymaps,
+}
+
+
+config.colors = {
+  foreground = '#393736',
+  background = '#FDFCFB',
+  cursor_bg = '#2D2B2A',
+  cursor_fg = '#FDFCFB',
+  cursor_border = '#2D2B2A',
+  selection_fg = '#393736',
+  selection_bg = '#D4D1CF',
+  scrollbar_thumb = '#E9E7E5',
+  split = '#E2E0DE',
+
+  ansi = {
+    '#2D2B2A', -- black
+    '#D75F5F', -- red
+    '#5F875F', -- green
+    '#D7875F', -- yellow
+    '#5F87AF', -- blue
+    '#AF87AF', -- magenta
+    '#5E5C5A', -- cyan
+    '#393736', -- white
+  },
+  brights = {
+    '#5E5C5A', -- bright black
+    '#D75F5F', -- bright red
+    '#5F875F', -- bright green
+    '#D7875F', -- bright yellow
+    '#5F87AF', -- bright blue
+    '#AF87AF', -- bright magenta
+    '#5E5C5A', -- bright cyan
+    '#393736', -- bright white
   },
 }
+
+return config
