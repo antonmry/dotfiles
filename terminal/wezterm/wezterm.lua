@@ -14,6 +14,8 @@ return {
   font = wezterm.font_with_fallback({
     "ComicShannsMono Nerd Font",
   }),
+
+  -- color_scheme = 'zenbones',
   color_scheme = 'Alabaster',
   font_size = 12.0, -- Ideal for the office
   --font_size = 18.0, -- Ideal for the laptop

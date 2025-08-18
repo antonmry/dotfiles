@@ -1,8 +1,12 @@
-theme = "yo_light"
+# theme = "yo_light"
+theme = "base16_terminal"
 
 [editor]
-end-of-line-diagnostics = "hint"
+# end-of-line-diagnostics = "hint"
+popup-border = "all"
+cursorline = true
 [editor.soft-wrap]
 enable = true
-[editor.inline-diagnostics]
-cursor-line = "warning" 
+# [editor.inline-diagnostics]
+# cursor-line = "warning" 
+# other-lines = "disable"

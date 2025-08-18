@@ -11,6 +11,7 @@
 [delta]
     navigate = true  # use n and N to move between diff sections
     light = true
+    hyperlinks = true
 
 [merge]
     conflictStyle = zdiff3
@@ -27,3 +28,4 @@
     r = reset
     cp = cherry-pick
     gr = grep -Ii
+    p = push
