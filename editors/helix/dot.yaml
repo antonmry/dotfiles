@@ -2,6 +2,7 @@ global:
   links:
     config.toml: ~/.config/helix/config.toml
     languages.toml: ~/.config/helix/languages.toml
+    zenbones.toml: ~/.config/helix/themes/zenbones.toml
 
 linux:
   installs: sudo dnf -y copr enable wezfurlong/wezterm-nightly && sudo dnf -y install wezterm

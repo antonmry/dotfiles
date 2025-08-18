@@ -1,0 +1,126 @@
+# Zenbones - Helix theme based on the Zenbones Neovim theme.
+# A collection of Vim/Neovim colorschemes designed to highlight code using contrasts and font variations. Colors are tasked only for other roles such as diagnostics, diffs, search matches.
+# Based on https://github.com/zenbones-theme/zenbones.nvim
+
+# background/text
+"ui.background" = { fg = "p11", bg = "p1" }
+"ui.background.separator" = { fg = "p7" }
+"ui.text" = { fg = "p11" }
+"ui.text.focus" = { fg = "p12", modifiers = ["bold"] }
+
+# popups/menus
+"ui.window" = { fg = "p7" }
+"ui.popup" = { fg = "p11", bg = "p4" }
+"ui.popup.info" = { fg = "p11", bg = "p3" }
+"ui.text.info" = { fg = "p11" }
+"ui.help" = { fg = "p11", bg = "p3" }
+"ui.menu" = { fg = "p11", bg = "p3" }
+"ui.menu.selected" = { fg = "p12", bg = "p5", modifiers = ["bold"] }
+"ui.menu.scroll" = { fg = "p8", bg = "p3" }
+"ui.picker.header.column" = { underline.style = "line" }
+
+# cursor/selection
+"ui.cursor" = { fg = "p1", bg = "p12" }
+"ui.cursor.insert" = { fg = "p1", bg = "string" }
+"ui.cursor.select" = { fg = "p1", bg = "hint" }
+"ui.cursor.match" = { fg = "p12", modifiers = ["bold"] }
+"ui.cursor.primary" = { fg = "p1", bg = "p12", modifiers = ["bold"] }
+"ui.cursor.primary.insert" = { fg = "p1", bg = "string", modifiers = ["bold"] }
+"ui.cursor.primary.select" = { fg = "p1", bg = "hint", modifiers = ["bold"] }
+"ui.selection" = { bg = "p5" }
+"ui.selection.primary" = { bg = "p6" }
+"ui.cursorline.primary" = { bg = "p2" }
+"ui.cursorcolumn.primary" = { bg = "p2" }
+
+# line numbers / diff
+"ui.linenr" = { fg = "p7" }
+"ui.linenr.selected" = { fg = "p11" }
+"diff" = { fg = "p8" }
+"diff.plus" = { fg = "string" }
+"diff.minus" = { fg = "error" }
+"diff.delta" = { fg = "info" }
+
+# bufferline/statusline
+"ui.bufferline" = { fg = "p11", bg = "p4" }
+"ui.bufferline.active" = { fg = "p1", bg = "p11" }
+"ui.statusline" = { fg = "p11", bg = "p4" }
+"ui.statusline.inactive" = { fg = "p11", bg = "p2" }
+"ui.statusline.normal" = { fg = "p1", bg = "p11" }
+"ui.statusline.insert" = { fg = "p1", bg = "string" }
+"ui.statusline.select" = { fg = "p1", bg = "hint" }
+"ui.statusline.separator" = { fg = "p7" }
+
+# virtual
+"ui.virtual" = { fg = "p6" }
+"ui.virtual.ruler" = { bg = "p2" }
+"ui.virtual.inlay-hint" = { fg = "p7", underline.style = "dotted" }
+"ui.virtual.jump-label" = { fg = "p12", modifiers = ["bold"], underline = { style = "curl", color = "info" } }
+
+# diagnostics
+error = { fg = "error", bg = "p2", modifiers = ["bold"] }
+warning = { fg = "warning", bg = "p2", modifiers = ["bold"] }
+info = { fg = "info", bg = "p2", modifiers = ["bold"] }
+hint = { fg = "hint", bg = "p2", modifiers = ["bold"] }
+"diagnostic.error" = { fg = "error", bg = "p2", modifiers = ["bold"] }
+"diagnostic.warning" = { fg = "warning", bg = "p2", modifiers = ["bold"] }
+"diagnostic.info" = { fg = "info", bg = "p2", modifiers = ["bold"] }
+"diagnostic.hint" = { fg = "hint", bg = "p2", modifiers = ["bold"] }
+
+# code
+comment = { fg = "p7", modifiers = ["italic"] }
+keyword = { fg = "keyword", modifiers = ["bold"] }
+operator = { fg = "p9" }
+string = { fg = "string", modifiers = ["italic"] }
+constant = { fg = "constant", modifiers = ["italic"] }
+"string.special.symbol" = { fg = "constant" }
+variable = { fg = "variable_color" }
+namespace = { fg = "variable_color" }
+punctuation = { fg = "p9" }
+"punctuation.delimiter" = { fg = "p9" }
+function = { fg = "function_color" }
+attribute = { fg = "variable_color" }
+tag = { fg = "keyword" }
+label = { fg = "p12" }
+constructor = { fg = "p12" }
+type = { fg = "type_color" }
+number = { fg = "number" }
+special = { fg = "special", modifiers = ["bold"] }
+
+# markup
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.heading" = { fg = "p12", modifiers = ["bold"] }
+"markup.heading.marker" = { fg = "p8" }
+"markup.list" = { fg = "p8" }
+"markup.link.url" = { underline.style = "line" }
+"markup.link.label" = { underline.style = "dotted" }
+"markup.quote" = { fg = "p10" }
+
+[palette]
+p1 = "#FDFCFB" # bg
+p2 = "#F4F2F1" # bgalt
+p3 = "#E9E7E5" # sel
+p4 = "#E2E0DE" # float
+p5 = "#D4D1CF" # sub
+p6 = "#BDBAB8" # dep
+p7 = "#A19E9C" # comment
+p8 = "#6A6866"  # sub-fg
+p9 = "#5E5C5A"  # sub-fg2
+p10 = "#52504E" # sub-fg3
+p11 = "#393736" # fg
+p12 = "#2D2B2A" # fgalt
+
+error = "#D75F5F"   # red
+warning = "#D7875F" # orange
+info = "#5F87AF"    # blue
+hint = "#AF87AF"    # magenta
+
+string = "#5F875F"  # green
+constant = "#AF87AF" # magenta
+keyword = "#2D2B2A" # fgalt
+function_color = "#393736" # fg
+variable_color = "#52504E" # sub-fg3
+type_color = "#5E5C5A" # sub-fg2
+number = "#6A6866" # sub-fg
+special = "#52504E" # sub-fg3

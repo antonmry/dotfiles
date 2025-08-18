@@ -1,5 +1,5 @@
 # theme = "yo_light"
-theme = "base16_terminal"
+theme = "zenbones"
 
 [editor]
 # end-of-line-diagnostics = "hint"
