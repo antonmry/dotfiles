@@ -621,3 +621,9 @@ window-rule {
     open-maximized true
     open-fullscreen true
 }
+
+spawn-at-startup "xwayland-satellite"
+
+environment {
+    DISPLAY ":0"
+}

@@ -1,0 +1,7 @@
+global:
+  links:
+    init.lua: ~/.config/nvim/init.lua
+    zenbones.vim: ~/.config/nvim/colors/zenbones.vim
+
+linux:
+  installs: sudo dnf -y install neovim

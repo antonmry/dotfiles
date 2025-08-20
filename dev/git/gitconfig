@@ -29,3 +29,5 @@
     cp = cherry-pick
     gr = grep -Ii
     p = push
+[pull]
+	rebase = true
