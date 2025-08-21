@@ -45,6 +45,7 @@ alias more="less -R"
 
 eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [[ $- != *i* ]] && return
 . "$HOME/.cargo/env"

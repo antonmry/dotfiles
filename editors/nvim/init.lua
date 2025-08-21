@@ -15,21 +15,23 @@ vim.opt.rtp:prepend(lazypath)
 --- plugins ---
 ----------------
 require("lazy").setup({
-	{
-		"zenbones-theme/zenbones.nvim",
-		-- Optionally install Lush. Allows for more configuration or extending the colorscheme
-		-- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-		-- In Vim, compat mode is turned on as Lush only works in Neovim.
-		dependencies = "rktjmp/lush.nvim",
-		lazy = false,
-		priority = 1000,
-		-- you can set set configuration options here
-		-- config = function()
-			--     vim.g.zenbones_darken_comments = 45
-			--     vim.cmd.colorscheme('zenbones')
-			-- end
-		},
 
+	-- Default linter
+	{
+		"mfussenegger/nvim-lint",
+	},
+
+	-- Default formatter
+	{
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup({
+				log_level = vim.log.levels.WARN,
+				notify_on_error = true,
+				notify_no_formatters = true,
+			})
+		end,
+	},
 	-- Show pairs
 	{
 		"windwp/nvim-autopairs",
@@ -79,9 +81,9 @@ require("lazy").setup({
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
-vim.opt.background="light"
+vim.opt.background = "light"
 vim.opt.termguicolors = true -- Enable 24-bit RGB colors
-vim.cmd.colorscheme('zenbones')	
+vim.cmd.colorscheme("minimum")
 vim.opt.colorcolumn = "81" -- sets the columns at which to display a color marker.
 
 vim.opt.number = true -- Show line numbers
@@ -213,10 +215,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+		vim.keymap.set({"n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 	end,
 })
+
+vim.keymap.set("", "<leader>f", function()
+	require("conform").format({ async = true }, function(err)
+		if not err then
+			local mode = vim.api.nvim_get_mode().mode
+			if vim.startswith(string.lower(mode), "v") then
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+			end
+		end
+	end)
+end, { desc = "Format code" })
+
+vim.keymap.set("n", "<leader>l", function()
+	require("lint").try_lint()
+end, { desc = "Trigger linting for current file" })
 
 -----------------
 --- EXPLORER ----

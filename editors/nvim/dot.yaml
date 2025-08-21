@@ -1,7 +1,9 @@
 global:
   links:
     init.lua: ~/.config/nvim/init.lua
-    zenbones.vim: ~/.config/nvim/colors/zenbones.vim
+    compiler: ~/.config/nvim/compiler
+    colors: ~/.config/nvim/colors
+    ftplugin: ~/.config/nvim/ftplugin
 
 linux:
-  installs: sudo dnf -y install neovim
+  installs: sudo dnf -y install neovim jq && brew install cspell stylua lua-language-server deno shellharden sqlfluff yamllint yamlfmt
