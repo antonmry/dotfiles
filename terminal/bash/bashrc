@@ -36,7 +36,12 @@ function title()
 
 export PROMPT_DIRTRIM=2
 export PS1="[\w]\$ "
-export EDITOR="hx"
+
+export EDITOR="nvim"
+
+alias vi=nvim
+alias vim=nvim
+alias more="less -R"
 
 eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
