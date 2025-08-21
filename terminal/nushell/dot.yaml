@@ -6,4 +6,4 @@ global:
   installs: false
 
 linux:
-  installs: sudo dnf -y install nu && which nu | sudo tee -a /etc/shells && chsh -s $(which nu)
+  installs: sudo dnf -y install nu && which nu | sudo tee -a /etc/shells

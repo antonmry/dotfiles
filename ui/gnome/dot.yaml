@@ -1,0 +1,5 @@
+global:
+  links:
+
+linux:
+  installs: sudo dnf -y install dmenu-config && echo "run setup.sh manually"
