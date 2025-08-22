@@ -15,61 +15,65 @@ vim.opt.rtp:prepend(lazypath)
 --- plugins ---
 ----------------
 require("lazy").setup({
-
-	-- Default linter
-	{
-		"mfussenegger/nvim-lint",
+	dev = {
+		path = "~/Workspace/Others/nvim_plugins",
+		patterns = { "antonmry" },
+		fallback = false,
 	},
 
-	-- Default formatter
-	{
-		"stevearc/conform.nvim",
-		config = function()
-			require("conform").setup({
-				log_level = vim.log.levels.WARN,
-				notify_on_error = true,
-				notify_no_formatters = true,
-			})
-		end,
-	},
-	-- Show pairs
-	{
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({
-				check_ts = true,
-			})
-		end,
-	},
+	spec = {
 
-	-- Fuzzy finder (instead of telescope)
-	{
-		"ibhagwan/fzf-lua",
-		-- optional for icon support
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			-- calling `setup` is optional for customization
-			require("fzf-lua").setup({})
-		end,
-	},
+		-- Default linter
+		{
+			"mfussenegger/nvim-lint",
+		},
 
-	-- File browser
-	{
-		"stevearc/oil.nvim",
-		opts = {},
-	},
+		-- Default formatter
+		{
+			"stevearc/conform.nvim",
+			config = function()
+				require("conform").setup({
+					log_level = vim.log.levels.WARN,
+					notify_on_error = true,
+					notify_no_formatters = true,
+				})
+			end,
+		},
+		-- Show pairs
+		{
+			"windwp/nvim-autopairs",
+			config = function()
+				require("nvim-autopairs").setup({
+					check_ts = true,
+				})
+			end,
+		},
 
-	-- Execute text in the terminal
-	{
-		"jpalardy/vim-slime",
-		config = function()
-			vim.g.slime_target = "tmux"
-			vim.g.slime_default_config = {
-				socket_name = "default",
-				target_pane = "{last}",
-			}
-			vim.g.slime_dont_ask_default = 1
-		end,
+		-- Fuzzy finder (instead of telescope)
+		{
+			"ibhagwan/fzf-lua",
+			-- optional for icon support
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			config = function()
+				-- calling `setup` is optional for customization
+				require("fzf-lua").setup({})
+			end,
+		},
+
+		-- File browser
+		{
+			"stevearc/oil.nvim",
+			opts = {},
+		},
+
+		-- Execute text in the terminal
+		-- TBA
+
+		-- Custom local plugins
+		{
+			"antonmry/sliwez.nvim",
+			dev = true,
+		},
 	},
 })
 
@@ -215,7 +219,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set({"n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 	end,
 })
@@ -234,6 +238,16 @@ end, { desc = "Format code" })
 vim.keymap.set("n", "<leader>l", function()
 	require("lint").try_lint()
 end, { desc = "Trigger linting for current file" })
+
+-- Local plugin Sliwez
+-- vim.keymap.set('v', '<leader>s', require("sliwez").send_highlighted_text_to_next_pane)
+-- vim.keymap.set('n', '<leader>s', require("sliwez").send_paragraph_text_to_next_pane)
+
+vim.keymap.set({ 'n', 'v' }, '<leader>s', require("sliwez").send_lines_to_next_pane,
+  { desc = 'Send selected lines or current line to configured wezterm pane' })
+
+vim.cmd([[command LingNext lua require("sliwez").send_to_next_pane('n') ]])
+vim.cmd([[command LingHint lua require("sliwez").send_to_next_pane('h') ]])
 
 -----------------
 --- EXPLORER ----
