@@ -63,13 +63,9 @@ require("lazy").setup({
 		-- File browser
 		{
 			"stevearc/oil.nvim",
-			opts = {},
 		},
 
 		-- Execute text in the terminal
-		-- TBA
-
-		-- Custom local plugins
 		{
 			"antonmry/sliwez.nvim",
 			dev = true,
