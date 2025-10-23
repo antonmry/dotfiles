@@ -3,36 +3,15 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
-local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
-
 wezterm.on("gui-startup", function()
 	local tab, pane, window = mux.spawn_window({})
 	window:gui_window():maximize()
 end)
 
--- loads the state whenever I create a new workspace
-wezterm.on("smart_workspace_switcher.workspace_switcher.created", function(window, path, label)
-  local workspace_state = resurrect.workspace_state
-
-  workspace_state.restore_workspace(resurrect.state_manager.load_state(label, "workspace"), {
-    window = window,
-    relative = true,
-    restore_text = true,
-    on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-  })
-end)
-
--- Saves the state whenever I select a workspace
-wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(window, path, label)
-  local workspace_state = resurrect.workspace_state
-  resurrect.state_manager.save_state(workspace_state.get_workspace_state())
-end)
-
--- Resurrect on startup
-wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
-
--- and finally, return the configuration to wezterm
+-- See https://mwop.net/blog/2024-07-04-how-i-use-wezterm.html
+-- See https://mwop.net/blog/2024-09-17-wezterm-dropdown.html
+-- Avoid MLFlexer plugins (bugs)
+-- Use your own scripts for predefined workspaces
 
 local keymaps = {
 	{ key = "a", mods = "LEADER|CTRL", action = wezterm.action({ SendString = "\x01" }) },
@@ -60,61 +39,54 @@ local keymaps = {
 	{ key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
 	{ key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
 	{ key = "w", mods = "CMD", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
-	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
 	{ key = "[", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
 	{ key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
 	{ key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
-	{ key = "w", mods = "LEADER", action = wezterm.action.ShowTabNavigator },
+	--{ key = "w", mods = "LEADER", action = wezterm.action.ShowTabNavigator },
 	{ key = "a", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Next") },
-	-- { key = "a", mods = 'LEADER',       action=wezterm.action.PaneSelect},
-	{
-		key = ",",
-		mods = "LEADER",
-		action = act.PromptInputLine({
-			description = "Enter new name for tab",
-			action = wezterm.action_callback(function(window, pane, line)
-				if line then
-					window:active_tab():set_title(line)
-				end
-			end),
-		}),
-	},
-	-- Switcher
-	{
-		key = "s",
-		mods = "LEADER",
-		action = workspace_switcher.switch_workspace(),
-	},
-	{
-		key = "S",
-		mods = "LEADER",
-		action = workspace_switcher.switch_to_prev_workspace(),
-	},
-	-- Resurrect
 	{
 		key = "w",
 		mods = "LEADER",
-		action = wezterm.action_callback(function(win, pane)
-			resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
-		end),
+		action = act.PaneSelect({ mode = "SwapWithActiveKeepFocus" }),
 	},
+	-- ----------------------------------------------------------------
+	-- Workspaces
+	--
+	-- These are roughly equivalent to tmux sessions.
+	-- ----------------------------------------------------------------
+
+	-- Attach to muxer
 	{
-		key = "W",
+		key = "A",
 		mods = "LEADER",
-		action = wezterm.action_callback(function(win, pane)
-			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
-				local type = string.match(id, "^([^/]+)") -- match before '/'
-				id = string.match(id, "([^/]+)$") -- match after '/'
-				id = string.match(id, "(.+)%..+$") -- remove file extention
-				local opts = {
-					relative = true,
-					restore_text = true,
-					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-				}
-				local state = resurrect.state_manager.load_state(id, "workspace")
-				resurrect.workspace_state.restore_workspace(state, opts)
-			end)
-		end),
+		action = act.AttachDomain("unix"),
+	},
+
+	-- Detach from muxer
+	{
+		key = "D",
+		mods = "LEADER",
+		action = act.DetachDomain({ DomainName = "unix" }),
+	},
+
+	-- Show list of workspaces
+	{
+		key = "s",
+		mods = "LEADER",
+		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+	},
+	-- Rename current session; analagous to command in tmux
+	{
+		key = ".",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = "Enter new name for session",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					mux.rename_workspace(window:mux_window():get_workspace(), line)
+				end
+			end),
+		}),
 	},
 }
 
@@ -166,6 +138,11 @@ local config = {
 	colors = colors,
 }
 
-workspace_switcher.apply_to_config(config)
+-- Setup muxing by default
+config.unix_domains = {
+  {
+    name = 'unix',
+  },
+}
 
 return config
