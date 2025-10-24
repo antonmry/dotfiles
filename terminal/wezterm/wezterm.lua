@@ -134,11 +134,20 @@ local config = {
 	automatically_reload_config = true,
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
-	front_end = "Software", -- Dealing with some issues
+	--front_end = "Software", -- Dealing with some issues, check with: hyperfine -n 100 'sleep 0.3'
 	enable_wayland = true,
 	keys = keymaps,
 	colors = colors,
 }
+
+-- https://wezterm.org/config/lua/config/webgpu_preferred_adapter.html
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+  if gpu.backend == 'Vulkan' and gpu.device_type == 'DiscreteGpu' then
+    config.webgpu_preferred_adapter = gpu
+    config.front_end = 'WebGpu'
+    break
+  end
+end
 
 -- Setup muxing by default
 config.unix_domains = {

@@ -56,5 +56,15 @@ eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+## Check changes in git
+## gdiff --cached → staged changes
+## ggdiff HEAD~1 → compare with previous commit
+
+gdiff() {
+  for f in $(git diff --name-only "$@"); do
+    nvim -d "$f" <(git show HEAD:"$f")
+  done
+}
+
 [[ $- != *i* ]] && return
 . "$HOME/.cargo/env"
