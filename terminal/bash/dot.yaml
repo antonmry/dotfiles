@@ -1,6 +1,9 @@
 global:
   links:
     bashrc: ~/.bashrc
+    bash_profile: ~/.bash_profile
+    profile: ~/.profile
+    bash_logout: ~/.bash_logout
   installs: false
 
 linux:

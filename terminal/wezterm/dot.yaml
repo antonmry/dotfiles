@@ -1,6 +1,7 @@
 global:
   links:
     wezterm.lua: ~/.config/wezterm/wezterm.lua
+    autostart/org.wezfurlong.wezterm.desktop: ~/.config/autostart/org.wezfurlong.wezterm.desktop
 
 linux:
   installs: sudo dnf -y copr enable wezfurlong/wezterm-nightly && sudo dnf -y install wezterm wl-clipboard
