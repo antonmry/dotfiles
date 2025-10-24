@@ -57,14 +57,14 @@ local keymaps = {
 
 	-- Attach to muxer
 	{
-		key = "A",
+		key = "?",
 		mods = "LEADER",
 		action = act.AttachDomain("unix"),
 	},
 
 	-- Detach from muxer
 	{
-		key = "D",
+		key = "¿",
 		mods = "LEADER",
 		action = act.DetachDomain({ DomainName = "unix" }),
 	},
@@ -134,6 +134,8 @@ local config = {
 	automatically_reload_config = true,
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
+	front_end = "Software", -- Dealing with some issues
+	enable_wayland = true,
 	keys = keymaps,
 	colors = colors,
 }
