@@ -1,1 +1,1 @@
-My dotfiles managed using [rotz](https://github.com/volllly/rotz)
+My dotfiles managed using [dotter](https://github.com/SuperCuber/dotter)

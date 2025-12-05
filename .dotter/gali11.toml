@@ -5,3 +5,4 @@ packages = ["default"]
 "config/Brewfile.gali11" = "~/.config/Brewfile"
 
 [variables]
+font_size = 18.0

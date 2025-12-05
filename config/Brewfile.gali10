@@ -1,0 +1,40 @@
+brew "bash-completion"
+# Run:
+# echo /opt/homebrew/bin/bash | sudo tee -a /etc/shells
+# chsh -s /opt/homebrew/bin/bash
+cask "font-comic-shanns-mono-nerd-font"
+
+brew "tmux"
+brew "rsync"
+brew "watch"
+brew "jq"
+brew "btop"
+brew "fzf"
+brew "zoxide"
+brew "ripgrep"
+brew "bat"
+brew "eza"
+brew "fd"
+brew "dotter"
+
+# Development tools
+brew "uv"
+brew "gh"
+
+# Linters / compilers
+brew "rust-analyzer"
+brew "cspell"
+brew "stylua"
+brew "shellharden"
+brew "sqlfluff"
+brew "yamlfmt"
+brew "yamllint"
+
+# Apps
+# cask "alacritty"
+brew "zellij"
+# cask "google-chrome"
+
+# AI
+cask "claude-code"
+cask "codex"

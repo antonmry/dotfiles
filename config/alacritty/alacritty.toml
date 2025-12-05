@@ -31,7 +31,7 @@ background = "0xD4D1CF"
 text = "0x393736"
 
 [font]
-size = 20.0
+size = {{ font_size }}
 
 [font.bold]
 family = "ComicShannsMono Nerd Font"

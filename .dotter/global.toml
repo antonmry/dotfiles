@@ -7,6 +7,7 @@ depends = []
 gitconfig = "~/.gitconfig"
 bashrc = "~/.bashrc"
 "bin/review.sh" = "~/bin/review.sh"
+"bin/commit.sh" = "~/bin/commit.sh"
 "config/alacritty/alacritty.toml" = "~/.config/alacritty/alacritty.toml"
 "config/btop/btop.conf" = "~/.config/btop/btop.conf"
 "config/git/ignore" = "~/.config/git/ignore"
@@ -21,6 +22,7 @@ bashrc = "~/.bashrc"
 "config/zellij/layouts/hacking.kdl" = "~/.config/zellij/layouts/hacking.kdl"
 
 [default.variables]
+font_size = 12.0
 
 [settings]
 default_target_type = "automatic"

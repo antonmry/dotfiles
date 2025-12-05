@@ -1,0 +1,8 @@
+includes = []
+packages = ["default"]
+
+[files]
+"config/Brewfile.gali10" = "~/.config/Brewfile"
+
+[variables]
+font_size = 12.0
