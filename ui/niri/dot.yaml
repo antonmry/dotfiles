@@ -1,6 +1,0 @@
-global:
-  links:
-    config.kdl: ~/.config/niri/config.kdl
-
-linux:
-  installs: sudo dnf -y copr enable yalter/niri && sudo dnf -y install niri xwayland_satellite && sudo dnf -y install nmtui brightnessctl

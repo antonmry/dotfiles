@@ -1,2 +1,0 @@
-linux:
-  installs: sudo dnf -y install rustup gcc && rustup-init -y && rustup component add rust-analyzer && cargo install mdbook mdbook-pdf

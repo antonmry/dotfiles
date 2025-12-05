@@ -1,7 +1,0 @@
-global:
-  links:
-    config: ~/.config/mako/config
-  installs: false
-
-linux:
-  installs: sudo dnf -y install mako

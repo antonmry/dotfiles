@@ -1,2 +1,0 @@
-linux:
-  installs: sudo dnf -y config-manager --set-enabled google-chrome && sudo dnf -y install google-chrome-stable
