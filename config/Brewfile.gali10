@@ -15,20 +15,28 @@ brew "ripgrep"
 brew "bat"
 brew "eza"
 brew "fd"
+brew "difftastic"
+brew "gh"
 brew "dotter"
 
 # Development tools
 brew "uv"
 brew "gh"
 
+# Docker/VM
+brew "helm"
+
 # Linters / compilers
-brew "rust-analyzer"
-brew "cspell"
-brew "stylua"
-brew "shellharden"
-brew "sqlfluff"
-brew "yamlfmt"
-brew "yamllint"
+brew "cspell"              #
+brew "rust-analyzer"       # Rust LSP
+brew "stylua"              # Lua
+brew "lua-language-server" # Lua LSP
+brew "rumdl"               # Markdown
+brew "markdown-oxide"      # Obsidian LSP
+brew "shellharden"         #
+brew "sqlfluff"            # SQL
+brew "yamlfmt"             # Yaml
+brew "yamllint"            # Yaml
 
 # Apps
 # cask "alacritty"

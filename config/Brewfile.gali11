@@ -37,7 +37,6 @@ brew "dotter"
 brew "rustup" # Run rustup init
 brew "rust-analyzer"
 brew "datafusion"
-brew "podman"
 brew "lima"
 brew "qemu"
 brew "uv"
@@ -75,7 +74,6 @@ brew "tailscale"
 cask "1password"
 cask "1password-cli"
 cask "logitech-g-hub"
-cask "linear-linear"
 
 # AI
 cask "claude-code"
