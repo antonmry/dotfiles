@@ -1,0 +1,10 @@
+[user]
+	email = anton@phoebe.ai
+	name = Anton Rodriguez
+[pull]
+	rebase = true
+
+[alias]
+	dlog = -c diff.external=difft log --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
+	ddiff = -c diff.external=difft diff

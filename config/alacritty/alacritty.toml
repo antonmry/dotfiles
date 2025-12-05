@@ -1,0 +1,86 @@
+[colors.bright]
+black = "0x5E5C5A"
+blue = "0x5F87AF"
+cyan = "0x5E5C5A"
+green = "0x5F875F"
+magenta = "0xAF87AF"
+red = "0xD75F5F"
+white = "0x393736"
+yellow = "0xD7875F"
+
+[colors.cursor]
+cursor = "0x2D2B2A"
+text = "0xFDFCFB"
+
+[colors.normal]
+black = "0x2D2B2A"
+blue = "0x5F87AF"
+cyan = "0x5E5C5A"
+green = "0x5F875F"
+magenta = "0xAF87AF"
+red = "0xD75F5F"
+white = "0x393736"
+yellow = "0xD7875F"
+
+[colors.primary]
+background = "0xFDFCFB"
+foreground = "0x393736"
+
+[colors.selection]
+background = "0xD4D1CF"
+text = "0x393736"
+
+[font]
+size = 20.0
+
+[font.bold]
+family = "ComicShannsMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "ComicShannsMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "ComicShannsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "ComicShannsMono Nerd Font"
+style = "Regular"
+
+[window]
+decorations = "full"
+startup_mode = "Maximized"
+
+[selection]
+save_to_clipboard = true
+
+[terminal.shell]
+program = "/opt/homebrew/bin/zellij"
+args = []
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control|Shift"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "Period"
+mods = "Control"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "ResetFontSize"

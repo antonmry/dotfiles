@@ -1,0 +1,82 @@
+brew "bash"
+brew "bash-completion"
+# Run:
+# echo /opt/homebrew/bin/bash | sudo tee -a /etc/shells
+# chsh -s /opt/homebrew/bin/bash
+cask "font-comic-shanns-mono-nerd-font"
+
+# CLI tools
+brew "neovim"
+brew "moreutils"
+brew "coreutils"
+brew "findutils"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "grep"
+brew "wget"
+brew "curl"
+brew "git"
+brew "tree"
+brew "tmux"
+brew "rsync"
+brew "watch"
+brew "less"
+brew "jq"
+brew "btop"
+brew "fzf"
+brew "zoxide"
+brew "ripgrep"
+brew "bat"
+brew "eza"
+brew "fd"
+brew "difftastic"
+brew "gh"
+brew "dotter"
+
+# Development tools
+brew "rustup" # Run rustup init
+brew "rust-analyzer"
+brew "datafusion"
+brew "podman"
+brew "lima"
+brew "qemu"
+brew "uv"
+brew "llvm"
+brew "gcc"
+brew "make"
+brew "cmake"
+
+# Docker/VM
+brew "helm"
+
+# Linters / compilers
+brew "cspell"              #
+brew "rust-analyzer"       # Rust LSP
+brew "stylua"              # Lua
+brew "lua-language-server" # Lua LSP
+brew "rumdl"               # Markdown
+brew "markdown-oxide"      # Obsidian LSP
+brew "shellharden"         #
+brew "sqlfluff"            # SQL
+brew "yamlfmt"             # Yaml
+brew "yamllint"            # Yaml
+
+
+# Apps
+cask "firefox"
+cask "google-chrome"
+cask "alacritty"
+brew "zellij"
+cask "karabiner-elements"
+cask "raycast"
+cask "yubico-authenticator"
+cask "tailscale-app"
+brew "tailscale"
+cask "1password"
+cask "1password-cli"
+cask "logitech-g-hub"
+cask "linear-linear"
+
+# AI
+cask "claude-code"
+cask "codex"

@@ -1,0 +1,3 @@
+unresolved_diagnostics = true
+semantic_tokens = true
+dailynote = "%Y-%m-%d"

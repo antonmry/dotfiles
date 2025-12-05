@@ -1,0 +1,26 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+gitconfig = "~/.gitconfig"
+bashrc = "~/.bashrc"
+"bin/review.sh" = "~/bin/review.sh"
+"config/alacritty/alacritty.toml" = "~/.config/alacritty/alacritty.toml"
+"config/btop/btop.conf" = "~/.config/btop/btop.conf"
+"config/git/ignore" = "~/.config/git/ignore"
+"config/karabiner/karabiner.json" = "~/.config/karabiner/karabiner.json"
+"config/moxide/settings.toml" = "~/.config/moxide/settings.toml"
+"config/nvim/colors" = "~/.config/nvim/colors"
+"config/nvim/compiler" = "~/.config/nvim/compiler"
+"config/nvim/ftplugin" = "~/.config/nvim/ftplugin"
+"config/nvim/init.lua" = "~/.config/nvim/init.lua"
+"config/rumdl/rumdl.toml" = "~/.config/rumdl/rumdl.toml"
+"config/zellij/config.kdl" = "~/.config/zellij/config.kdl"
+"config/zellij/layouts/hacking.kdl" = "~/.config/zellij/layouts/hacking.kdl"
+
+[default.variables]
+
+[settings]
+default_target_type = "automatic"

@@ -1,0 +1,24 @@
+layout {
+    // Stack rows: tab bar on top, main content in middle, status bar at bottom
+    pane split_direction="horizontal" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane {
+            pane split_direction="vertical" {
+                pane stacked=true {
+                    pane name="nvim"
+                    pane name="codex"
+                    pane name="git"
+                }
+                pane stacked=true {
+                    pane name="lima"
+                    pane name="lima"
+                }
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+}
