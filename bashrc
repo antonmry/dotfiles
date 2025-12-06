@@ -19,7 +19,13 @@ function title()
 }
 
 export PROMPT_DIRTRIM=2
-export PS1="[\w]\[\e[34m\]\$\[\e[0m\] "
+# Host-colored prompt: pink on gali10, blue on gali11 (default blue)
+host_color="\[\e[34m\]"
+case "$(hostname -s)" in
+  gali10) host_color="\[\e[95m\]" ;;
+  gali11) host_color="\[\e[34m\]" ;;
+esac
+export PS1="[\w]${host_color}\$\[\e[0m\] "
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
@@ -45,16 +51,21 @@ alias ls='eza'
 alias ll='eza -l'
 alias la='eza -la'
 alias lt='eza --tree'
-alias sed='gsed'
-alias tar='gtar'
-alias grep='ggrep --color=auto'
-alias find='gfind'
 alias cat='bat'
-alias find='fd'
 alias rg='rg --smart-case'
 alias preview="fzf --preview 'bat --color=always {}'"
 alias gdiff="git diff --staged > .agents/review.diff && nvim .agents/review.diff"
 alias hack="zellij action new-tab -l ~/.config/zellij/layouts/hacking.kdl"
+
+# Host-specific GNU coreutils aliases
+case "$(hostname -s)" in
+  gali11)
+    alias sed='gsed'
+    alias tar='gtar'
+    alias grep='ggrep --color=auto'
+    alias find='gfind'
+    ;;
+esac
 
 clip() {
     "$@" 2>&1 | tee >(pbcopy)

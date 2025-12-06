@@ -37,8 +37,6 @@ brew "dotter"
 brew "rustup" # Run rustup init
 brew "rust-analyzer"
 brew "datafusion"
-brew "lima"
-brew "qemu"
 brew "uv"
 brew "llvm"
 brew "gcc"
@@ -47,6 +45,9 @@ brew "cmake"
 
 # Docker/VM
 brew "helm"
+brew "lima"
+brew "qemu"
+brew "openssh"
 
 # Linters / compilers
 brew "cspell"              #
