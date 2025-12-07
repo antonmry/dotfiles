@@ -71,6 +71,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if vim.lsp.inlay_hint then
 			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 		end
+
+		vim.g.rustfmt_autosave = 1
 	end,
 })
 
@@ -95,3 +97,51 @@ vim.lsp.start({
 		},
 	},
 })
+
+-- Compile
+function CompileSomeRust()
+	print("cargo check...")
+	vim.cmd("silent make! check")
+	vim.cmd("redraw!")
+	local qf_list = vim.fn.getqflist()
+	local error_count = 0
+	local warning_count = 0
+	if #qf_list > 0 then
+		local collect_err = false
+		for _, i in pairs(qf_list) do
+			if i.type == "W" then
+				warning_count = warning_count + 1
+				collect_err = false
+			end
+			if i.type == "E" then
+				collect_err = true
+				error_count = error_count + 1
+			end
+			if collect_err then
+				table.insert(qf_list, i)
+			end
+		end
+	end
+
+	if error_count > 0 then
+		if vim.fn.tabpagewinnr(vim.fn.tabpagenr(), "$") > 1 then
+			vim.cmd("botright copen 6")
+		else
+			vim.cmd("copen 6")
+		end
+		vim.cmd("wincmd p")
+		vim.cmd("cfirst")
+	else
+		vim.cmd("cclose")
+	end
+
+	local err_out = "echo 'E: " .. error_count .. "'"
+	local warn_out = " | echon ' | W: " .. warning_count .. "'"
+	vim.cmd(err_out .. warn_out)
+end
+
+local opts = { noremap=true, silent=true }
+vim.api.nvim_create_user_command("Compile", CompileSomeRust, {})
+vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>c", "<cmd>:wa<CR>:Compile<CR>", opts)
+vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>r", "<cmd>:wa<CR>:Cargo run<CR>", opts)
+vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>t", "<cmd>:wa<CR>:Cargo test<CR>", opts)
