@@ -7,6 +7,7 @@ require("lint").linters_by_ft.rust = { "clippy" }
 -- LSP
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.selectionRange = { dynamicRegistration = false }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local bufnr = vim.api.nvim_get_current_buf()
 
@@ -46,6 +47,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_rust_highlights,
 })
 
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	buffer = bufnr,
 	callback = function(args)
@@ -81,8 +84,44 @@ vim.lsp.start({
 	cmd = { "rust-analyzer" },
 	root_dir = vim.fs.dirname(vim.fs.find({ "Cargo.toml", "main.rs" }, { upward = true })[1]),
 	capabilities = capabilities,
-	settings = {
+settings = {
 		["rust-analyzer"] = {
+			completion = {
+				callable = {
+					snippets = "fill_arguments",
+				},
+				snippets = {
+					custom = {
+						test_fn = {
+							prefix = "test",
+							body = [[
+#[test]
+fn ${1:name}() {
+    ${0}
+}
+]],
+							description = "Test function",
+							scope = "item",
+						},
+						test_mod = {
+							prefix = "testmod",
+							body = [[
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn ${1:name}() {
+        ${0}
+    }
+}
+]],
+							description = "Test module with one test",
+							scope = "item",
+						},
+					},
+				},
+			},
 			selectionRange = {
 				enable = true,
 			},
@@ -140,7 +179,7 @@ function CompileSomeRust()
 	vim.cmd(err_out .. warn_out)
 end
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.api.nvim_create_user_command("Compile", CompileSomeRust, {})
 vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>c", "<cmd>:wa<CR>:Compile<CR>", opts)
 vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>r", "<cmd>:wa<CR>:Cargo run<CR>", opts)

@@ -192,7 +192,24 @@ end, { silent = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		local opts = { buffer = event.buf }
+
+		-- Enable built-in LSP completion
+		if client and client.supports_method("textDocument/completion") and vim.lsp.completion and vim.lsp.completion.enable then
+			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+		else
+			vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		end
+
+		-- Completion accept on <CR> (menu confirm)
+		vim.keymap.set("i", "<CR>", function()
+			if vim.fn.pumvisible() == 1 then
+				return "<C-y>"
+			end
+			return "<CR>"
+		end, { buffer = event.buf, expr = true, silent = true })
+
 		vim.keymap.set("n", "grd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 		vim.keymap.set("n", "grD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 		vim.keymap.set("n", "grs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
