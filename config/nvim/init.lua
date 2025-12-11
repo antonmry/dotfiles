@@ -116,39 +116,41 @@ vim.opt.spell = true
 -- the following show handler will show the most recent diagnostics
 -- https://neovim.io/doc/user/diagnostic.html#diagnostic-loclist-example
 vim.diagnostic.handlers.loclist = {
+	---@param opts? {loclist?: {open?: boolean}}
 	show = function(_, _, _, opts)
 		-- Generally don't want it to open on every update
-		opts.loclist.open = opts.loclist.open or false
+		local loclist_opts = (opts and opts.loclist) or {}
+		loclist_opts.open = loclist_opts.open or false
 		local winid = vim.api.nvim_get_current_win()
-		vim.diagnostic.setloclist(opts.loclist)
+		vim.diagnostic.setloclist(loclist_opts)
 		vim.api.nvim_set_current_win(winid)
 	end,
 }
 
 -- Disable diagnostics on insert mode (hack) https://github.com/neovim/neovim/issues/13324
-vim.api.nvim_create_autocmd({ "BufNew", "InsertEnter" }, {
-	-- or vim.api.nvim_create_autocmd({"BufNew", "TextChanged", "TextChangedI", "TextChangedP", "TextChangedT"}, {
-	callback = function(args)
-		vim.diagnostic.enable(false, { bufnr = args.buf })
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufNew", "InsertEnter" }, {
+-- or vim.api.nvim_create_autocmd({"BufNew", "TextChanged", "TextChangedI", "TextChangedP", "TextChangedT"}, {
+-- 	callback = function(args)
+-- 		vim.diagnostic.enable(false, { bufnr = args.buf })
+-- 	end,
+-- })
 
-vim.api.nvim_create_autocmd({ "BufWrite" }, {
-	callback = function(args)
-		vim.diagnostic.enable(true, { bufnr = args.buf })
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufWrite" }, {
+-- 	callback = function(args)
+-- 		vim.diagnostic.enable(true, { bufnr = args.buf })
+-- 	end,
+-- })
 
 vim.diagnostic.config({
-	underline = true,
+	underline = false,
 	signs = true,
-	virtual_text = false,
-	-- float = {
-	-- 	show_header = true,
-	-- 	source = "if_many",
-	-- 	border = "rounded",
-	-- 	focusable = false,
-	-- },
+	virtual_text = true,
+	float = {
+		-- 	show_header = true,
+		-- 	source = "if_many",
+		border = "rounded",
+		-- 	focusable = false,
+	},
 	-- Open the location list on every diagnostic change (warnings/errors only).
 	-- loclist = {
 	-- 	open = true,
@@ -191,12 +193,20 @@ end, { silent = true })
 -- See the doc for the global defaults: https://neovim.io/doc/user/lsp.html
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
+	---@param event {buf: integer, data: {client_id: integer}}
 	callback = function(event)
+		---@type vim.lsp.Client?
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		local opts = { buffer = event.buf }
 
 		-- Enable built-in LSP completion
-		if client and client.supports_method("textDocument/completion") and vim.lsp.completion and vim.lsp.completion.enable then
+		if
+			client
+			and client.supports_method("textDocument/completion")
+			and vim.lsp.completion
+			and vim.lsp.completion.enable
+		then
+			-- enable completion provider for this client/buffer
 			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
 		else
 			vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -262,7 +272,6 @@ vim.keymap.set("n", "-", function()
 	end
 end, { desc = "Open netrw in current directory" })
 
--- Put this in init.lua
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "netrw",
 	callback = function(args)
@@ -290,32 +299,52 @@ vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 ----- TREESEETER ----
 ---------------------
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"lua",
-		"rust",
-		"markdown",
-		"markdown_inline",
-		"json",
-		"yaml",
-		"bash",
-		"python",
-		"javascript",
-		"typescript",
-	},
-	highlight = {
-		enable = true,
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "gni",
-			scope_incremental = "gns",
-			node_decremental = "gnd",
+-- vim.api.nvim_create_autocmd("FileType", {
+--     callback = function(ev)
+--         pcall(vim.treesitter.start, ev.buf)
+--     end
+-- })
+
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+local has_ts, ts_configs = pcall(require, "nvim-treesitter.configs")
+if has_ts then
+	ts_configs.setup({
+		modules = {},
+		sync_install = true,
+		auto_install = true,
+		ignore_install = {},
+		ensure_installed = {
+			"lua",
+			"rust",
+			"markdown",
+			"markdown_inline",
+			"json",
+			"yaml",
+			"bash",
+			"python",
+			"javascript",
+			"typescript",
 		},
-	},
-})
+		highlight = {
+			enable = true,
+		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "gnn",
+				node_incremental = "gni",
+				scope_incremental = "gns",
+				node_decremental = "gnd",
+			},
+		},
+	})
+else
+	vim.notify("nvim-treesitter not available; skipping config", vim.log.levels.WARN)
+end
 
 ----------------
 --- CUSTOM  ----
@@ -324,10 +353,9 @@ require("nvim-treesitter.configs").setup({
 -- Compare the current buffer with the original file
 vim.cmd([[command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis | wincmd p | diffthis]])
 
--- Auto-manage Aerial visibility based on available symbols
-require("custom.aerial_auto").setup()
--- Custom auto jump
+--require("custom.aerial_auto").setup()
 require("custom.bracket_highlight").setup()
+
 -- Yank helpers
 local yank = require("custom.yank")
 vim.api.nvim_create_user_command("YankPathAbsolute", function()

@@ -62,15 +62,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			client.server_capabilities.selectionRangeProvider = client.server_capabilities.selectionRangeProvider
 				or true
 		end
-
-		local namespace = vim.lsp.diagnostic.get_namespace(args.data.client_id)
-		vim.diagnostic.config({
-			virtual_text = false,
-			underline = true,
-			update_in_insert = false,
-			severity_sort = true,
-		}, namespace)
-
 		if vim.lsp.inlay_hint then
 			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 		end
@@ -84,7 +75,7 @@ vim.lsp.start({
 	cmd = { "rust-analyzer" },
 	root_dir = vim.fs.dirname(vim.fs.find({ "Cargo.toml", "main.rs" }, { upward = true })[1]),
 	capabilities = capabilities,
-settings = {
+	settings = {
 		["rust-analyzer"] = {
 			completion = {
 				callable = {
