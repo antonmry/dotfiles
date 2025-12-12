@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 ----------------
 --- plugins ---
 ----------------
+
 require("lazy").setup({
 	dev = {
 		path = "~/Workspace/Others/nvim_plugins",
@@ -151,6 +152,8 @@ vim.diagnostic.config({
 		border = "rounded",
 		-- 	focusable = false,
 	},
+	update_in_insert = true,
+	severity_sort = true,
 	-- Open the location list on every diagnostic change (warnings/errors only).
 	-- loclist = {
 	-- 	open = true,
@@ -158,46 +161,12 @@ vim.diagnostic.config({
 	-- },
 })
 
------------------
---- KEYMAPS -----
------------------
-
--- This comes first, because we have mappings that depend on leader
-vim.g.mapleader = " "
-
--- Exit on jj and jk
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
-
-vim.keymap.set("n", "gl", function()
-	if not vim.tbl_isempty(vim.fn.getloclist(0)) then
-		vim.cmd("ll")
-	else
-		print("Location list is empty")
-	end
-end, { desc = "Move to the next one in the locationlist" })
-
-vim.keymap.set({ "n", "v" }, "<leader>g", function()
-	vim.cmd("lua require('fzf-lua').live_grep()")
-end, { silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>n", function()
-	vim.cmd("lua require('fzf-lua').files()")
-end, { silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>h", function()
-	vim.cmd("lua require('fzf-lua').command_history()")
-end, { silent = true })
-vim.keymap.set("n", "<leader>:", function()
-	vim.cmd("lua require('fzf-lua').commands()")
-end, { silent = true })
-
--- See the doc for the global defaults: https://neovim.io/doc/user/lsp.html
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	---@param event {buf: integer, data: {client_id: integer}}
 	callback = function(event)
 		---@type vim.lsp.Client?
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		local opts = { buffer = event.buf }
 
 		-- Enable built-in LSP completion
 		if
@@ -219,13 +188,61 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end
 			return "<CR>"
 		end, { buffer = event.buf, expr = true, silent = true })
-
-		vim.keymap.set("n", "grd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-		vim.keymap.set("n", "grD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "grs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-		vim.keymap.set({ "n", "x" }, "grf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 	end,
 })
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function()
+    vim.diagnostic.config({ signs = false, underline = false, virtual_text = false })
+  end,
+})
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = function()
+    vim.diagnostic.config({ signs = false, underline = true, virtual_text = false })
+  end,
+})
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    vim.diagnostic.setloclist({ open = false })
+    vim.diagnostic.config({ signs = true, underline = true, virtual_text = true })
+  end,
+})
+
+-- Request pull diagnostics more often (debounced)
+local function request_diag(bufnr)
+  local params = vim.lsp.util.make_text_document_params(bufnr)
+  vim.lsp.buf_request(bufnr, "textDocument/diagnostic", { textDocument = params.textDocument }, function() end)
+end
+
+-----------------
+--- KEYMAPS -----
+-----------------
+
+-- This comes first, because we have mappings that depend on leader
+vim.g.mapleader = " "
+
+-- Exit on jj and jk
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+
+vim.keymap.set({ "n", "v" }, "<leader>g", function()
+	vim.cmd("lua require('fzf-lua').live_grep()")
+end, { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>n", function()
+	vim.cmd("lua require('fzf-lua').files()")
+end, { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>h", function()
+	vim.cmd("lua require('fzf-lua').command_history()")
+end, { silent = true })
+vim.keymap.set("n", "<leader>:", function()
+	vim.cmd("lua require('fzf-lua').commands()")
+end, { silent = true })
+
+-- See the doc for the global defaults: https://neovim.io/doc/user/lsp.html
+vim.keymap.set("n", "grd", "<cmd>lua vim.lsp.buf.definition()<cr>", {})
+vim.keymap.set("n", "grD", "<cmd>lua vim.lsp.buf.declaration()<cr>", {})
+vim.keymap.set("n", "grs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", {})
+vim.keymap.set({ "n", "x" }, "grf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", {})
 
 vim.keymap.set("", "<leader>f", function()
 	require("conform").format({ async = true }, function(err)
