@@ -69,8 +69,10 @@ require("lazy").setup({
 
 vim.opt.background = "light"
 vim.opt.termguicolors = true -- Enable 24-bit RGB colors
-vim.cmd.colorscheme("minimum")
-vim.opt.colorcolumn = "81" -- sets the columns at which to display a color marker.
+--vim.cmd.colorscheme("minimum")
+vim.cmd.colorscheme("default")
+vim.cmd([[highlight Normal guibg=#ffffff]])
+vim.opt.colorcolumn = "101" -- sets the columns at which to display a color marker.
 
 vim.opt.number = true -- Show line numbers
 vim.opt.showmatch = true -- Highlight matching parenthesis
@@ -82,9 +84,9 @@ vim.opt.swapfile = false -- Don't use swapfile
 vim.opt.ignorecase = true -- Search case insensitive...
 vim.opt.smartcase = true -- ... but not it begins with upper case
 -- Don't use preview here: https://vi.stackexchange.com/questions/39972/prevent-neovim-lsp-from-opening-a-scratch-preview-buffer
-vim.opt.completeopt = "menuone,noinsert,popup" -- Autocomplete options
-vim.opt.wildmode = "list,full" --  First tab: list, second tab: complete
-vim.opt.wildoptions = "fuzzy" -- Command-line completion mode
+vim.opt.completeopt = "menu,menuone,popup,fuzzy"
+-- vim.opt.wildmode = "list,full" --  First tab: list, second tab: complete
+-- vim.opt.wildoptions = "fuzzy" -- Command-line completion mode
 
 vim.opt.showbreak = "↪" -- sets the string to be shown in front of lines that are wrapped
 vim.opt.listchars = "tab:→\\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨" -- sets the characters for displaying tabs and trailing spaces.
@@ -152,7 +154,7 @@ vim.diagnostic.config({
 		border = "rounded",
 		-- 	focusable = false,
 	},
-	update_in_insert = true,
+	--update_in_insert = true,
 	severity_sort = true,
 	-- Open the location list on every diagnostic change (warnings/errors only).
 	-- loclist = {
@@ -192,27 +194,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
-  callback = function()
-    vim.diagnostic.config({ signs = false, underline = false, virtual_text = false })
-  end,
+	callback = function()
+		vim.diagnostic.config({ signs = false, underline = false, virtual_text = false })
+	end,
 })
 vim.api.nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    vim.diagnostic.config({ signs = false, underline = true, virtual_text = false })
-  end,
+	callback = function()
+		vim.diagnostic.config({ signs = false, underline = true, virtual_text = false })
+	end,
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
-  callback = function()
-    vim.diagnostic.setloclist({ open = false })
-    vim.diagnostic.config({ signs = true, underline = true, virtual_text = true })
-  end,
+	callback = function()
+		vim.diagnostic.setloclist({ open = false })
+		vim.diagnostic.config({ signs = true, underline = true, virtual_text = true })
+	end,
 })
-
--- Request pull diagnostics more often (debounced)
-local function request_diag(bufnr)
-  local params = vim.lsp.util.make_text_document_params(bufnr)
-  vim.lsp.buf_request(bufnr, "textDocument/diagnostic", { textDocument = params.textDocument }, function() end)
-end
 
 -----------------
 --- KEYMAPS -----
@@ -259,26 +255,6 @@ vim.keymap.set("n", "<leader>l", function()
 	require("lint").try_lint()
 end, { desc = "Trigger linting for current file" })
 
------------------
---- EXPLORER ----
------------------
-
-vim.g.netrw_banner = 0 -- no banner
-vim.g.netrw_liststyle = 3 -- tree view
-vim.g.netrw_browse_split = 0 -- open files in the current window
-vim.g.netrw_winsize = 25 -- if you ever use splits
-vim.g.netrw_altv = 1 -- split to the right, if split
-vim.g.netrw_keepdir = 1 -- keep current working directory unchanged
-
--- Hide some junk files by default (adjust to taste)
-vim.g.netrw_list_hide = [[^\.\.\=/\=$]]
-	.. [[,\(^\|\s\s\)\zs\.\S\+]] -- dotfiles (toggle with 'gh')
-	.. [[,\~$]]
-	.. [[,\.swp$]]
-	.. [[,\.git$]]
-
--- 3. Keymap: "-" opens a "directory buffer" like oil.nvim,
---    rooted at the current file's directory (or CWD if no file).
 vim.keymap.set("n", "-", function()
 	local path = vim.fn.expand("%:p")
 	if path == "" then
@@ -289,13 +265,23 @@ vim.keymap.set("n", "-", function()
 	end
 end, { desc = "Open netrw in current directory" })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "netrw",
-	callback = function(args)
-		local opts = { buffer = args.buf, noremap = true, silent = true }
-		vim.keymap.set("n", "?", ":help netrw-quickhelp<CR>", opts)
-	end,
-})
+-----------------
+--- EXPLORER ----
+-----------------
+
+vim.g.netrw_banner = 0 -- no banner
+vim.g.netrw_liststyle = 3 -- tree view
+vim.g.netrw_browse_split = 0 -- open files in the current window
+vim.g.netrw_winsize = 50 -- if you ever use splits
+vim.g.netrw_altv = 1 -- split to the right, if split
+vim.g.netrw_keepdir = 1 -- keep current working directory unchanged
+
+-- Hide some junk files by default (adjust to taste)
+vim.g.netrw_list_hide = [[^\.\.\=/\=$]]
+	.. [[,\(^\|\s\s\)\zs\.\S\+]] -- dotfiles (toggle with 'gh')
+	.. [[,\~$]]
+	.. [[,\.swp$]]
+	.. [[,\.git$]]
 
 -----------------
 ----- AERIAL ----

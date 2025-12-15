@@ -5,9 +5,8 @@ require("conform").formatters_by_ft.rust = { "rustfmt" }
 require("lint").linters_by_ft.rust = { "clippy" }
 
 -- LSP
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.selectionRange = { dynamicRegistration = false }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.selectionRange = { dynamicRegistration = false }
 
 local bufnr = vim.api.nvim_get_current_buf()
 
@@ -47,8 +46,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_rust_highlights,
 })
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	buffer = bufnr,
 	callback = function(args)
@@ -74,7 +71,7 @@ vim.lsp.start({
 	name = "rust-analyzer",
 	cmd = { "rust-analyzer" },
 	root_dir = vim.fs.dirname(vim.fs.find({ "Cargo.toml", "main.rs" }, { upward = true })[1]),
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {
 			completion = {
