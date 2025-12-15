@@ -29,6 +29,7 @@ brew "helm"
 # Linters / compilers
 brew "cspell"              #
 brew "rust-analyzer"       # Rust LSP
+brew "bacon"               # Rust helper
 brew "stylua"              # Lua
 brew "lua-language-server" # Lua LSP
 brew "rumdl"               # Markdown

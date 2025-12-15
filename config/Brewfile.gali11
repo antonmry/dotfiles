@@ -36,6 +36,7 @@ brew "dotter"
 # Development tools
 brew "rustup" # Run rustup init
 brew "rust-analyzer"
+brew "bacon"
 brew "datafusion"
 brew "uv"
 brew "llvm"
