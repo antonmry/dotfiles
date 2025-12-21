@@ -60,6 +60,21 @@ require("lazy").setup({
 				"nvim-tree/nvim-web-devicons",
 			},
 		},
+		-- File browser
+		{
+			"stevearc/oil.nvim",
+		},
+		{
+			"michaelb/sniprun",
+			branch = "master",
+
+			build = "sh install.sh",
+			config = function()
+				require("sniprun").setup({
+					-- your options
+				})
+			end,
+		},
 	},
 })
 
@@ -259,29 +274,11 @@ vim.keymap.set("n", "-", function()
 	local path = vim.fn.expand("%:p")
 	if path == "" then
 		-- no buffer filename -> use current working directory
-		vim.cmd("Explore")
+		vim.cmd("Oil")
 	else
-		vim.cmd("Explore " .. vim.fn.fnameescape(vim.fn.expand("%:p:h")))
+		vim.cmd("Oil " .. vim.fn.fnameescape(vim.fn.expand("%:p:h")))
 	end
-end, { desc = "Open netrw in current directory" })
-
------------------
---- EXPLORER ----
------------------
-
-vim.g.netrw_banner = 0 -- no banner
-vim.g.netrw_liststyle = 3 -- tree view
-vim.g.netrw_browse_split = 0 -- open files in the current window
-vim.g.netrw_winsize = 50 -- if you ever use splits
-vim.g.netrw_altv = 1 -- split to the right, if split
-vim.g.netrw_keepdir = 1 -- keep current working directory unchanged
-
--- Hide some junk files by default (adjust to taste)
-vim.g.netrw_list_hide = [[^\.\.\=/\=$]]
-	.. [[,\(^\|\s\s\)\zs\.\S\+]] -- dotfiles (toggle with 'gh')
-	.. [[,\~$]]
-	.. [[,\.swp$]]
-	.. [[,\.git$]]
+end, { desc = "Open Oil in current directory" })
 
 -----------------
 ----- AERIAL ----
@@ -339,15 +336,44 @@ if has_ts then
 			enable = true,
 			keymaps = {
 				init_selection = "gnn",
-				node_incremental = "gni",
-				scope_incremental = "gns",
-				node_decremental = "gnd",
+				node_incremental = "gnn",
+				scope_incremental = false,
+				node_decremental = "<bs>",
 			},
 		},
 	})
 else
 	vim.notify("nvim-treesitter not available; skipping config", vim.log.levels.WARN)
 end
+
+-----------------
+--- EXPLORER ----
+-----------------
+
+-- disable netrw at the very start of our init.lua, because we use Oil
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("oil").setup({
+	default_file_explorer = true,
+	delete_to_trash = true,
+	skip_confirm_for_simple_edits = true,
+	prompt_save_on_select_new_entry = true,
+	-- Set to true to watch the filesystem for changes and reload oil
+	watch_for_changes = false,
+	view_options = {
+		-- Show files and directories that start with "."
+		show_hidden = true,
+		-- This function defines what is considered a "hidden" file
+		is_hidden_file = function(name, _)
+			local m = name:match("^%.")
+			return m ~= nil
+		end,
+		is_always_hidden = function(name, _)
+			return false
+		end,
+	},
+})
 
 ----------------
 --- CUSTOM  ----
