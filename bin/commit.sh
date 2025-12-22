@@ -1,30 +1,51 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Show staged/unstaged status and, if needed, offer to add everything
+STAGED="$(git diff --cached --name-status)"
+UNSTAGED="$(git diff --name-status)"
+UNTRACKED="$(git ls-files --others --exclude-standard)"
+
+if [ -n "$STAGED" ]; then
+  echo "Staged files:"
+  printf '%s\n' "$STAGED"
+fi
+
+if [ -n "$UNSTAGED" ] || [ -n "$UNTRACKED" ]; then
+  if [ -n "$UNSTAGED" ]; then
+    echo "Unstaged files:"
+    printf '%s\n' "$UNSTAGED"
+  fi
+  if [ -n "$UNTRACKED" ]; then
+    echo "Untracked files:"
+    printf '%s\n' "$UNTRACKED"
+  fi
+  read -r -p "Add all unstaged/untracked files to this commit? [y/N] " RESP
+  case "$RESP" in
+    [yY]|[yY][eE][sS]) git add -A ;;
+  esac
+fi
+
 # Use staged changes by default
 if git diff --cached --quiet; then
   echo "No staged changes. Run 'git add' before using this script."
   exit 1
 fi
 
-PROMPT='You are an assistant that writes git commit messages in Conventional Commits format.
+PROMPT='Write a Conventional Commits message from the diff.
 
-Requirements:
-- Start with: <type>(<scope>): <short summary>
-  - Valid types: feat, fix, docs, style, refactor, perf, test, build, ci, chore.
-  - <scope> is optional. Use it only if it is clearly inferable from the diff.
-- First line under 72 characters, imperative mood (e.g., "feat(api): add user search").
-- Then a blank line.
-- Then a more elaborate body explaining what changed and why.
-  - Use bullet points if helpful.
-  - Mention important files or modules if relevant.
-- Base the message only on the provided git diff.
-- Output ONLY the commit message text, nothing else.'
+Rules:
+- Format: <type>(<scope>): <short summary>
+  - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore.
+  - <scope> only if clearly inferable.
+- Summary < 72 chars, imperative.
+- Blank line, then a brief body (1-3 lines). Use bullets if it helps.
+- Only use the provided diff. Output only the message.'
 
 # Generate initial commit message with Codex from staged diff, suppressing noisy console output
 TMP_MSG="$(mktemp)"
 TMP_ERR="$(mktemp)"
-if ! git diff --cached | codex exec --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
+if ! git diff --cached -U2 | codex exec -m gpt-5.1-codex-mini --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
   echo "Failed to generate commit message:"
   cat "$TMP_ERR"
   rm -f "$TMP_MSG" "$TMP_ERR"
