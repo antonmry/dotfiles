@@ -61,13 +61,16 @@ brew "shellharden"         #
 brew "sqlfluff"            # SQL
 brew "yamlfmt"             # Yaml
 brew "yamllint"            # Yaml
+brew "ruff"
+brew "ty"
 
 
 # Apps
 cask "firefox"
-cask "google-chrome"
 cask "alacritty"
 brew "zellij"
+brew "helix"
+cask "google-chrome"
 cask "karabiner-elements"
 cask "raycast"
 cask "yubico-authenticator"
@@ -76,6 +79,7 @@ brew "tailscale"
 cask "1password"
 cask "1password-cli"
 cask "logitech-g-hub"
+cask "obs"
 
 # AI
 cask "claude-code"

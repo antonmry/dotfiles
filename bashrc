@@ -54,7 +54,7 @@ alias lt='eza --tree'
 alias cat='bat'
 alias rg='rg --smart-case'
 alias preview="fzf --preview 'bat --color=always {}'"
-alias gdiff="git diff --staged > .agents/review.diff && nvim .agents/review.diff"
+alias gdiff="git diff --staged > jj/review.diff && nvim jj/review.diff"
 alias hack="zellij action new-tab -l ~/.config/zellij/layouts/hacking.kdl"
 
 # Host-specific GNU coreutils aliases

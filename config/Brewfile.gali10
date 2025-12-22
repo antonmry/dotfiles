@@ -38,6 +38,8 @@ brew "shellharden"         #
 brew "sqlfluff"            # SQL
 brew "yamlfmt"             # Yaml
 brew "yamllint"            # Yaml
+brew "ruff"
+brew "ty"
 
 # Apps
 # cask "alacritty"

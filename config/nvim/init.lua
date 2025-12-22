@@ -24,6 +24,11 @@ require("lazy").setup({
 
 	spec = {
 
+		-- LSP extensions
+		{
+			"neovim/nvim-lspconfig",
+		},
+
 		-- Default linter
 		{
 			"mfussenegger/nvim-lint",
@@ -40,6 +45,7 @@ require("lazy").setup({
 				})
 			end,
 		},
+
 		-- Fuzzy finder (instead of telescope)
 		{
 			"ibhagwan/fzf-lua",
@@ -51,6 +57,7 @@ require("lazy").setup({
 				require("fzf-lua").register_ui_select()
 			end,
 		},
+
 		{
 			"stevearc/aerial.nvim",
 			opts = {},
@@ -99,7 +106,7 @@ vim.opt.swapfile = false -- Don't use swapfile
 vim.opt.ignorecase = true -- Search case insensitive...
 vim.opt.smartcase = true -- ... but not it begins with upper case
 -- Don't use preview here: https://vi.stackexchange.com/questions/39972/prevent-neovim-lsp-from-opening-a-scratch-preview-buffer
-vim.opt.completeopt = "menu,menuone,popup,fuzzy"
+vim.opt.completeopt = { "noinsert", "menuone", "fuzzy" }
 -- vim.opt.wildmode = "list,full" --  First tab: list, second tab: complete
 -- vim.opt.wildoptions = "fuzzy" -- Command-line completion mode
 
@@ -145,20 +152,6 @@ vim.diagnostic.handlers.loclist = {
 	end,
 }
 
--- Disable diagnostics on insert mode (hack) https://github.com/neovim/neovim/issues/13324
--- vim.api.nvim_create_autocmd({ "BufNew", "InsertEnter" }, {
--- or vim.api.nvim_create_autocmd({"BufNew", "TextChanged", "TextChangedI", "TextChangedP", "TextChangedT"}, {
--- 	callback = function(args)
--- 		vim.diagnostic.enable(false, { bufnr = args.buf })
--- 	end,
--- })
-
--- vim.api.nvim_create_autocmd({ "BufWrite" }, {
--- 	callback = function(args)
--- 		vim.diagnostic.enable(true, { bufnr = args.buf })
--- 	end,
--- })
-
 vim.diagnostic.config({
 	underline = false,
 	signs = true,
@@ -179,23 +172,11 @@ vim.diagnostic.config({
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "LSP actions",
-	---@param event {buf: integer, data: {client_id: integer}}
-	callback = function(event)
-		---@type vim.lsp.Client?
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-		-- Enable built-in LSP completion
-		if
-			client
-			and client.supports_method("textDocument/completion")
-			and vim.lsp.completion
-			and vim.lsp.completion.enable
-		then
-			-- enable completion provider for this client/buffer
-			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
-		else
-			vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		if client:supports_method("textDocument/completion") then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 		end
 
 		-- Completion accept on <CR> (menu confirm)
@@ -204,7 +185,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				return "<C-y>"
 			end
 			return "<CR>"
-		end, { buffer = event.buf, expr = true, silent = true })
+		end, { buffer = ev.buf, expr = true, silent = true })
 	end,
 })
 
