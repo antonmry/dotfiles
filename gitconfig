@@ -6,10 +6,11 @@
 [core]
 	editor = nvim
 [merge]
-tool = nvim
+	tool = nvim
 [mergetool "nvim"]
 	cmd = nvim "$MERGED"
 	trustExitCode = true
+	keepBackup = false
 [alias]
 	dlog = -c diff.external=difft log --ext-diff
 	dshow = -c diff.external=difft show --ext-diff
