@@ -71,42 +71,25 @@ clip() {
     "$@" 2>&1 | tee >(pbcopy)
 }
 
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion || {
-    # if not found in /usr/local/etc, try the brew --prefix location
-    [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ] && \
-        . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-}
-
-source /opt/homebrew/opt/fzf/shell/key-bindings.bash
-source /opt/homebrew/opt/fzf/shell/completion.bash
+# Bash completion setup (supports both macOS with brew and Linux)
+if [[ "$OSTYPE" == darwin* ]] && command -v brew &>/dev/null; then
+    BREW_PREFIX="$(brew --prefix)"
+    # Bash completion
+    if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
+        . "$BREW_PREFIX/etc/bash_completion"
+    elif [ -f "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash" ]; then
+        . "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash"
+    fi
+    # fzf
+    [ -f "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash" ] && source "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash"
+    [ -f "$BREW_PREFIX/opt/fzf/shell/completion.bash" ] && source "$BREW_PREFIX/opt/fzf/shell/completion.bash"
+else
+    # Linux
+    [ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
+    # fzf key-bindings (completion is loaded via bash_completion.d)
+    [ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash
+    # Load git completion explicitly (fzf's default handler intercepts lazy loading)
+    [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
+fi
 eval "$(zoxide init bash)"
 . "$HOME/.cargo/env"
-
-# Review a GitHub PR: view summary, inspect diff in nvim, then submit review
-pr_review() {
-    local pr_number="$1"
-    if [[ -z "$pr_number" ]]; then
-        echo "Usage: pr_review <pr-number>"
-        return 1
-    fi
-
-    gh pr view "$pr_number" || return $?
-    read -n 1 -s -r -p "Press any key to open diff in nvim..." && echo
-
-    local tmpfile
-    tmpfile=$(mktemp "/tmp/gh-pr-diff-${pr_number}-XXXX.patch") || {
-        echo "Unable to create temp file"
-        return 1
-    }
-
-    gh pr diff "$pr_number" > "$tmpfile" || {
-        echo "gh pr diff failed"
-        rm -f "$tmpfile"
-        return 1
-    }
-
-    nvim "$tmpfile"
-    rm -f "$tmpfile"
-
-    gh pr review "$pr_number"
-}
