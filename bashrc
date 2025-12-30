@@ -7,6 +7,8 @@ export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="~/bin:$PATH"
 
+export LC_COLLATE="en_US.UTF-8"
+
 # Use newer bash
 export PATH="/opt/homebrew/bin:$PATH"
 
@@ -54,7 +56,7 @@ alias lt='eza --tree'
 alias cat='bat'
 alias rg='rg --smart-case'
 alias preview="fzf --preview 'bat --color=always {}'"
-alias gdiff="git diff --staged > jj/review.diff && nvim jj/review.diff"
+alias gdiff="git diff --staged > /tmp/review.diff && nvim /tmp/review.diff"
 alias hack="zellij action new-tab -l ~/.config/zellij/layouts/hacking.kdl"
 
 # Host-specific GNU coreutils aliases

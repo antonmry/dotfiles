@@ -45,12 +45,14 @@ Rules:
 # Generate initial commit message with Codex from staged diff, suppressing noisy console output
 TMP_MSG="$(mktemp)"
 TMP_ERR="$(mktemp)"
+set +o pipefail
 if ! git diff --cached -U2 | codex exec -m gpt-5.1-codex-mini --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
   echo "Failed to generate commit message:"
   cat "$TMP_ERR"
   rm -f "$TMP_MSG" "$TMP_ERR"
   exit 1
 fi
+set -o pipefail
 rm -f "$TMP_ERR"
 
 # Let the user edit in nvim (or $EDITOR if set)

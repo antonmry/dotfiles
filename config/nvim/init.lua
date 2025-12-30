@@ -109,6 +109,8 @@ vim.opt.smartcase = true -- ... but not it begins with upper case
 vim.opt.completeopt = { "noinsert", "menuone", "fuzzy" }
 -- vim.opt.wildmode = "list,full" --  First tab: list, second tab: complete
 -- vim.opt.wildoptions = "fuzzy" -- Command-line completion mode
+vim.opt.winborder = "rounded"
+vim.opt.signcolumn = "yes"
 
 vim.opt.showbreak = "↪" -- sets the string to be shown in front of lines that are wrapped
 vim.opt.listchars = "tab:→\\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨" -- sets the characters for displaying tabs and trailing spaces.
