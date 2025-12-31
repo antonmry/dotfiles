@@ -31,9 +31,10 @@ require("fzf-lua").register_ui_select()
 ----------------
 
 vim.opt.background = "light"
-vim.opt.termguicolors = true -- Enable 24-bit RGB colors
+-- vim.opt.termguicolors = true -- default
 --vim.cmd.colorscheme("minimum")
-vim.cmd.colorscheme("default")
+vim.cmd.colorscheme("default") -- default
+
 vim.cmd([[highlight Normal guibg=#ffffff]])
 vim.opt.colorcolumn = "101" -- sets the columns at which to display a color marker.
 
@@ -59,18 +60,16 @@ vim.opt.listchars =
 vim.opt.list = true -- enables the display of the `listchars`.
 
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("data") .. "undo"
 
 -- Disable status bar
 vim.opt.ruler = false
 vim.opt.laststatus = 0
 vim.opt.showcmd = false
-vim.opt.cmdheight = 1
 
 -- Indent Settings
-vim.opt.autoindent = true -- copy indent from current line when starting a new line
-vim.opt.wrap = true
-vim.opt.tabstop = 8
+vim.opt.autoindent = true -- default
+vim.opt.wrap = true --default
+vim.opt.tabstop = 8 --default
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
