@@ -14,41 +14,41 @@ vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
 
 local bufnr = vim.api.nvim_get_current_buf()
 
--- Ensure inlay hints and underlines stay visible
-local function set_rust_highlights()
-	local function to_color(val, fallback_cterm)
-		local color = vim.api.nvim_get_color_by_name(val)
-		if color == -1 then
-			return fallback_cterm
-		end
-		return color
-	end
-	local function set(name, gui_hex, cterm_fallback, underline_style, italic_style)
-		local fg = to_color(gui_hex, cterm_fallback)
-		vim.api.nvim_set_hl(0, name, {
-			fg = fg,
-			ctermfg = cterm_fallback,
-			undercurl = underline_style,
-			underline = underline_style,
-			italic = italic_style,
-			nocombine = true,
-			link = nil,
-			sp = fg,
-		})
-	end
-
-	set("LspInlayHint", "#adadad", 69, false, true)
-	set("DiagnosticUnderlineError", "#db4b4b", 167, true, false)
-	set("DiagnosticUnderlineWarn", "#e0af68", 214, true, false)
-	set("DiagnosticUnderlineInfo", "#0db9d7", 45, true, false)
-	set("DiagnosticUnderlineHint", "#10b981", 36, true, false)
-end
-set_rust_highlights()
-local rust_hl_group = vim.api.nvim_create_augroup("RustHl" .. bufnr, { clear = true })
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = rust_hl_group,
-	callback = set_rust_highlights,
-})
+-- -- Ensure inlay hints and underlines stay visible
+-- local function set_rust_highlights()
+-- 	local function to_color(val, fallback_cterm)
+-- 		local color = vim.api.nvim_get_color_by_name(val)
+-- 		if color == -1 then
+-- 			return fallback_cterm
+-- 		end
+-- 		return color
+-- 	end
+-- 	local function set(name, gui_hex, cterm_fallback, underline_style, italic_style)
+-- 		local fg = to_color(gui_hex, cterm_fallback)
+-- 		vim.api.nvim_set_hl(0, name, {
+-- 			fg = fg,
+-- 			ctermfg = cterm_fallback,
+-- 			undercurl = underline_style,
+-- 			underline = underline_style,
+-- 			italic = italic_style,
+-- 			nocombine = true,
+-- 			link = nil,
+-- 			sp = fg,
+-- 		})
+-- 	end
+--
+-- 	set("LspInlayHint", "#adadad", 69, false, true)
+-- 	-- set("DiagnosticUnderlineError", "#db4b4b", 167, true, false)
+-- 	-- set("DiagnosticUnderlineWarn", "#e0af68", 214, true, false)
+-- 	-- set("DiagnosticUnderlineInfo", "#0db9d7", 45, true, false)
+-- 	-- set("DiagnosticUnderlineHint", "#10b981", 36, true, false)
+-- end
+-- set_rust_highlights()
+-- local rust_hl_group = vim.api.nvim_create_augroup("RustHl" .. bufnr, { clear = true })
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+-- 	group = rust_hl_group,
+-- 	callback = set_rust_highlights,
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	buffer = bufnr,
@@ -71,6 +71,65 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- Snippets (readable format)
+local rust_snippets = {
+	derive = {
+		prefix = "derive",
+		description = "Derive common traits",
+		scope = "item",
+		body = [[#[derive(Debug, Clone, Copy, PartialEq)]
+${0}]],
+	},
+	main_result = {
+		prefix = "mainr",
+		description = "Main function with Result",
+		scope = "item",
+		body = [[
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    ${0}
+    Ok(())
+}
+]],
+	},
+	file_reader = {
+		prefix = "filereader",
+		description = "Open file with BufReader",
+		scope = "expr",
+		body = [[
+let file = File::open("${1:./input}")?;
+let reader = BufReader::new(file);
+${0}
+]],
+	},
+	test_fn = {
+		prefix = "test",
+		description = "Test function",
+		scope = "item",
+		body = [[
+#[test]
+fn ${1:name}() {
+    ${0}
+}
+]],
+	},
+	test_mod = {
+		prefix = "testmod",
+		description = "Test module with one test",
+		scope = "item",
+		body = [[
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn ${1:name}() {
+        ${0}
+    }
+}
+]],
+	},
+}
+
 vim.lsp.start({
 	name = "rust-analyzer",
 	cmd = { "rust-analyzer" },
@@ -85,37 +144,7 @@ vim.lsp.start({
 				callable = {
 					snippets = "fill_arguments",
 				},
-				snippets = {
-					custom = {
-						test_fn = {
-							prefix = "test",
-							body = [[
-#[test]
-fn ${1:name}() {
-    ${0}
-}
-]],
-							description = "Test function",
-							scope = "item",
-						},
-						test_mod = {
-							prefix = "testmod",
-							body = [[
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn ${1:name}() {
-        ${0}
-    }
-}
-]],
-							description = "Test module with one test",
-							scope = "item",
-						},
-					},
-				},
+				snippets = { custom = rust_snippets },
 			},
 			selectionRange = {
 				enable = true,
