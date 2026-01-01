@@ -4,6 +4,10 @@ require("conform").formatters_by_ft.rust = { "rustfmt" }
 -- Linter
 require("lint").linters_by_ft.rust = { "clippy" }
 
+-- Folding via LSP (rust-analyzer)
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+
 -- LSP
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.selectionRange = { dynamicRegistration = false }

@@ -4,15 +4,7 @@
 ------------------------------------------------------------
 -- Formatter (conform.nvim)
 ------------------------------------------------------------
-local conform = require("conform")
-
-conform.formatters.rumdl_fmt = {
-	command = "rumdl",
-	args = { "fmt", "-", "--quiet"},
-	stdin = true,
-}
-
-conform.formatters_by_ft.markdown = { "rumdl_fmt" }
+require("conform").formatters_by_ft.markdown = { "rumdl" }
 
 ------------------------------------------------------------
 -- Linter (nvim-lint)
@@ -104,7 +96,7 @@ local function on_attach(client, bufnr)
 
     -- Semantic tokens (for better highlighting, if supported)
     if client.server_capabilities.semanticTokensProvider then
-      vim.lsp.semantic_tokens.start(bufnr, client.id)
+      vim.lsp.semantic_tokens.enable(true, { bufnr = bufnr })
     end
   end
 end

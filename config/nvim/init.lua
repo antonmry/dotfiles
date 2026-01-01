@@ -10,11 +10,10 @@ vim.pack.add({
 	"https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
-	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/stevearc/aerial.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
-})
+}, { load = true })
 
 -- Plugin configurations
 require("conform").setup({
@@ -38,15 +37,15 @@ vim.cmd.colorscheme("default") -- default
 vim.cmd([[highlight Normal guibg=#ffffff]])
 vim.opt.colorcolumn = "101" -- sets the columns at which to display a color marker.
 
-vim.opt.number = true       -- Show line numbers
-vim.opt.showmatch = true    -- Highlight matching parenthesis
-vim.opt.splitright = true   -- Split windows right to the current windows
-vim.opt.splitbelow = true   -- Split windows below to the current windows
-vim.opt.autowrite = true    -- Automatically save before :next, :make etc.
+vim.opt.number = true -- Show line numbers
+vim.opt.showmatch = true -- Highlight matching parenthesis
+vim.opt.splitright = true -- Split windows right to the current windows
+vim.opt.splitbelow = true -- Split windows below to the current windows
+vim.opt.autowrite = true -- Automatically save before :next, :make etc.
 
-vim.opt.swapfile = false    -- Don't use swapfile
-vim.opt.ignorecase = true   -- Search case insensitive...
-vim.opt.smartcase = true    -- ... but not it begins with upper case
+vim.opt.swapfile = false -- Don't use swapfile
+vim.opt.ignorecase = true -- Search case insensitive...
+vim.opt.smartcase = true -- ... but not it begins with upper case
 -- Don't use preview here: https://vi.stackexchange.com/questions/39972/prevent-neovim-lsp-from-opening-a-scratch-preview-buffer
 vim.opt.completeopt = { "noinsert", "menuone", "fuzzy" }
 -- vim.opt.wildmode = "list,full" --  First tab: list, second tab: complete
@@ -55,8 +54,7 @@ vim.opt.winborder = "rounded"
 vim.opt.signcolumn = "yes"
 
 vim.opt.showbreak = "↪" -- sets the string to be shown in front of lines that are wrapped
-vim.opt.listchars =
-"tab:→\\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨" -- sets the characters for displaying tabs and trailing spaces.
+vim.opt.listchars = "tab:→\\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨" -- sets the characters for displaying tabs and trailing spaces.
 vim.opt.list = true -- enables the display of the `listchars`.
 
 vim.opt.undofile = true
@@ -223,52 +221,12 @@ vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 ----- TREESITTER ----
 ---------------------
 
--- vim.api.nvim_create_autocmd("FileType", {
---     callback = function(ev)
---         pcall(vim.treesitter.start, ev.buf)
---     end
--- })
-
 vim.o.foldenable = true
 vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
+-- Vim 0.12 supports treesitter for some languages
+-- Let's use for LSP for the others
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
-local has_ts, ts_configs = pcall(require, "nvim-treesitter.configs")
-if has_ts then
-	ts_configs.setup({
-		modules = {},
-		sync_install = true,
-		auto_install = true,
-		ignore_install = {},
-		ensure_installed = {
-			"lua",
-			"rust",
-			"markdown",
-			"markdown_inline",
-			"json",
-			"yaml",
-			"bash",
-			"python",
-			"javascript",
-			"typescript",
-		},
-		highlight = {
-			enable = true,
-		},
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "gnn",
-				node_incremental = "gnn",
-				scope_incremental = false,
-				node_decremental = "<bs>",
-			},
-		},
-	})
-else
-	vim.notify("nvim-treesitter not available; skipping config", vim.log.levels.WARN)
-end
 
 -----------------
 --- EXPLORER ----
