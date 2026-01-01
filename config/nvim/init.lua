@@ -6,8 +6,8 @@
 -- Plugins stored in: ~/.local/share/nvim/site/pack/core/opt/
 -- Lockfile at: ~/.config/nvim/nvim-pack-lock.json
 vim.pack.add({
-	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/mfussenegger/nvim-lint",
+	-- "https://github.com/neovim/nvim-lspconfig",
+	-- "https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/stevearc/oil.nvim",
@@ -18,7 +18,7 @@ vim.pack.add({
 -- Plugin configurations
 require("conform").setup({
 	log_level = vim.log.levels.WARN,
-	notify_on_error = true,
+	notify_on_error = false,
 	notify_no_formatters = true,
 })
 
@@ -179,7 +179,9 @@ vim.keymap.set({ "n", "x" }, "grf", "<cmd>lua vim.lsp.buf.format({async = true})
 
 vim.keymap.set("", "<leader>f", function()
 	require("conform").format({ async = true }, function(err)
-		if not err then
+		if err then
+			vim.notify("Format error: " .. err, vim.log.levels.ERROR)
+		else
 			local mode = vim.api.nvim_get_mode().mode
 			if vim.startswith(string.lower(mode), "v") then
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
@@ -188,9 +190,9 @@ vim.keymap.set("", "<leader>f", function()
 	end)
 end, { desc = "Format code" })
 
-vim.keymap.set("n", "<leader>l", function()
-	require("lint").try_lint()
-end, { desc = "Trigger linting for current file" })
+-- vim.keymap.set("n", "<leader>l", function()
+-- 	require("lint").try_lint()
+-- end, { desc = "Trigger linting for current file" })
 
 vim.keymap.set("n", "-", function()
 	local path = vim.fn.expand("%:p")

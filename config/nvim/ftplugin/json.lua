@@ -4,4 +4,4 @@
 require("conform").formatters_by_ft.json = { "jq" }
 
 -- Linter
-require("lint").linters_by_ft.json = { "cspell" }
+-- require("lint").linters_by_ft.json = { "cspell" }

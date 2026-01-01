@@ -22,16 +22,16 @@ conform.formatters_by_ft.sql = { "duckdb" }
 
 -- Linter
 
-local lint = require("lint")
-
-local sqlfluff = lint.linters.sqlfluff
-
-sqlfluff.args = {
-	"lint",
-	"--format=json",
-	"--dialect=duckdb",
-}
-
-lint.linters_by_ft = {
-	sql = { "sqlfluff" },
-}
+-- local lint = require("lint")
+--
+-- local sqlfluff = lint.linters.sqlfluff
+--
+-- sqlfluff.args = {
+-- 	"lint",
+-- 	"--format=json",
+-- 	"--dialect=duckdb",
+-- }
+--
+-- lint.linters_by_ft = {
+-- 	sql = { "sqlfluff" },
+-- }

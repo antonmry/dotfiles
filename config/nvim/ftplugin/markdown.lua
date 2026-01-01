@@ -7,9 +7,13 @@
 require("conform").formatters_by_ft.markdown = { "rumdl" }
 
 ------------------------------------------------------------
--- Linter (nvim-lint)
+-- LSP: rumdl (linter/formatter via LSP)
 ------------------------------------------------------------
-require("lint").linters_by_ft.markdown = { "rumdl" }
+vim.lsp.start({
+  name = "rumdl",
+  cmd = { "rumdl", "server" },
+  root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]) or vim.fn.getcwd(),
+})
 
 ------------------------------------------------------------
 -- LSP: markdown-oxide, only for Obsidian vault paths

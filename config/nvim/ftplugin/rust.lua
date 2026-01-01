@@ -1,8 +1,8 @@
 -- Formatter
 require("conform").formatters_by_ft.rust = { "rustfmt" }
 
--- Linter
-require("lint").linters_by_ft.rust = { "clippy" }
+-- Linter (using LSP clippy instead)
+-- require("lint").linters_by_ft.rust = { "clippy" }
 
 -- Folding via LSP (rust-analyzer)
 vim.wo.foldmethod = "expr"
@@ -78,6 +78,9 @@ vim.lsp.start({
 	-- capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {
+			check = {
+				command = "clippy",
+			},
 			completion = {
 				callable = {
 					snippets = "fill_arguments",

@@ -4,4 +4,4 @@
 require("conform").formatters_by_ft.yaml = { "yamlfmt" }
 
 -- Linter
-require("lint").linters_by_ft.yaml = { "yamllint" }
+-- require("lint").linters_by_ft.yaml = { "yamllint" }

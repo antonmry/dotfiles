@@ -4,7 +4,7 @@
 require("conform").formatters_by_ft.lua = { "stylua" }
 
 -- Linter
-require("lint").linters_by_ft.lua = { "luac" }
+-- require("lint").linters_by_ft.lua = { "luac" }
 
 -- LSP
 -- Delete this in favor of .luarc.json?
