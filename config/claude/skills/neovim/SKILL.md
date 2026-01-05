@@ -1,0 +1,1 @@
+/Users/antonmry/.dotfiles/config/claude/skills/neovim/SKILL.md

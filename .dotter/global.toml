@@ -29,6 +29,11 @@ bashrc = "~/.bashrc"
 "config/claude/settings.json" = "~/.claude/settings.json"
 "config/claude/CLAUDE.md" = "~/.claude/CLAUDE.md"
 "config/claude/CLAUDE.md" = "~/.codex/AGENTS.md"
+"config/claude/commands/zellij.md" = "~/.claude/commands/zellij.md"
+"config/claude/skills/dotfiles/SKILL.md" = "~/.claude/skills/dotfiles/SKILL.md"
+"config/claude/skills/dotfiles/SKILL.md" = "~/.codex/skills/dotfiles/SKILL.md"
+"config/claude/skills/neovim/SKILL.md" = "~/.claude/skills/neovim/SKILL.md"
+"config/claude/skills/neovim/SKILL.md" = "~/.codex/skills/neovim/SKILL.md"
 "config/codex/config.toml" = "~/.codex/config.toml"
 
 [default.variables]

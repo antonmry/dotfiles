@@ -1,0 +1,1 @@
+/Users/antonmry/.dotfiles/config/claude/skills/dotfiles/SKILL.md
