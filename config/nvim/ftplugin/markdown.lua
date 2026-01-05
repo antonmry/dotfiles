@@ -6,13 +6,38 @@
 ------------------------------------------------------------
 require("conform").formatters_by_ft.markdown = { "rumdl" }
 
+local function find_root(markers, fallback_path)
+  local found = vim.fs.find(markers, { upward = true })[1]
+  if found then
+    return vim.fs.dirname(found)
+  end
+  if fallback_path and fallback_path ~= "" then
+    return vim.fs.dirname(fallback_path)
+  end
+  return vim.fn.getcwd()
+end
+
+local function apply_markdown_diagnostic_config(client_id)
+  local ns = vim.lsp.diagnostic.get_namespace(client_id)
+  vim.diagnostic.config({
+    underline = true,
+    virtual_text = {
+      severity = { min = vim.diagnostic.severity.INFO },
+      prefix = "",
+    },
+  }, ns)
+end
+
 ------------------------------------------------------------
 -- LSP: rumdl (linter/formatter via LSP)
 ------------------------------------------------------------
 vim.lsp.start({
   name = "rumdl",
   cmd = { "rumdl", "server" },
-  root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]) or vim.fn.getcwd(),
+  root_dir = find_root({ ".git" }, vim.api.nvim_buf_get_name(0)),
+  on_attach = function(client, _)
+    apply_markdown_diagnostic_config(client.id)
+  end,
 })
 
 ------------------------------------------------------------
@@ -35,18 +60,7 @@ capabilities.workspace.didChangeWatchedFiles =
   capabilities.workspace.didChangeWatchedFiles or {}
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
--- Find vault root: look upwards for a marker
-local function find_root(path)
-  local markers = { ".moxide.toml", ".obsidian", ".git" }
-  local root = vim.fs.find(markers, { path = path, upward = true })[1]
-  if root then
-    return vim.fs.dirname(root)
-  end
-  -- Fallback: directory of the current file
-  return vim.fs.dirname(path)
-end
-
-local root_dir = find_root(fname)
+local root_dir = find_root({ ".moxide.toml", ".obsidian", ".git" }, fname)
 
 -- Helper: send "jump" command to the markdown_oxide client
 local function oxide_jump(arg)
@@ -75,6 +89,8 @@ local function on_attach(client, bufnr)
   vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
   if client.name == "markdown_oxide" then
+    apply_markdown_diagnostic_config(client.id)
+
     -- :Daily command (define once, uses oxide_jump)
     if not vim.g.markdown_oxide_daily_defined then
       vim.api.nvim_create_user_command("Daily", function(args)
@@ -114,25 +130,6 @@ vim.lsp.start({
 })
 
 ------------------------------------------------------------
--- Diagnostics styling for unresolved links (INFO severity)
-------------------------------------------------------------
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", {
-  undercurl = true,
-  sp = "#ff0000", -- underline color
-})
-
-vim.api.nvim_set_hl(0, "DiagnosticInfo", {
-  fg = "#b00000",
-})
-
-vim.diagnostic.config({
-  underline = true,
-  virtual_text = {
-    severity = { min = vim.diagnostic.severity.INFO },
-    prefix = "",
-  },
-})
-
 local function set_hl(group, opts)
   vim.api.nvim_set_hl(0, group, opts)
 end

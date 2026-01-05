@@ -14,6 +14,18 @@ vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
 
 local bufnr = vim.api.nvim_get_current_buf()
 
+local function find_root(markers)
+	local found = vim.fs.find(markers, { upward = true })[1]
+	if found then
+		return vim.fs.dirname(found)
+	end
+	local fname = vim.api.nvim_buf_get_name(bufnr)
+	if fname ~= "" then
+		return vim.fs.dirname(fname)
+	end
+	return vim.fn.getcwd()
+end
+
 -- -- Ensure inlay hints and underlines stay visible
 -- local function set_rust_highlights()
 -- 	local function to_color(val, fallback_cterm)
@@ -133,7 +145,7 @@ mod tests {
 vim.lsp.start({
 	name = "rust-analyzer",
 	cmd = { "rust-analyzer" },
-	root_dir = vim.fs.dirname(vim.fs.find({ "Cargo.toml", "main.rs" }, { upward = true })[1]),
+	root_dir = find_root({ "Cargo.toml", "main.rs" }),
 	-- capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {

@@ -1,0 +1,47 @@
+model = "gpt-5.2-codex"
+notify = ["bash", "-lc", "~/bin/notify.sh 'Codex' 'Task finished'"]
+[notice]
+hide_gpt5_1_migration_prompt = true
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+
+[notice.model_migrations]
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
+
+[projects."/Users/antonmry/Workspace/Galiglobal/rust-playground"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Phoebe/playground"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Galiglobal/galiglobal"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/.config/zellij"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/.config/nvim"]
+trust_level = "untrusted"
+
+[projects."/Users/antonmry/.ssh"]
+trust_level = "untrusted"
+
+[projects."/Users/antonmry/.config/alacritty"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry"]
+trust_level = "untrusted"
+
+[projects."/Users/antonmry/bin"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Galiglobal/obsidian"]
+trust_level = "untrusted"
+
+[projects."/Users/antonmry/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Galiglobal/advent-of-code"]
+trust_level = "untrusted"
+
+[projects."/Users/antonmry/Workspace/Phoebe/monorepo"]
+trust_level = "untrusted"
