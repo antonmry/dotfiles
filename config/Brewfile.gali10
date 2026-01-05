@@ -22,6 +22,8 @@ brew "dotter"
 # Development tools
 brew "uv"
 brew "gh"
+brew "samply"
+brew "z3"
 
 # Docker/VM
 brew "helm"

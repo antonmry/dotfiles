@@ -43,6 +43,8 @@ brew "llvm"
 brew "gcc"
 brew "make"
 brew "cmake"
+brew "samply"
+brew "z3"
 
 # Docker/VM
 brew "helm"
