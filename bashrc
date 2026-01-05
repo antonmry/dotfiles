@@ -67,6 +67,11 @@ case "$(hostname -s)" in
     alias grep='ggrep --color=auto'
     alias find='gfind'
     ;;
+  gali10)
+    alias vi=~/bin/nvim-linux-x86_64/bin/nvim
+    alias nvim=~/bin/nvim-linux-x86_64/bin/nvim
+    export EDITOR="$HOME/bin/nvim-linux-x86_64/bin/nvim"
+    ;;
 esac
 
 clip() {

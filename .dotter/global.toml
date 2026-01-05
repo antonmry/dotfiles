@@ -34,6 +34,7 @@ bashrc = "~/.bashrc"
 # Claude Code config - skills and CLAUDE.md are copied to Codex via post_deploy.sh
 # (TOML doesn't allow duplicate keys, so we can't map one source to multiple destinations)
 "config/codex/config.toml" = "~/.codex/config.toml"
+"config/codex/prompts/zellij.md" = "~/.codex/prompts/zellij.md"
 
 [default.variables]
 font_size = 12.0
