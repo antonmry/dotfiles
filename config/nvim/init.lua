@@ -266,20 +266,8 @@ require("oil").setup({
 -- Compare the current buffer with the original file
 vim.cmd([[command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis | wincmd p | diffthis]])
 
---require("custom.aerial_auto").setup()
-require("custom.bracket_highlight").setup()
-
 -- Yank helpers
 local yank = require("custom.yank")
-vim.api.nvim_create_user_command("YankPathAbsolute", function()
-	yank.yank_path(yank.get_buffer_absolute(), "absolute")
-end, { desc = "Yank absolute path to clipboard" })
-vim.api.nvim_create_user_command("YankPathRelative", function()
-	yank.yank_path(yank.get_buffer_cwd_relative(), "relative")
-end, { desc = "Yank relative path to clipboard" })
-vim.api.nvim_create_user_command("YankSelectionAbsolute", function(args)
-	yank.yank_range_with_path(yank.get_buffer_absolute(), "absolute", args.line1, args.line2)
-end, { range = true, desc = "Yank selection with absolute path and line range" })
 vim.api.nvim_create_user_command("YankSelectionRelative", function(args)
 	yank.yank_range_with_path(yank.get_buffer_cwd_relative(), "relative", args.line1, args.line2)
 end, { range = true, desc = "Yank selection with relative path and line range" })
