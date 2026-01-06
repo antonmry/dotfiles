@@ -46,10 +46,8 @@ vim.opt.autowrite = true -- Automatically save before :next, :make etc.
 vim.opt.swapfile = false -- Don't use swapfile
 vim.opt.ignorecase = true -- Search case insensitive...
 vim.opt.smartcase = true -- ... but not it begins with upper case
--- Don't use preview here: https://vi.stackexchange.com/questions/39972/prevent-neovim-lsp-from-opening-a-scratch-preview-buffer
+vim.opt.inccommand = "split"
 vim.opt.completeopt = { "noinsert", "menuone", "fuzzy" }
--- vim.opt.wildmode = "list,full" --  First tab: list, second tab: complete
--- vim.opt.wildoptions = "fuzzy" -- Command-line completion mode
 vim.opt.winborder = "rounded"
 vim.opt.signcolumn = "yes"
 
@@ -65,9 +63,9 @@ vim.opt.laststatus = 0
 vim.opt.showcmd = false
 
 -- Indent Settings
-vim.opt.autoindent = true -- default
-vim.opt.wrap = true --default
-vim.opt.tabstop = 8 --default
+-- vim.opt.autoindent = true -- default
+-- vim.opt.wrap = true --default
+-- vim.opt.tabstop = 8 --default
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
