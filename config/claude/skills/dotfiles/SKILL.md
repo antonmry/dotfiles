@@ -1,3 +1,8 @@
+---
+name: dotfiles
+description: Manage dotfiles in ~/.dotfiles using dotter, including cross-platform config, security guidance, and deployment workflow.
+---
+
 # Dotfiles Management Skill
 
 Manage dotfiles stored in `~/.dotfiles` using dotter.

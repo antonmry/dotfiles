@@ -1,3 +1,8 @@
+---
+name: neovim
+description: Configure Neovim 0.12+ with built-in features, minimal plugins, and vim.pack-based setup.
+---
+
 # Neovim Configuration Skill
 
 Configure Neovim 0.12+ with a focus on built-in features and minimal plugins.
