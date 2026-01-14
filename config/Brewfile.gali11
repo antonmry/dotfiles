@@ -71,7 +71,6 @@ brew "ty"
 cask "firefox"
 cask "alacritty"
 brew "zellij"
-brew "helix"
 cask "google-chrome"
 cask "karabiner-elements"
 cask "raycast"
@@ -80,8 +79,12 @@ cask "tailscale-app"
 brew "tailscale"
 cask "1password"
 cask "1password-cli"
+
+# Multimedia
 cask "logitech-g-hub"
 cask "obs"
+brew "mpv"
+brew "ffmpeg"
 
 # AI
 cask "claude-code"
