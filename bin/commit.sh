@@ -40,6 +40,7 @@ Rules:
   - <scope> only if clearly inferable.
 - Summary < 72 chars, imperative.
 - Blank line, then a brief body (1-3 lines). Use bullets if it helps.
+- Do not wrap the message in ** or add ** at the beginning or end.
 - Only use the provided diff. Output only the message.'
 
 # Generate initial commit message with Codex from staged diff, suppressing noisy console output
