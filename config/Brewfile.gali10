@@ -51,3 +51,4 @@ brew "zellij"
 # AI
 cask "claude-code"
 cask "codex"
+brew "opencode"

@@ -48,7 +48,9 @@ vim.opt.ignorecase = true -- Search case insensitive...
 vim.opt.smartcase = true -- ... but not it begins with upper case
 vim.opt.inccommand = "split"
 vim.opt.completeopt = { "noinsert", "menuone", "fuzzy" }
+-- vim.opt.completeopt = "menu,menuone,noselect,popup"
 vim.opt.winborder = "rounded"
+ vim.opt.pumborder = "rounded"
 vim.opt.signcolumn = "yes"
 
 vim.opt.showbreak = "↪" -- sets the string to be shown in front of lines that are wrapped

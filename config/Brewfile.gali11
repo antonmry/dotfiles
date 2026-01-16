@@ -49,6 +49,7 @@ brew "z3"
 # Docker/VM
 brew "helm"
 brew "lima"
+brew "lima-additional-guestagents"
 brew "qemu"
 brew "openssh"
 
@@ -89,3 +90,4 @@ brew "ffmpeg"
 # AI
 cask "claude-code"
 cask "codex"
+brew "opencode"
