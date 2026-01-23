@@ -45,6 +45,10 @@ brew "make"
 brew "cmake"
 brew "samply"
 brew "z3"
+tap "pulumi/tap"
+brew "pulumi"
+brew "awscli"
+
 
 # Docker/VM
 brew "helm"
