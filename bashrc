@@ -5,13 +5,12 @@ export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/usr/local/sessionmanagerplugin/bin:$PATH"
 export PATH="~/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export LC_COLLATE="en_US.UTF-8"
-
-# Use newer bash
-export PATH="/opt/homebrew/bin:$PATH"
 
 set -o vi
 bind -m vi-insert "\C-l":clear-screen

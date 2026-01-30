@@ -94,4 +94,3 @@ brew "ffmpeg"
 # AI
 cask "claude-code"
 cask "codex"
-brew "opencode"
