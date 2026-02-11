@@ -75,7 +75,7 @@ case "$(hostname -s)" in
     ;;
 esac
 
-lima-start() { limactl start "${1:-default}" --mount "$PWD:w"; }
+lima-start() { limactl start "${1:-default}" --mount "$PWD:rw"; }
 
 clip() {
     "$@" 2>&1 | tee >(pbcopy)
