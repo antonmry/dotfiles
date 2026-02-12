@@ -35,7 +35,7 @@ export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -c; history -r"
 
 export EDITOR="nvim"
 
@@ -55,7 +55,7 @@ alias la='eza -la'
 alias lt='eza --tree'
 alias cat='bat'
 alias rg='rg --smart-case'
-alias preview="fzf --preview 'bat --color=always {}'"
+alias preview="sk --preview 'bat --color=always {}'"
 alias gdiff="git diff --staged > /tmp/review.diff && nvim /tmp/review.diff"
 alias hack="zellij action new-tab -l ~/.config/zellij/layouts/hacking.kdl"
 

@@ -22,7 +22,7 @@ require("conform").setup({
 	notify_no_formatters = true,
 })
 
-require("fzf-lua").setup({})
+require("fzf-lua").setup({ "skim" })
 require("fzf-lua").register_ui_select()
 
 ----------------
