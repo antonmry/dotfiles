@@ -39,12 +39,12 @@ export PROMPT_COMMAND="history -a; history -c; history -r"
 
 export EDITOR="nvim"
 
+export SKIM_DEFAULT_OPTIONS="--color=light"
+
 alias bbic="brew update &&\
     brew bundle install --cleanup --file=~/.config/Brewfile &&\
     brew upgrade"
 alias docker="podman"
-alias obs="$HOME/Workspace/Galiglobal/nvim-playground/obsidian/obs.sh --vault $HOME/Workspace/Galiglobal/obsidian"
-
 
 alias vi=nvim
 alias vim=nvim
@@ -58,6 +58,7 @@ alias rg='rg --smart-case'
 alias preview="sk --preview 'bat --color=always {}'"
 alias gdiff="git diff --staged > /tmp/review.diff && nvim /tmp/review.diff"
 alias hack="zellij action new-tab -l ~/.config/zellij/layouts/hacking.kdl"
+alias fzf="sk --color=light"
 
 # Host-specific GNU coreutils aliases
 case "$(hostname -s)" in
@@ -89,16 +90,12 @@ if [[ "$OSTYPE" == darwin* ]] && command -v brew &>/dev/null; then
     elif [ -f "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash" ]; then
         . "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash"
     fi
-    # fzf
-    [ -f "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash" ] && source "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash"
-    [ -f "$BREW_PREFIX/opt/fzf/shell/completion.bash" ] && source "$BREW_PREFIX/opt/fzf/shell/completion.bash"
 else
     # Linux
     [ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
-    # fzf key-bindings (completion is loaded via bash_completion.d)
-    [ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash
     # Load git completion explicitly (fzf's default handler intercepts lazy loading)
     [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 fi
 eval "$(zoxide init bash)"
+source <(sk --shell bash)
 . "$HOME/.cargo/env"

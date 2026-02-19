@@ -23,7 +23,6 @@ brew "watch"
 brew "less"
 brew "jq"
 brew "btop"
-brew "fzf"
 brew "sk"
 brew "zoxide"
 brew "ripgrep"
@@ -33,6 +32,7 @@ brew "fd"
 brew "difftastic"
 brew "gh"
 brew "dotter"
+brew "prek"
 
 # Development tools
 brew "rustup" # Run rustup init

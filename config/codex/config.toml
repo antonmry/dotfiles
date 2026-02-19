@@ -48,3 +48,6 @@ trust_level = "untrusted"
 
 [projects."/Users/antonmry/Workspace/Phoebe/monorepo"]
 trust_level = "untrusted"
+
+[projects."/Users/antonmry/.lima/moltis"]
+trust_level = "trusted"
