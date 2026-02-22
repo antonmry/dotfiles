@@ -33,6 +33,11 @@ start() {
     sleep 5
   done
 
+  echo "Waiting for SSH to become available via IAP..."
+  until gcloud compute ssh "$NAME" --zone "$ZONE" --tunnel-through-iap --command="true" 2>/dev/null; do
+    sleep 10
+  done
+
   gcloud compute ssh "$NAME" --zone "$ZONE" --tunnel-through-iap -- -N -D 1080
 }
 
