@@ -43,6 +43,10 @@ vim.opt.splitright = true -- Split windows right to the current windows
 vim.opt.splitbelow = true -- Split windows below to the current windows
 vim.opt.autowrite = true -- Automatically save before :next, :make etc.
 vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = "*",
+})
 
 vim.opt.swapfile = false -- Don't use swapfile
 vim.opt.undofile = true
@@ -52,7 +56,7 @@ vim.opt.inccommand = "split"
 vim.opt.completeopt = { "noinsert", "menuone", "fuzzy" }
 -- vim.opt.completeopt = "menu,menuone,noselect,popup"
 vim.opt.winborder = "rounded"
- vim.opt.pumborder = "rounded"
+vim.opt.pumborder = "rounded"
 vim.opt.signcolumn = "yes"
 
 vim.opt.showbreak = "↪" -- sets the string to be shown in front of lines that are wrapped
