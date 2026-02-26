@@ -51,3 +51,9 @@ trust_level = "untrusted"
 
 [projects."/Users/antonmry/.lima/moltis"]
 trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Galiglobal/breo"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Galiglobal/allium-cli"]
+trust_level = "trusted"

@@ -36,6 +36,8 @@ brew "prek"
 
 # Development tools
 brew "rustup" # Run rustup init
+brew "cargo-binstall"
+brew "cargo-llvm-cov"
 brew "rust-analyzer"
 brew "bacon"
 brew "datafusion"
@@ -50,6 +52,7 @@ brew "z3"
 tap "pulumi/tap"
 brew "pulumi"
 brew "awscli"
+brew "azure-cli"
 
 
 # Docker/VM

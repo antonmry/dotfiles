@@ -24,6 +24,8 @@ brew "gh"
 brew "samply"
 brew "z3"
 brew "prek"
+brew "cargo-binstall"
+brew "cargo-llvm-cov"
 
 # Docker/VM
 brew "helm"

@@ -42,8 +42,10 @@ vim.opt.showmatch = true -- Highlight matching parenthesis
 vim.opt.splitright = true -- Split windows right to the current windows
 vim.opt.splitbelow = true -- Split windows below to the current windows
 vim.opt.autowrite = true -- Automatically save before :next, :make etc.
+vim.opt.autoread = true
 
 vim.opt.swapfile = false -- Don't use swapfile
+vim.opt.undofile = true
 vim.opt.ignorecase = true -- Search case insensitive...
 vim.opt.smartcase = true -- ... but not it begins with upper case
 vim.opt.inccommand = "split"
@@ -56,8 +58,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.showbreak = "↪" -- sets the string to be shown in front of lines that are wrapped
 vim.opt.listchars = "tab:→\\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨" -- sets the characters for displaying tabs and trailing spaces.
 vim.opt.list = true -- enables the display of the `listchars`.
-
-vim.opt.undofile = true
 
 -- Disable status bar
 vim.opt.ruler = false

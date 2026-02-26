@@ -99,3 +99,4 @@ fi
 eval "$(zoxide init bash)"
 source <(sk --shell bash)
 . "$HOME/.cargo/env"
+eval "$(breo setup bash)"
