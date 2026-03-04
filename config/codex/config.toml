@@ -57,3 +57,6 @@ trust_level = "trusted"
 
 [projects."/Users/antonmry/Workspace/Galiglobal/allium-cli"]
 trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Phoebe/adp"]
+trust_level = "trusted"

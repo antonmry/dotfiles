@@ -97,6 +97,6 @@ else
     [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 fi
 eval "$(zoxide init bash)"
-source <(sk --shell bash)
+source <(sk --shell bash --shell-bindings)
 . "$HOME/.cargo/env"
 eval "$(breo setup bash)"
