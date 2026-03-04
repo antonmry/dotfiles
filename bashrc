@@ -98,5 +98,40 @@ else
 fi
 eval "$(zoxide init bash)"
 source <(sk --shell bash --shell-bindings)
+
+# sk 3.6.x emits history entries with awk "\0", which BSD awk treats as a
+# string terminator. That collapses Ctrl+R history into a single long item.
+# Override the widget to emit NUL safely via "%c", 0.
+if declare -f __skim_history__ >/dev/null 2>&1; then
+    __skim_history__() {
+        local output
+        local c_idx='' c_reset='' ansi_opt=''
+        if [[ ! -v NO_COLOR ]]; then
+            c_idx="${SKIM_CTRL_R_IDX_COLOR:-\033[2m}"
+            c_reset='\033[0m'
+            ansi_opt='--ansi'
+        fi
+        output=$(
+            builtin fc -lnr -2147483648 |
+                last_hist=$(HISTTIMEFORMAT='' builtin history 1) awk -v last_hist="$last_hist" -v c_idx="$c_idx" -v c_reset="$c_reset" '
+                BEGIN { HISTCMD = last_hist + 1; cmd = ""; idx = 0 }
+                /^\t/ {
+                  if (cmd != "" && !seen[cmd]++) printf "%s%d%s\t%s%c", c_idx, HISTCMD - idx, c_reset, cmd, 0
+                  idx++; cmd = substr($0, 2); sub(/^[ *]/, "", cmd); next
+                }
+                { cmd = cmd "\n" $0 }
+                END { if (cmd != "" && !seen[cmd]++) printf "%s%d%s\t%s%c", c_idx, HISTCMD - idx, c_reset, cmd, 0 }
+            ' |
+                SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTIONS -n2..,.. --bind=ctrl-r:toggle-sort $SKIM_CTRL_R_OPTS --no-multi --read0 $ansi_opt" $(__skimcmd) --query "$READLINE_LINE"
+        ) || return
+        echo -e "\033[0m"
+        READLINE_LINE=${output#*$'\t'}
+        if [ -z "$READLINE_POINT" ]; then
+            echo "$READLINE_LINE"
+        else
+            READLINE_POINT=0x7fffffff
+        fi
+    }
+fi
 . "$HOME/.cargo/env"
 eval "$(breo setup bash)"
