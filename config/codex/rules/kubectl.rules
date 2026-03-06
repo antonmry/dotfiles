@@ -1,0 +1,20 @@
+prefix_rule(pattern=["kubectl", "api-resources"], decision="allow")
+prefix_rule(pattern=["kubectl", "api-versions"], decision="allow")
+prefix_rule(pattern=["kubectl", "auth", "whoami"], decision="allow")
+prefix_rule(pattern=["kubectl", "cluster-info"], decision="allow")
+prefix_rule(pattern=["kubectl", "config", [
+  "current-context",
+  "get-clusters",
+  "get-contexts",
+  "get-users",
+  "view",
+]], decision="allow")
+prefix_rule(pattern=["kubectl", "describe"], decision="allow")
+prefix_rule(pattern=["kubectl", "diff"], decision="allow")
+prefix_rule(pattern=["kubectl", "events"], decision="allow")
+prefix_rule(pattern=["kubectl", "explain"], decision="allow")
+prefix_rule(pattern=["kubectl", "get"], decision="allow")
+prefix_rule(pattern=["kubectl", "logs"], decision="allow")
+prefix_rule(pattern=["kubectl", "top"], decision="allow")
+prefix_rule(pattern=["kubectl", "version"], decision="allow")
+prefix_rule(pattern=["kubectl", "wait"], decision="allow")

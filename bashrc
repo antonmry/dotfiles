@@ -135,3 +135,9 @@ if declare -f __skim_history__ >/dev/null 2>&1; then
 fi
 . "$HOME/.cargo/env"
 eval "$(breo setup bash)"
+
+# >>> phoebe completion >>>
+if command -v phoebe &>/dev/null; then
+  source <(phoebe completion bash)
+fi
+# <<< phoebe completion <<<

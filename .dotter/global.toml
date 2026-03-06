@@ -35,6 +35,7 @@ bashrc = "~/.bashrc"
 # (TOML doesn't allow duplicate keys, so we can't map one source to multiple destinations)
 "config/codex/config.toml" = "~/.codex/config.toml"
 "config/codex/prompts/zellij.md" = "~/.codex/prompts/zellij.md"
+"config/codex/rules" = "~/.codex/rules"
 
 [default.variables]
 font_size = 12.0

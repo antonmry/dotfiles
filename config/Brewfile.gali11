@@ -49,18 +49,17 @@ brew "make"
 brew "cmake"
 brew "samply"
 brew "z3"
-tap "pulumi/tap"
-brew "pulumi"
-brew "awscli"
-brew "azure-cli"
 
-
-# Docker/VM
+# Docker/VM/Cloud
 brew "helm"
 brew "lima"
 brew "lima-additional-guestagents"
 brew "qemu"
 brew "openssh"
+tap "pulumi/tap"
+brew "pulumi"
+brew "awscli"
+brew "azure-cli"
 
 # Linters / compilers
 brew "cspell"              #
@@ -75,6 +74,7 @@ brew "yamlfmt"             # Yaml
 brew "yamllint"            # Yaml
 brew "ruff"
 brew "ty"
+brew "typst"
 
 
 # Apps

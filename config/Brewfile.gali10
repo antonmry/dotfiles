@@ -45,6 +45,7 @@ brew "yamlfmt"             # Yaml
 brew "yamllint"            # Yaml
 brew "ruff"
 brew "ty"
+brew "typst"
 
 # Apps
 # cask "alacritty"
