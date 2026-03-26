@@ -27,6 +27,16 @@ Files should work cross-platform (Linux and macOS) unless specifically targeting
 - Check for sensitive data before adding new files
 - Use environment variables or separate secret management for credentials
 
+## Adding a New Skill
+
+1. Create `config/claude/skills/<name>/SKILL.md` in the dotfiles repo
+2. Add a mapping in `.dotter/global.toml`:
+   ```toml
+   "config/claude/skills/<name>/SKILL.md" = "~/.claude/skills/<name>/SKILL.md"
+   ```
+3. Run `dotter deploy` — the post-deploy hook auto-copies all skills to `~/.codex/skills/`
+4. Avoid `\{{` handlebars syntax in SKILL.md files — dotter parses them as templates. Escape with `\{{`.
+
 ## Workflow
 
 1. Edit files in `~/.dotfiles/`

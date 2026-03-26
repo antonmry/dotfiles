@@ -6,9 +6,10 @@
 # to multiple destinations. We use this post-deploy hook to copy shared
 # config from Claude to Codex after dotter deploys.
 
-mkdir -p ~/.codex/skills/dotfiles
-mkdir -p ~/.codex/skills/neovim
+for skill_dir in ~/.claude/skills/*/; do
+  skill=$(basename "$skill_dir")
+  mkdir -p ~/.codex/skills/"$skill"
+  cp "$skill_dir"SKILL.md ~/.codex/skills/"$skill"/SKILL.md
+done
 
-cp ~/.claude/skills/dotfiles/SKILL.md ~/.codex/skills/dotfiles/SKILL.md
-cp ~/.claude/skills/neovim/SKILL.md ~/.codex/skills/neovim/SKILL.md
 cp ~/.claude/CLAUDE.md ~/.codex/AGENTS.md
