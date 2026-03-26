@@ -1,7 +1,18 @@
 model = "gpt-5.4"
-notify = ["bash", "-lc", "~/bin/notify.sh 'Codex' 'Task finished'"]
 personality = "pragmatic"
 model_reasoning_effort = "xhigh"
+suppress_unstable_features_warning = true
+
+[features]
+runtime_metrics = true
+
+[otel]
+environment = "dev"
+exporter = { "otlp-http" = { endpoint = "http://127.0.0.1:5080/api/default/v1/logs", protocol = "binary", headers = { Authorization = "Basic YWRtaW5AYWRtaW4uY29tOmFkbWluYWRtaW4=", "stream-name" = "default" } } }
+metrics_exporter = { "otlp-http" = { endpoint = "http://127.0.0.1:5080/api/default/v1/metrics", protocol = "binary", headers = { Authorization = "Basic YWRtaW5AYWRtaW4uY29tOmFkbWluYWRtaW4=" } } }
+trace_exporter = { "otlp-http" = { endpoint = "http://127.0.0.1:5080/api/default/v1/traces", protocol = "binary", headers = { Authorization = "Basic YWRtaW5AYWRtaW4uY29tOmFkbWluYWRtaW4=" } } }
+log_user_prompt = false
+
 [notice]
 hide_gpt5_1_migration_prompt = true
 "hide_gpt-5.1-codex-max_migration_prompt" = true
