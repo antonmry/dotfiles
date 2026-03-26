@@ -13,7 +13,7 @@ keybinds clear-defaults=true {
         // Add a stacked (tabbed) pane in the current tab
         bind "_" { NewPane "stacked"; SwitchToMode "Normal"; }
 
-        // Session manager
+        // Ssssion manager
         bind "s" "$" ":" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
@@ -150,6 +150,7 @@ plugins {
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
 }
+
 web_client {
     font "monospace"
 }

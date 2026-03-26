@@ -122,22 +122,21 @@ if declare -f __skim_history__ >/dev/null 2>&1; then
                 { cmd = cmd "\n" $0 }
                 END { if (cmd != "" && !seen[cmd]++) printf "%s%d%s\t%s%c", c_idx, HISTCMD - idx, c_reset, cmd, 0 }
             ' |
-                SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTIONS -n2..,.. --bind=ctrl-r:toggle-sort $SKIM_CTRL_R_OPTS --no-multi --read0 $ansi_opt" $(__skimcmd) --query "$READLINE_LINE"
+                SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTIONS -n2..,.. --bind=ctrl-r:toggle-sort $SKIM_CTRL_R_OPTS --no-multi --read0 $ansi_opt" "$(__skimcmd)" --query "$READLINE_LINE"
         ) || return
         echo -e "\033[0m"
         READLINE_LINE=${output#*$'\t'}
-        if [ -z "$READLINE_POINT" ]; then
+        if [ "$READLINE_POINT" = "" ]; then
             echo "$READLINE_LINE"
         else
             READLINE_POINT=0x7fffffff
         fi
     }
 fi
+
 . "$HOME/.cargo/env"
 eval "$(breo setup bash)"
 
-# >>> phoebe completion >>>
-if command -v phoebe &>/dev/null; then
-  source <(phoebe completion bash)
+if command -v coral &>/dev/null; then
+  source <(coral completion bash)
 fi
-# <<< phoebe completion <<<

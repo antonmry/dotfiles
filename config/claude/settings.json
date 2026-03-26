@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Bash(curl*)",
       "Bash(* --help)",
       "Bash(* --version)",
       "Bash(aws * describe-*)",
@@ -86,13 +87,12 @@
       "Bash(git commit*)"
     ],
     "ask": [
-      "Bash(curl*)",
       "Bash(gh pr create*)",
       "Bash(rm *)",
       "Read(*.env)"
     ]
   },
-  "model": "sonnet",
+  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
@@ -129,5 +129,7 @@
       }
     }
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }
