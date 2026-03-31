@@ -7,18 +7,14 @@ layout {
         pane {
             pane split_direction="vertical" {
                 pane stacked=true {
-                    pane name="nvim"
-                    pane name="codex"
-                    pane name="git"
+                    pane name="host"
+                    pane name="lima"
                 }
                 pane stacked=true {
-                    pane name="lima"
-                    pane name="lima"
+                    pane name="host ca"
+                    pane name="lima ca"
                 }
             }
-        }
-        pane size=1 borderless=true {
-            plugin location="zellij:status-bar"
         }
     }
 }

@@ -1,49 +1,55 @@
 #!/bin/bash
-# Capture content from a zellij pane by name
+# Capture content from a zellij pane by name (current tab only)
 # Usage: zellij-pane.sh <pane-name>
+# Requires: zellij >= 0.44.0, jq
 
 TARGET="${1:-}"
 
-# Helper to extract command names from layout (portable, no -P)
-extract_commands() {
-    sed -n 's/.*command="\([^"]*\)".*/\1/p' | sort -u
+# Get all panes and determine the current tab
+get_panes_json() {
+    zellij action list-panes --json --all 2>/dev/null
 }
 
-# Helper to find the command of the currently focused pane
-get_focused_command() {
-    local layout="$1"
-    # Find the line with both "pane command=" and "focus=true"
-    echo "$layout" | grep 'pane command=.*focus=true' | sed -n 's/.*command="\([^"]*\)".*/\1/p' | head -1
+current_tab() {
+    jq -r '[.[] | select(.is_focused == true)] | .[0].tab_position'
 }
+
+# List pane commands in a given tab
+list_pane_commands() {
+    local tab="$1"
+    jq -r --arg tab "$tab" \
+        '.[] | select(.tab_position == ($tab | tonumber))
+             | .pane_command // .title // "unnamed"' | sort -u
+}
+
+# Find pane ID matching target name (case-insensitive) in a given tab
+find_pane_id() {
+    local tab="$1" target="$2"
+    jq -r --arg tab "$tab" --arg t "$target" \
+        '.[] | select(.tab_position == ($tab | tonumber))
+             | select(
+                 ((.pane_command // "") | ascii_downcase | contains($t | ascii_downcase))
+                 or ((.title // "") | ascii_downcase | contains($t | ascii_downcase)))
+             | .id' | head -1
+}
+
+PANES=$(get_panes_json)
+TAB=$(echo "$PANES" | current_tab)
 
 if [ -z "$TARGET" ]; then
     echo "Usage: zellij-pane.sh <pane-name>"
     echo ""
-    echo "Available panes:"
-    zellij action dump-layout 2>/dev/null | extract_commands
+    echo "Available panes (current tab):"
+    echo "$PANES" | list_pane_commands "$TAB"
     exit 0
 fi
 
-FOUND=0
+PANE_ID=$(echo "$PANES" | find_pane_id "$TAB" "$TARGET")
 
-for i in 1 2 3 4 5 6 7 8; do
-    LAYOUT=$(zellij action dump-layout 2>/dev/null)
-    FOCUSED_CMD=$(get_focused_command "$LAYOUT")
-
-    if echo "$FOCUSED_CMD" | grep -qi "$TARGET"; then
-        TMPFILE=$(mktemp)
-        zellij action dump-screen "$TMPFILE"
-        cat "$TMPFILE"
-        rm -f "$TMPFILE"
-        FOUND=1
-        break
-    fi
-
-    zellij action focus-next-pane 2>/dev/null
-    sleep 0.15
-done
-
-if [ $FOUND -eq 0 ]; then
-    echo "Pane '$TARGET' not found. Available:"
-    zellij action dump-layout 2>/dev/null | extract_commands
+if [ -z "$PANE_ID" ]; then
+    echo "Pane '$TARGET' not found in current tab. Available:"
+    echo "$PANES" | list_pane_commands "$TAB"
+    exit 1
 fi
+
+zellij action dump-screen --pane-id "$PANE_ID"
