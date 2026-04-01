@@ -17,6 +17,7 @@ brew "fd"
 brew "difftastic"
 brew "gh"
 brew "dotter"
+brew "sk"
 
 # Development tools
 brew "uv"
