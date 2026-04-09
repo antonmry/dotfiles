@@ -1,5 +1,9 @@
-
 -- ~/.config/nvim/ftplugin/markdown.lua
+
+-- Neovim 0.13-dev currently changes Tree-sitter query match shapes in a way
+-- that breaks this pinned aerial.nvim treesitter backend for markdown. Use the
+-- dedicated markdown backend until the plugin catches up.
+vim.b.aerial_backends = { "markdown", "lsp" }
 
 ------------------------------------------------------------
 -- Formatter (conform.nvim)

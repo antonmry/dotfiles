@@ -50,13 +50,13 @@ keybinds clear-defaults=true {
         bind "L" { Resize "Increase Right"; }
         bind "K" { Resize "Increase Up"; }
         bind "J" { Resize "Increase Down"; }
+        // Moving panes (enters move mode)
+        bind "m" { SwitchToMode "Move"; }
 
         // bind "o" { FocusNextPane; }
 
         bind "d" { Detach; }
 
-        // Mark pane for group actions (m selects panes for grouping)
-        bind "m" { ToggleGroupMarking; }
         // Keep swap layout on an alternate key
         bind "Ctrl Space" { NextSwapLayout; }
 
@@ -114,6 +114,13 @@ keybinds clear-defaults=true {
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
+    }
+    move {
+        bind "h" { MovePane "Left"; }
+        bind "l" { MovePane "Right"; }
+        bind "k" { MovePane "Up"; }
+        bind "j" { MovePane "Down"; }
+        bind "Esc" "Enter" { SwitchToMode "Normal"; }
     }
     session {
         bind "Ctrl o" { SwitchToMode "Normal"; }

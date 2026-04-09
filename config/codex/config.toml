@@ -76,5 +76,8 @@ trust_level = "trusted"
 [projects."/Users/antonmry/.lima/default"]
 trust_level = "trusted"
 
+[projects."/Users/antonmry/Workspace/Withcoral/coral"]
+trust_level = "trusted"
+
 [plugins."github@openai-curated"]
 enabled = true
