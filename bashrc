@@ -137,6 +137,6 @@ fi
 . "$HOME/.cargo/env"
 eval "$(breo setup bash)"
 
-if command -v coral &>/dev/null; then
-  source <(coral completion bash)
-fi
+# if command -v coral &>/dev/null; then
+#   source <(coral completion bash)
+# fi
