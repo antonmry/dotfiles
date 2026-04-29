@@ -33,6 +33,7 @@ brew "difftastic"
 brew "gh"
 brew "dotter"
 brew "prek"
+tap "kreuzberg-dev/tap"
 
 # Development tools
 brew "rustup" # Run rustup init

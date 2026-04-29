@@ -46,8 +46,12 @@ Rules:
 # Generate initial commit message with Codex from staged diff, suppressing noisy console output
 TMP_MSG="$(mktemp)"
 TMP_ERR="$(mktemp)"
+CODEX_ARGS=(--disable shell_snapshot -c 'model_reasoning_effort="medium"')
+if [ -n "${CODEX_MODEL:-}" ]; then
+  CODEX_ARGS+=(-m "$CODEX_MODEL")
+fi
 set +o pipefail
-if ! git diff --cached -U2 | codex exec -m gpt-5-codex -c 'model_reasoning_effort="medium"' --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
+if ! git diff --cached -U2 | codex exec "${CODEX_ARGS[@]}" --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
   echo "Failed to generate commit message:"
   cat "$TMP_ERR"
   rm -f "$TMP_MSG" "$TMP_ERR"

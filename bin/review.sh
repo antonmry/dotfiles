@@ -36,9 +36,11 @@ if [[ -z "$PR" ]]; then
     elif [[ "$branch" =~ ^([0-9]+)[-_] ]]; then
         PR="${BASH_REMATCH[1]}"
     else
-        echo "❌ PR number not provided and cannot infer from branch '$branch'"
-        echo "   Usage: $0 <pr-number>"
-        exit 1
+        echo "PRs waiting for your review in $OWNER/$REPO:"
+        echo ""
+        gh pr list --search "review-requested:@me" --json number,title,author,updatedAt \
+            --jq '.[] | "#\(.number)  \(.title)  (by \(.author.login))"'
+        exit 0
     fi
 fi
 
