@@ -101,3 +101,4 @@ brew "mosquitto"
 # AI
 cask "claude-code"
 cask "codex"
+brew "apfel"

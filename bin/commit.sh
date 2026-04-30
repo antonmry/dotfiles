@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+TOOL=apfel
+for arg in "$@"; do
+  case "$arg" in
+    --apfel) TOOL=apfel ;;
+    --claude) TOOL=claude ;;
+    --codex) TOOL=codex ;;
+    -h|--help) echo "Usage: $0 [--apfel|--claude|--codex]"; exit 0 ;;
+    *) echo "Unknown arg: $arg" >&2; exit 1 ;;
+  esac
+done
+
 # Show staged/unstaged status and, if needed, offer to add everything
 STAGED="$(git diff --cached --name-status)"
 UNSTAGED="$(git diff --name-status)"
@@ -43,20 +54,44 @@ Rules:
 - Do not wrap the message in ** or add ** at the beginning or end.
 - Only use the provided diff. Output only the message.'
 
-# Generate initial commit message with Codex from staged diff, suppressing noisy console output
+# Generate initial commit message from staged diff, suppressing noisy console output
 TMP_MSG="$(mktemp)"
 TMP_ERR="$(mktemp)"
-CODEX_ARGS=(--disable shell_snapshot -c 'model_reasoning_effort="medium"')
-if [ -n "${CODEX_MODEL:-}" ]; then
-  CODEX_ARGS+=(-m "$CODEX_MODEL")
-fi
 set +o pipefail
-if ! git diff --cached -U2 | codex exec "${CODEX_ARGS[@]}" --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
-  echo "Failed to generate commit message:"
-  cat "$TMP_ERR"
-  rm -f "$TMP_MSG" "$TMP_ERR"
-  exit 1
-fi
+case "$TOOL" in
+  apfel)
+    if ! git diff --cached -U2 | apfel -q "$PROMPT" >"$TMP_MSG" 2>"$TMP_ERR"; then
+      echo "Failed to generate commit message:"
+      cat "$TMP_ERR"
+      rm -f "$TMP_MSG" "$TMP_ERR"
+      exit 1
+    fi
+    ;;
+  claude)
+    CLAUDE_ARGS=(-p)
+    if [ -n "${CLAUDE_MODEL:-}" ]; then
+      CLAUDE_ARGS+=(--model "$CLAUDE_MODEL")
+    fi
+    if ! git diff --cached -U2 | claude "${CLAUDE_ARGS[@]}" "$PROMPT" >"$TMP_MSG" 2>"$TMP_ERR"; then
+      echo "Failed to generate commit message:"
+      cat "$TMP_ERR"
+      rm -f "$TMP_MSG" "$TMP_ERR"
+      exit 1
+    fi
+    ;;
+  codex)
+    CODEX_ARGS=(--disable shell_snapshot -c 'model_reasoning_effort="medium"')
+    if [ -n "${CODEX_MODEL:-}" ]; then
+      CODEX_ARGS+=(-m "$CODEX_MODEL")
+    fi
+    if ! git diff --cached -U2 | codex exec "${CODEX_ARGS[@]}" --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
+      echo "Failed to generate commit message:"
+      cat "$TMP_ERR"
+      rm -f "$TMP_MSG" "$TMP_ERR"
+      exit 1
+    fi
+    ;;
+esac
 set -o pipefail
 rm -f "$TMP_ERR"
 
