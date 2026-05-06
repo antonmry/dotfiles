@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+private=false
+folder=""
+
+for arg in "$@"; do
+    case "$arg" in
+        --private) private=true ;;
+        -*) echo "Unknown option: $arg" >&2; exit 1 ;;
+        *) folder="$arg" ;;
+    esac
+done
+
+if [[ -z "$folder" ]]; then
+    echo "Usage: $(basename "$0") [--private] <folder>" >&2
+    exit 1
+fi
+
+if [[ ! -d "$folder" ]]; then
+    echo "Error: '$folder' is not a directory" >&2
+    exit 1
+fi
+
+mapfile -t all_files < <(find "$folder" -type f ! -name ".gitignore")
+
+files=()
+if [[ -f "$folder/.gitignore" ]]; then
+    for f in "${all_files[@]}"; do
+        if ! git -C "$folder" check-ignore -q "$f" 2>/dev/null; then
+            files+=("$f")
+        fi
+    done
+else
+    files=("${all_files[@]}")
+fi
+
+if [[ ${#files[@]} -eq 0 ]]; then
+    echo "Error: no files found in '$folder'" >&2
+    exit 1
+fi
+
+echo "Files to upload ($($private && echo private || echo public) gist):"
+for f in "${files[@]}"; do
+    echo "  ${f#"$folder"/}"
+done
+
+read -r -p "Proceed? [Y/n] " confirm
+[[ "${confirm:-Y}" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 0; }
+
+if $private; then
+    gh gist create "${files[@]}"
+else
+    gh gist create --public "${files[@]}"
+fi

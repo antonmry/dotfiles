@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+TOOL=claude
+for arg in "$@"; do
+  case "$arg" in
+    --apfel) TOOL=apfel ;;
+    --claude) TOOL=claude ;;
+    --codex) TOOL=codex ;;
+    -h|--help) echo "Usage: $0 [--apfel|--claude|--codex]"; exit 0 ;;
+    *) echo "Unknown arg: $arg" >&2; exit 1 ;;
+  esac
+done
+
 # Determine base branch (main or master)
 BASE_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')" || true
 if [ -z "$BASE_BRANCH" ]; then
@@ -80,25 +91,49 @@ Rules:
 - Do not wrap text in ** or add ** at the beginning or end.
 - Only use the provided diff and commit log. Output only the PR message.'
 
-# Generate PR message with Codex
+# Generate PR message
 TMP_MSG="$(mktemp)"
 TMP_ERR="$(mktemp)"
 TMP_INPUT="$(mktemp)"
-CODEX_ARGS=(--disable shell_snapshot -c 'model_reasoning_effort="medium"')
-if [ -n "${CODEX_MODEL:-}" ]; then
-  CODEX_ARGS+=(-m "$CODEX_MODEL")
-fi
 
 printf '%s\n\n--- Commits ---\n%s\n\n--- Diff ---\n%s' "$PROMPT" "$COMMITS" "$DIFF" > "$TMP_INPUT"
 
 echo "Generating PR message..."
 set +o pipefail
-if ! cat "$TMP_INPUT" | codex exec "${CODEX_ARGS[@]}" --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
-  echo "Failed to generate PR message:"
-  cat "$TMP_ERR"
-  rm -f "$TMP_MSG" "$TMP_ERR" "$TMP_INPUT"
-  exit 1
-fi
+case "$TOOL" in
+  apfel)
+    if ! cat "$TMP_INPUT" | apfel -q "$PROMPT" >"$TMP_MSG" 2>"$TMP_ERR"; then
+      echo "Failed to generate PR message:"
+      cat "$TMP_ERR"
+      rm -f "$TMP_MSG" "$TMP_ERR" "$TMP_INPUT"
+      exit 1
+    fi
+    ;;
+  claude)
+    CLAUDE_ARGS=(-p)
+    if [ -n "${CLAUDE_MODEL:-}" ]; then
+      CLAUDE_ARGS+=(--model "$CLAUDE_MODEL")
+    fi
+    if ! cat "$TMP_INPUT" | claude "${CLAUDE_ARGS[@]}" "$PROMPT" >"$TMP_MSG" 2>"$TMP_ERR"; then
+      echo "Failed to generate PR message:"
+      cat "$TMP_ERR"
+      rm -f "$TMP_MSG" "$TMP_ERR" "$TMP_INPUT"
+      exit 1
+    fi
+    ;;
+  codex)
+    CODEX_ARGS=(--disable shell_snapshot -c 'model_reasoning_effort="medium"')
+    if [ -n "${CODEX_MODEL:-}" ]; then
+      CODEX_ARGS+=(-m "$CODEX_MODEL")
+    fi
+    if ! cat "$TMP_INPUT" | codex exec "${CODEX_ARGS[@]}" --output-last-message "$TMP_MSG" "$PROMPT" >/dev/null 2>"$TMP_ERR"; then
+      echo "Failed to generate PR message:"
+      cat "$TMP_ERR"
+      rm -f "$TMP_MSG" "$TMP_ERR" "$TMP_INPUT"
+      exit 1
+    fi
+    ;;
+esac
 set -o pipefail
 rm -f "$TMP_ERR" "$TMP_INPUT"
 
@@ -111,6 +146,15 @@ if [ ! -s "$TMP_MSG" ]; then
   rm -f "$TMP_MSG"
   exit 1
 fi
+
+echo ""
+echo "--- PR message ---"
+cat "$TMP_MSG"
+echo "------------------"
+read -r -p "Open PR with this message? [Y/n] " RESP
+case "$RESP" in
+  [nN]|[nN][oO]) echo "Aborted."; rm -f "$TMP_MSG"; exit 1 ;;
+esac
 
 # Parse title (first line) and body (rest)
 TITLE="$(head -n 1 "$TMP_MSG")"

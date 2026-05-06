@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TOOL=apfel
+TOOL=claude
 for arg in "$@"; do
   case "$arg" in
     --apfel) TOOL=apfel ;;
@@ -104,6 +104,15 @@ if [ ! -s "$TMP_MSG" ]; then
   rm -f "$TMP_MSG"
   exit 1
 fi
+
+echo ""
+echo "--- Commit message ---"
+cat "$TMP_MSG"
+echo "----------------------"
+read -r -p "Commit with this message? [Y/n] " RESP
+case "$RESP" in
+  [nN]|[nN][oO]) echo "Aborted."; rm -f "$TMP_MSG"; exit 1 ;;
+esac
 
 # Use the edited file as the commit message
 git commit -F "$TMP_MSG"
