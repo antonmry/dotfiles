@@ -1,3 +1,8 @@
+---
+name: openobserve
+description: OpenObserve Dashboard API — create and manage dashboards in OpenObserve via the REST API.
+---
+
 # OpenObserve Dashboard API
 
 How to create and manage dashboards in OpenObserve via the REST API.

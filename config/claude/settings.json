@@ -92,6 +92,7 @@
       "Read(*.env)"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
@@ -129,8 +130,8 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,
-  "skipAutoPermissionPrompt": true,
-  "theme": "light"
+  "theme": "light",
+  "skipAutoPermissionPrompt": true
 }
