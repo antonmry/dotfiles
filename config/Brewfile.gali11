@@ -39,7 +39,9 @@ tap "kreuzberg-dev/tap"
 brew "rustup" # Run rustup init
 brew "cargo-binstall"
 brew "cargo-llvm-cov"
+brew "cargo-nextest"
 brew "rust-analyzer"
+brew "sccache"
 brew "bacon"
 brew "datafusion"
 brew "duckdb"
@@ -80,15 +82,15 @@ brew "typst"
 
 # Apps
 cask "firefox"
-cask "alacritty"
+# cask "alacritty"
 brew "zellij"
-cask "google-chrome"
+# cask "google-chrome"
 cask "karabiner-elements"
 cask "raycast"
 cask "yubico-authenticator"
 cask "tailscale-app"
 brew "tailscale"
-cask "1password"
+# cask "1password"
 cask "1password-cli"
 
 # Multimedia

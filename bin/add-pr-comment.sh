@@ -13,7 +13,11 @@ USAGE
 ARGUMENTS
     PR          PR number (e.g. 123).
     file        Path to the file as it appears in the PR (e.g. src/foo.rs).
-    line        Line number in the NEW file (RIGHT side of the diff).
+    line        Line number in the NEW file (post-image, RIGHT side of the
+                diff) — i.e., the line number an editor shows when viewing
+                the file at the PR's head ref. NOT the line number in
+                `gh pr diff` output (which includes hunk headers and removed
+                lines, shifting the count).
                 Use START-END for a multi-line comment (e.g. 10-15).
     body        Comment body. If omitted, read from stdin.
 
@@ -124,5 +128,18 @@ if output=$(gh api "${args[@]}" 2>&1); then
     fi
 else
     echo "Error posting comment: $output" >&2
+    if echo "$output" | grep -q "pull_request_review_thread.line"; then
+        cat >&2 <<'HINT'
+
+Hint: <line> must be the line number in the NEW file (post-image), NOT the
+      line number in 'gh pr diff' output. The diff output includes hunk
+      headers and removed lines, which shift the count.
+
+      To find the right line, fetch the file at the PR's head ref:
+          head_sha=$(gh pr view <PR> --json headRefOid --jq .headRefOid)
+          gh api "repos/<owner>/<repo>/contents/<file>?ref=$head_sha" \
+              --jq '.content' | base64 -d | grep -n '<pattern>'
+HINT
+    fi
     exit 1
 fi

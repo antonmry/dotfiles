@@ -7,6 +7,11 @@ description: Post a single inline review comment to a GitHub PR via the add-pr-c
 
 Post a single inline review comment to a GitHub PR using `add-pr-comment.sh`.
 
+The script is installed on `PATH` (lives in `~/bin/add-pr-comment.sh`, symlinked
+from `~/.dotfiles/bin/add-pr-comment.sh`). It is **not** co-located with this
+`SKILL.md` — invoke it by its bare name `add-pr-comment.sh`, not by a path
+under `~/.claude/skills/`.
+
 ## When to use
 
 - User asks to leave an inline comment on a PR file/line.
@@ -40,6 +45,18 @@ Run `add-pr-comment.sh --help` for the full help text.
    gh pr diff <PR>
    ```
    to see the file paths and line ranges that are commentable.
+
+   **Important:** the `<line>` argument is the line number in the NEW file
+   (post-image) — i.e., what your editor shows when viewing the file at the
+   PR's head. It is **not** the line number in `gh pr diff` output, which
+   includes hunk headers and removed lines that shift the count. To get the
+   right number reliably, fetch the file at the head ref and use that line
+   number. For example:
+   ```bash
+   head_sha=$(gh pr view <PR> --json headRefOid --jq .headRefOid)
+   gh api "repos/<owner>/<repo>/contents/<file>?ref=$head_sha" \
+       --jq '.content' | base64 -d | grep -n '<pattern>'
+   ```
 
 2. **Post one comment per finding.** Keep each comment focused on one issue.
    For multi-line context, use `start-end` line spec.
