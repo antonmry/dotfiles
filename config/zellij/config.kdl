@@ -2,18 +2,20 @@ keybinds clear-defaults=true {
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
 
-        // Leave tmux mode
-        bind "Ctrl a" { Write 2; SwitchToMode "Normal"; }
+        // Forward Ctrl+a to the pane when the prefix is pressed twice
+        bind "Ctrl a" { Write 1; SwitchToMode "Normal"; }
+        // Cancel tmux mode
+        bind "Esc" "Enter" { SwitchToMode "Normal"; }
 
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
 
         // Tab creation
         bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "t" { NewTab; SwitchToMode "Normal"; }
-        // Add a stacked (tabbed) pane in the current tab
+        // Add a stacked pane in the current tab
         bind "_" { NewPane "stacked"; SwitchToMode "Normal"; }
 
-        // Ssssion manager
+        // Session manager
         bind "s" "$" ":" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
@@ -69,7 +71,7 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal"
         }
-        // Toggle tabbed pane group (shows panes as tabs)
+        // Toggle the focused pane's membership in the group for bulk operations
         bind "g" { TogglePaneInGroup; SwitchToMode "Normal"; }
     }
     scroll {
@@ -133,7 +135,7 @@ keybinds clear-defaults=true {
     renamepane {
         bind "Enter" { SwitchToMode "Normal"; }
         bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
+        bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; }
     }
     shared_except "tmux" "locked" {
         // Enter tmux mode
@@ -169,13 +171,8 @@ load_plugins {
 web_client {
     font "monospace"
 }
- 
-show_startup_tips false
 
-ui {
-    pane_frames false
-    welcome_screen false
-}
+show_startup_tips false
 
 session_name "main"
 attach_to_session true
@@ -183,12 +180,5 @@ attach_to_session true
 theme "iceberg-light"
 pane_frames false
 
-permissions {
-    guest {
-        permission "read-only"
-    }
-
-    user "local" {
-        permission "read-write"
-    }
-}
+// Use the classic stacked-pane display instead of the list introduced in 0.45
+stacked_pane_list false

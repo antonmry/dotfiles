@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TOOL=claude
+TOOL=codex
 for arg in "$@"; do
   case "$arg" in
     --apfel) TOOL=apfel ;;
-    --claude) TOOL=claude ;;
     --codex) TOOL=codex ;;
-    -h|--help) echo "Usage: $0 [--apfel|--claude|--codex]"; exit 0 ;;
+    -h|--help) echo "Usage: $0 [--apfel|--codex] (default: codex)"; exit 0 ;;
     *) echo "Unknown arg: $arg" >&2; exit 1 ;;
   esac
 done
@@ -61,18 +60,6 @@ set +o pipefail
 case "$TOOL" in
   apfel)
     if ! git diff --cached -U2 | apfel -q "$PROMPT" >"$TMP_MSG" 2>"$TMP_ERR"; then
-      echo "Failed to generate commit message:"
-      cat "$TMP_ERR"
-      rm -f "$TMP_MSG" "$TMP_ERR"
-      exit 1
-    fi
-    ;;
-  claude)
-    CLAUDE_ARGS=(-p)
-    if [ -n "${CLAUDE_MODEL:-}" ]; then
-      CLAUDE_ARGS+=(--model "$CLAUDE_MODEL")
-    fi
-    if ! git diff --cached -U2 | claude "${CLAUDE_ARGS[@]}" "$PROMPT" >"$TMP_MSG" 2>"$TMP_ERR"; then
       echo "Failed to generate commit message:"
       cat "$TMP_ERR"
       rm -f "$TMP_MSG" "$TMP_ERR"

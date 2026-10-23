@@ -5,6 +5,7 @@ export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/usr/local/sessionmanagerplugin/bin:$PATH"
 export PATH="~/bin:$PATH"
@@ -42,7 +43,8 @@ export EDITOR="nvim"
 export SKIM_DEFAULT_OPTIONS="--color=light"
 
 alias bbic="brew update &&\
-    brew bundle install --cleanup --file=~/.config/Brewfile &&\
+    brew bundle install --file=~/.config/Brewfile &&\
+    brew bundle cleanup --file=~/.config/Brewfile &&\
     brew upgrade"
 alias docker="podman"
 

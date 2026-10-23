@@ -1,9 +1,11 @@
-model = "gpt-5.5"
+model = "gpt-6.1-sol"
 personality = "pragmatic"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "high"
 suppress_unstable_features_warning = true
 
 notify = ["/Users/antonmry/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "default"
+approvals_reviewer = "user"
 
 [features]
 runtime_metrics = true
@@ -20,11 +22,13 @@ log_user_prompt = false
 hide_gpt5_1_migration_prompt = true
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 fast_default_opt_out = true
+hide_rate_limit_model_nudge = true
 
 [notice.model_migrations]
 "gpt-5.1-codex-max" = "gpt-5.2-codex"
 "gpt-5.2" = "gpt-5.3-codex"
 "gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.5" = "gpt-6.1-sol"
 
 [projects."/Users/antonmry/Workspace/Galiglobal/rust-playground"]
 trust_level = "trusted"
@@ -122,6 +126,12 @@ trust_level = "trusted"
 [projects."/Users/antonmry/Documents/Tesis"]
 trust_level = "trusted"
 
+[projects."/Users/antonmry/Workspace/Withcoral/lagoon"]
+trust_level = "trusted"
+
+[projects."/Users/antonmry/Workspace/Withcoral/coral-cloud"]
+trust_level = "trusted"
+
 [plugins."github@openai-curated"]
 enabled = true
 
@@ -149,9 +159,16 @@ enabled = true
 [plugins."visualize@openai-bundled"]
 enabled = true
 
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[tui]
+screen_reader_detection_done = true
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
-gpt-6-astra = 1
+gpt-6-astra = 4
+"gpt-6.1-sol" = 4
 
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
@@ -160,34 +177,33 @@ followUpQueueMode = "queue"
 dock-icon-preference = "codex-system"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-31T21:51:36Z"
 source_type = "local"
 source = "/Users/antonmry/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-19T23:07:13Z"
 source_type = "local"
 source = "/Users/antonmry/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [mcp_servers.node_repl]
 args = []
-command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/antonmry/.codex"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/antonmry/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 CODEX_HOME = "/Users/antonmry/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "583bf903a6cfb9b00a01e1583381ce921c71d7585085c6fa6b805baa0f60230b,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "0"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.715.52143"
-CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.818.41705"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/antonmry/.codex/plugins/cache/openai-bundled/browser/26.818.41705/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.computer-use]
 command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
@@ -195,7 +211,8 @@ args = ["mcp"]
 cwd = "."
 enabled = false
 
+[mcp_servers.coral-sandbox]
+url = "https://mcp.coral.sandbox.phoebe.ai/workspaces/66e74e2a-9b39-490d-8fee-095ac23b1d5f/mcp"
+
 [shell_environment_policy.set]
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "583bf903a6cfb9b00a01e1583381ce921c71d7585085c6fa6b805baa0f60230b,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/antonmry/.codex"

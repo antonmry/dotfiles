@@ -1,5 +1,6 @@
 layout {
-    // Stack rows: tab bar on top, main content in middle, status bar at bottom
+    // Tab bar above two side-by-side stacks of named shells
+    // Pane names are labels; Lima and other commands are started manually
     pane split_direction="horizontal" {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
