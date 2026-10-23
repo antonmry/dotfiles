@@ -2,3 +2,4 @@ AGENTS.md
 .dotter/cache.toml 
 .dotter/cache
 .dotter/local.toml 
+__pycache__/

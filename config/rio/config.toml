@@ -1,0 +1,85 @@
+# Match the Alacritty configuration; Zellij manages tabs and panes.
+copy-on-select = true
+enable-scroll-bar = false
+# Margins: top, right, bottom, left.
+margin = [0, 2, 0, 2]
+
+[shell]
+program = "/opt/homebrew/bin/zellij"
+args = []
+
+[platform.linux.shell]
+program = "zellij"
+args = []
+
+# Native macOS windows avoid Plain mode's fixed 26 pt top inset.
+[platform.macos.navigation]
+mode = "NativeTab"
+
+[window]
+decorations = "Enabled"
+mode = "Maximized"
+
+[panel]
+margin = [0]
+padding = [0]
+
+[navigation]
+mode = "Plain"
+use-split = false
+
+[fonts]
+size = {{ font_size }}
+
+[fonts.regular]
+family = "ComicShannsMono Nerd Font"
+style = "Regular"
+
+[fonts.bold]
+family = "ComicShannsMono Nerd Font"
+style = "Bold"
+
+[fonts.italic]
+family = "ComicShannsMono Nerd Font"
+style = "Italic"
+
+[fonts.bold-italic]
+family = "ComicShannsMono Nerd Font"
+style = "Bold Italic"
+
+[colors]
+background = "#FDFCFB"
+foreground = "#393736"
+cursor = "#2D2B2A"
+selection-background = "#D4D1CF"
+selection-foreground = "#393736"
+
+black = "#2D2B2A"
+blue = "#5F87AF"
+cyan = "#5E5C5A"
+green = "#5F875F"
+magenta = "#AF87AF"
+red = "#D75F5F"
+white = "#393736"
+yellow = "#D7875F"
+
+light-black = "#5E5C5A"
+light-blue = "#5F87AF"
+light-cyan = "#5E5C5A"
+light-green = "#5F875F"
+light-magenta = "#AF87AF"
+light-red = "#D75F5F"
+light-white = "#393736"
+light-yellow = "#D7875F"
+
+[bindings]
+keys = [
+    # Keep tab creation in Zellij when using native macOS window chrome.
+    { key = "t", with = "super", action = "ReceiveChar" },
+    { key = "F11", action = "ToggleFullscreen" },
+    { key = "+", with = "control", action = "IncreaseFontSize" },
+    { key = "0", with = "control | shift", action = "ResetFontSize" },
+    { key = ".", with = "control", action = "ResetFontSize" },
+    { key = "-", with = "control", action = "DecreaseFontSize" },
+    { key = "=", with = "control", action = "ResetFontSize" },
+]

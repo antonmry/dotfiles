@@ -212,7 +212,7 @@ cwd = "."
 enabled = false
 
 [mcp_servers.coral-sandbox]
-url = "https://mcp.coral.sandbox.phoebe.ai/workspaces/66e74e2a-9b39-490d-8fee-095ac23b1d5f/mcp"
+url = "https://mcp.coral.sandbox.phoebe.ai/workspaces/e581ca61-9bed-43c2-be4e-38bedfd1842e/mcp"
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "583bf903a6cfb9b00a01e1583381ce921c71d7585085c6fa6b805baa0f60230b,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
