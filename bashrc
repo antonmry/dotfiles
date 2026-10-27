@@ -79,6 +79,15 @@ esac
 
 lima-start() { limactl start "${1:-default}" --mount "$PWD:rw"; }
 
+# Start Codex when Happier is invoked without arguments.
+happier() {
+    if [ "$#" -eq 0 ]; then
+        command happier codex
+    else
+        command happier "$@"
+    fi
+}
+
 clip() {
     "$@" 2>&1 | tee >(pbcopy)
 }
