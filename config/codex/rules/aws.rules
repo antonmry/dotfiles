@@ -1,3 +1,4 @@
+prefix_rule(pattern=["aws", "ecs", "describe-services"], decision="allow")
 prefix_rule(pattern=["aws", "firehose", "describe-delivery-stream"], decision="allow")
 prefix_rule(pattern=["aws", "logs", "describe-subscription-filters"], decision="allow")
 prefix_rule(pattern=["aws", "s3", "ls"], decision="allow")

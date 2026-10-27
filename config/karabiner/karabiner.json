@@ -4,7 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Left CMD to left CTRL in Ghostty/Wezterm/Alacritty (with exceptions)",
+                        "description": "Left CMD to left CTRL in Ghostty/Wezterm/Alacritty/Rio (with exceptions)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -12,12 +12,13 @@
                                         "bundle_identifiers": [
                                             "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.github\\.wez\\.wezterm$",
-                                            "^org\\.alacritty$"
+                                            "^org\\.alacritty$",
+                                            "^com\\.raphaelamorim\\.rio$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "Map left Cmd to left Ctrl in Ghostty/WezTerm/Alacritty",
+                                "description": "Map left Cmd to left Ctrl in Ghostty/WezTerm/Alacritty/Rio",
                                 "from": {
                                     "key_code": "left_command",
                                     "modifiers": { "optional": ["any"] }
@@ -50,7 +51,8 @@
                                         "bundle_identifiers": [
                                             "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.github\\.wez\\.wezterm$",
-                                            "^org\\.alacritty$"
+                                            "^org\\.alacritty$",
+                                            "^com\\.raphaelamorim\\.rio$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -79,7 +81,8 @@
                                         "bundle_identifiers": [
                                             "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.github\\.wez\\.wezterm$",
-                                            "^org\\.alacritty$"
+                                            "^org\\.alacritty$",
+                                            "^com\\.raphaelamorim\\.rio$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -108,7 +111,8 @@
                                         "bundle_identifiers": [
                                             "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.github\\.wez\\.wezterm$",
-                                            "^org\\.alacritty$"
+                                            "^org\\.alacritty$",
+                                            "^com\\.raphaelamorim\\.rio$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -137,7 +141,8 @@
                                         "bundle_identifiers": [
                                             "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.github\\.wez\\.wezterm$",
-                                            "^or\\.alacritty$"
+                                            "^or\\.alacritty$",
+                                            "^com\\.raphaelamorim\\.rio$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }

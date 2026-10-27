@@ -142,3 +142,5 @@ eval "$(breo setup bash)"
 # if command -v coral &>/dev/null; then
 #   source <(coral completion bash)
 # fi
+
+export PATH="/Users/antonmry/.local/bin:$PATH"
