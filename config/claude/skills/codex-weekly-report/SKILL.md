@@ -104,8 +104,8 @@ titles, date-range/timezone lines, section headings, introductions, coverage
 notes, footers, and per-bullet topic labels such as `**Deployment:**`. Do not
 turn report metadata into bullets. Start each bullet directly with the work or
 outcome.
-Group related work and aim for roughly 100–180 words overall, usually one
-sentence per bullet. Retain material blockers and uncertain deployment status
+Group related work and aim for roughly 100–180 words overall, usually one or
+two short sentences per bullet. Retain material blockers and uncertain deployment status
 even when that requires extra words. Omit implementation inventories, repeated
 context, and troubleshooting detail unless they explain an important outcome.
 
@@ -138,6 +138,21 @@ Report recorded outcomes as of the session history. Live infrastructure checks
 are unnecessary unless the user asks for current verification. If no
 work-related activity is found, use one bullet saying so without filling the
 report with personal tasks.
+
+## Writing style
+
+Use the voice of Slack's app release notes by default: funny but informative,
+conversational, and a little dry. Lead with the concrete change and its benefit;
+add a brief playful aside or understated punchline where it fits naturally.
+Draw humor from the actual work rather than adding generic jokes, hype, or a
+punchline to every bullet. Keep blockers and unfinished work explicit: humor
+must not imply a fix, deployment, or successful cleanup that the evidence does
+not establish. Preserve the flat bullets, relevant links, and concise length.
+
+For example:
+
+- SaaS builds no longer queue behind sandbox builds; Terraform still takes turns.
+- Published an AWS cost report with shared-cost allocation and an interactive calculator. The cloud bill now comes with an explanation.
 
 ## Save the draft in /tmp
 
