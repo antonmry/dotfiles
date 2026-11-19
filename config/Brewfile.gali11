@@ -62,7 +62,6 @@ brew "openssh"
 tap "pulumi/tap"
 brew "pulumi"
 brew "awscli"
-brew "azure-cli"
 tap "hashicorp/tap"
 brew "terraform"
 

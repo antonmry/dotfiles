@@ -29,3 +29,7 @@ prefix_rule(pattern=["rg", "--files", "-g", "*PIXOO*", "-g", "*Pixoo*", "-g", "*
 prefix_rule(pattern=["git", "status", "--short"], decision="allow")
 prefix_rule(pattern=["gh", "issue", "view"], decision="allow")
 prefix_rule(pattern=["uv", "run", "/Users/antonmry/bin/collect-codex-sessions.py"], decision="allow")
+prefix_rule(pattern=["gh", "project"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "list", "--repo", "withcoral/coral-cloud", "--head", "feat/sandbox-instance-backups-clean", "--json", "number,title,state,url"], decision="allow")
+prefix_rule(pattern=["gh", "run", "view", "42249869730", "--repo", "withcoral/coral-cloud", "--json", "status,conclusion,jobs", "--jq", "{status,conclusion,restore:[.jobs[0].steps[]|select(.name==\"Restore selected snapshot\" or .name==\"Record successful restore\")|{name,status,conclusion}]}"], decision="allow")
+prefix_rule(pattern=["aws", "logs", "get-log-events", "--profile", "sandbox", "--region", "eu-west-1", "--log-group-name", "/ecs/saas-coral/sandbox", "--log-stream-name", "restore/restore/b3f0829910c3488f9c93ea4fc1a192c8", "--start-from-head", "--query", "events[-12:].[timestamp,message]", "--output", "text"], decision="allow")
